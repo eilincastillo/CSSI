@@ -1,0 +1,4 @@
+api_controller_specialty:
+   type: rest
+   resource: "@AppBundle/Controller/SpecialtyController.php"
+   name_prefix:  api_specialty_

@@ -1,3 +1,9 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+#restapi
+api_specialty:
+   type:     rest
+   prefix:   /api/specialty  #importante esto es para construir las urls
+   resource: "@AppBundle/Resources/config/api-specialty.yml"
