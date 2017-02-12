@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Place
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Entity\PlaceRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PlaceRepository")
  */
 class Place
 {
