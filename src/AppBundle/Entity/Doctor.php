@@ -43,6 +43,38 @@ class Doctor
     private $specialty;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     **/
+    private $status;
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Doctor
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return array(0 => $this->status);
+    }
+
+
+    /**
      * Set specialty
      *
      * @param string $specialty
