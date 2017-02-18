@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Put;
 
 
 class SpecialtyController extends FOSRestController
@@ -78,6 +79,55 @@ class SpecialtyController extends FOSRestController
             }
         }
         return new Response('Error, the specialty was not inserted',Response::HTTP_CONFLICT);
+    }
+
+    /**
+     * Edit a specialty
+     * @var Request $request, idSpecialty
+     * @return mixed
+     *
+     * @Put("/update/{idSpecialty}")
+     */
+    public function updateAction(Request $request,$idSpecialty)
+    {
+        $content = $request->getContent();
+        if ($content != null)
+        {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
+
+                    $specialtyRepeat = $em->getRepository('AppBundle:Specialty')->findByName($json["name"]);
+
+                    if ($specialty != null)
+                    {
+                        if ($specialtyRepeat==null)
+                        {
+                            $specialty->setName($json["name"]);
+                            $em->persist($specialty);
+                            $em->flush();
+                        }
+                        else
+                            return new Response('Error, This specialty name already exists',Response::HTTP_CONFLICT);
+                    }
+                    else
+                        return new Response('Error, the specialty don\'t exists',Response::HTTP_CONFLICT);
+
+
+                    return new Response('The specialty was successfully edited', Response::HTTP_ACCEPTED);
+                }
+            }
+            catch (Exception $ex)
+            {
+                return new Response('Error, the specialty was not edited',Response::HTTP_CONFLICT);
+            }
+        }
+        return new Response('Error, the specialty was not edited',Response::HTTP_CONFLICT);
     }
 
 }

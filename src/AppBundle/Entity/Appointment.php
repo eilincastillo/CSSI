@@ -340,4 +340,3 @@ class Appointment
         return $this->expectationsPatient;
     }
 }
-

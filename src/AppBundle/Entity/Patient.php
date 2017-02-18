@@ -280,4 +280,3 @@ class Patient
         return $this->homeVisit;
     }
 }
-

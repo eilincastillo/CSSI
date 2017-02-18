@@ -123,4 +123,3 @@ class Place
         return $this->type;
     }
 }
-

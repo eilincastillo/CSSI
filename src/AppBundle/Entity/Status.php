@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Status
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Repository\StatusRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\StatusRepository")
  */
 class Status
 {
@@ -63,4 +63,3 @@ class Status
         return $this->name;
     }
 }
-

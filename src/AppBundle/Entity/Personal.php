@@ -155,4 +155,3 @@ class Personal
         return $this->lastname;
     }
 }
-

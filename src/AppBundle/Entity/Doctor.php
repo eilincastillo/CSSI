@@ -156,4 +156,3 @@ class Doctor
         return $this->lastname;
     }
 }
-
