@@ -1,0 +1,4 @@
+api_controller_status:
+   type: rest
+   resource: "@AppBundle/Controller/StatusController.php"
+   name_prefix:  api_status_
