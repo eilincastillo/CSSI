@@ -40,7 +40,7 @@ class SpecialtyController extends FOSRestController
      * @var Request $request
      * @return mixed
      *
-     * @Post("/create")
+     * @Post("/")
      */
     public function createAction(Request $request)
     {
@@ -86,7 +86,7 @@ class SpecialtyController extends FOSRestController
      * @var Request $request, idSpecialty
      * @return mixed
      *
-     * @Put("/update/{idSpecialty}")
+     * @Put("/{idSpecialty}")
      */
     public function updateAction(Request $request,$idSpecialty)
     {

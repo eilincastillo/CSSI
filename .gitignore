@@ -1,5 +1,7 @@
 /web/bundles/
 /app/bootstrap.php.cache
+/app/SymfonyRequirements.php
+/app/check.php
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
