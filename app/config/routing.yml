@@ -12,3 +12,8 @@ api_status:
    type:     rest
    prefix:   /api/status #importante esto es para construir las urls
    resource: "@AppBundle/Resources/config/api-status.yml"
+
+api_doctor:
+   type:     rest
+   prefix:   /api/doctor #importante esto es para construir las urls
+   resource: "@AppBundle/Resources/config/api-doctor.yml"

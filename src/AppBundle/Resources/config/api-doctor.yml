@@ -1,0 +1,4 @@
+api_controller_doctor:
+   type: rest
+   resource: "@AppBundle/Controller/DoctorController.php"
+   name_prefix:  api_doctor_
