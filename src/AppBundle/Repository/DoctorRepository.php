@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class DoctorRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Get active doctors
+     */
+    public function getActiveDoctors($idStatus)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('doctor.id , doctor.name, doctor.lastname')
+            ->from('AppBundle:Doctor', 'doctor')
+            ->innerJoin('doctor.status','status')
+            ->where('status.id = :idStatus')
+            ->setParameter('idStatus', $idStatus);
+        return $query->getQuery()->getArrayResult();
+    }
 }

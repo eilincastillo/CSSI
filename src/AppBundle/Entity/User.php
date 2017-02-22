@@ -57,6 +57,38 @@ class User
      *
      * @return User
      */
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Personal")
+     * @ORM\JoinColumn(name="personal", referencedColumnName="id")
+     **/
+    private $personal;
+
+    /**
+     * Set personal
+     *
+     * @param string $personal
+     *
+     * @return User
+     */
+    public function setPersonal($personal)
+    {
+        $this->personal = $personal;
+
+        return $this;
+    }
+
+    /**
+     * Get personal
+     *
+     * @return string
+     */
+    public function getPersonal()
+    {
+        return array(0 => $this->personal);
+    }
+
     public function setStatus($status)
     {
         $this->status = $status;

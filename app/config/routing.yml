@@ -10,10 +10,20 @@ api_specialty:
 
 api_status:
    type:     rest
-   prefix:   /api/status #importante esto es para construir las urls
+   prefix:   /api/status
    resource: "@AppBundle/Resources/config/api-status.yml"
 
 api_doctor:
    type:     rest
-   prefix:   /api/doctor #importante esto es para construir las urls
+   prefix:   /api/doctor
    resource: "@AppBundle/Resources/config/api-doctor.yml"
+
+api_appointment:
+   type:     rest
+   prefix:   /api/appointment
+   resource: "@AppBundle/Resources/config/appointment-doctor.yml"
+
+api_patient:
+   type:     rest
+   prefix:   /api/patient
+   resource: "@AppBundle/Resources/config/patient-doctor.yml"

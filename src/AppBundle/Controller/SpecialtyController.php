@@ -83,7 +83,7 @@ class SpecialtyController extends FOSRestController
 
     /**
      * Edit a specialty
-     * @var Request $request, idSpecialty
+     * @var Request $request, $idSpecialty
      * @return mixed
      *
      * @Put("/{idSpecialty}")

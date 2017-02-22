@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Doctor;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
@@ -32,8 +33,23 @@ class DoctorController extends FOSRestController
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $specialty = $em->getRepository('AppBundle:Doctor')->findAll();
-        return $specialty;
+        $doctor = $em->getRepository('AppBundle:Doctor')->findAll();
+        return $doctor;
+    }
+
+    /**
+     * Get active doctors
+     *
+     * @return mixed
+     *
+     * @Get("/active")
+     */
+
+    public function activeDoctorsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $doctors = $em->getRepository('AppBundle:Doctor')->getActiveDoctors(1);
+        return $doctors;
     }
 
     /**
@@ -83,5 +99,60 @@ class DoctorController extends FOSRestController
             }
         }
         return new Response('Error, the doctor was not inserted',Response::HTTP_CONFLICT);
+    }
+
+    /**
+     * Edit a doctor
+     * @var Request $request, $idDoctor
+     * @return mixed
+     *
+     * @Put("/{idDoctor}")
+     */
+
+    public function updateAction(Request $request,$idDoctor)
+    {
+        $content = $request->getContent();
+
+        if ($content != null)
+        {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    $doctor = $em->getRepository('AppBundle:Doctor')->find($idDoctor);
+                    $specialty = $em->getRepository('AppBundle:Specialty')->find($json["idSpecialty"]);
+                    $status = $em->getRepository('AppBundle:Status')->find($json["idStatus"]);
+
+                    if ($doctor != null )
+                    {
+                        if ($specialty != null || $status != null)
+                        {
+                            $doctor->setName($json["name"]);
+                            $doctor->setLastname($json["lastname"]);
+                            $doctor->setSpecialty($specialty);
+                            $doctor->setStatus($status);
+
+                            $em->persist($doctor);
+                            $em->flush();
+                        }
+                        else
+                            return new Response('Error, the specialty or status don\'t exists',Response::HTTP_CONFLICT);
+                    }
+                    else
+                        return new Response('Error, the Doctor don\'t exists',Response::HTTP_CONFLICT);
+
+
+                    return new Response('The doctor was successfully edited', Response::HTTP_ACCEPTED);
+                }
+            }
+            catch (Exception $ex)
+            {
+                return new Response('Error, the doctor was not edited',Response::HTTP_CONFLICT);
+            }
+        }
+        return new Response('Error, the doctor was not edited',Response::HTTP_CONFLICT);
     }
 }

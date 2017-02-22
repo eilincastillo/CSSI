@@ -37,7 +37,7 @@ class Doctor
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="Specialty")
+     * @ORM\ManyToOne(targetEntity="Specialty")
      * @ORM\JoinColumn(name="specialty", referencedColumnName="id")
      **/
     private $specialty;

@@ -43,37 +43,6 @@ class Personal
     private $lastname;
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user", referencedColumnName="id")
-     **/
-    private $user;
-
-    /**
-     * Set user
-     *
-     * @param string $user
-     *
-     * @return Personal
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return array(0 => $this->user);
-    }
-
-    /**
      * Get id
      *
      * @return integer
