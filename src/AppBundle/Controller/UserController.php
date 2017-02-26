@@ -120,6 +120,9 @@ class UserController extends FOSRestController
      * Update user info
      *
      * @var Request $request, $idUser
+     * @return mixed
+     *
+     * @PUT("/{idUser}")
      */
     public function updateAction(Request $request, $idUser)
     {
@@ -129,18 +132,56 @@ class UserController extends FOSRestController
         {
             $json = json_decode($content, true);
 
-            if($json != null)
+            try
             {
-                $em = $this->getDoctrine()->getManager();
+                if($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
 
-                $user = $em->getRepository('AppBundle:User')->find($idUser);
+                    $user = $em->getRepository('AppBundle:User')->find($idUser);
+                    $status = $em->getRepository('AppBundle:Status')->find($json["idStatus"]);
+                    $role = $em->getRepository('AppBundle:Role')->find($json["idRole"]);
+
+
+                    if($user != null)
+                    {
+                        if($status != null && $role != null)
+                        {
+
+                            $personal = $user->getPersonal();
+                            $personal->setDocument($json["document"]);
+                            $personal->setName($json["name"]);
+                            $personal->setLastname($json["lastName"]);
+
+                            $user->setUsername($json["username"]);
+                            $user->setPassword($json["password"]);
+                            $user->setRole($role);
+                            $user->setStatus($status);
+                            $user->setPersonal($personal);
+                            $em->persist($user);
+                            $em->flush();
+
+                        }
+                        else
+                            return new Response('Error, the status or role don\'t exists', Response::HTTP_CONFLICT);
+                    }
+                    else
+                        return new Response('Error, the User don\'t exists', Response::HTTP_CONFLICT);
+
+                    return new Response('The user was successfully edited', Response::HTTP_ACCEPTED);
+
+
+                }
 
 
             }
-
+            catch (Exception $ex)
+            {
+                return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
+            }
         }
 
-        return new Response('Error, the doctor was not edited', Response::HTTP_CONFLICT);
+        return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
 
     }
 }

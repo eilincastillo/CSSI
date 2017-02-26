@@ -60,7 +60,7 @@ class User
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Personal", cascade={"all"})
+     * @ORM\OneToOne(targetEntity="Personal", cascade={"all"})
      * @ORM\JoinColumn(name="personal", referencedColumnName="id")
      **/
     private $personal;
@@ -82,11 +82,11 @@ class User
     /**
      * Get personal
      *
-     * @return string
+     * @return personal
      */
     public function getPersonal()
     {
-        return array(0 => $this->personal);
+        return $this->personal;
     }
 
     public function setStatus($status)
