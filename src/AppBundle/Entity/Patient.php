@@ -24,6 +24,21 @@ class Patient
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255)
+     */
+    private $lastname;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="historyNumber", type="string", length=255)
      */
     private $historyNumber;
@@ -94,11 +109,11 @@ class Patient
     /**
      * Get place
      *
-     * @return string
+     * @return place
      */
     public function getPlace()
     {
-        return array(0 => $this->place);
+        return $this->place;
     }
 
 
@@ -134,6 +149,54 @@ class Patient
     public function getHistoryNumber()
     {
         return $this->historyNumber;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Patient
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return Patient
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get historyNumber
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 
     /**
