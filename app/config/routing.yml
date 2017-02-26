@@ -32,3 +32,8 @@ api_role:
     type:     rest
     prefix:   /api/role
     resource: "@AppBundle/Resources/config/api-role.yml"
+
+api_user:
+    type:     rest
+    prefix:   /api/user
+    resource: "@AppBundle/Resources/config/api-user.yml"

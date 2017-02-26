@@ -60,7 +60,7 @@ class User
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Personal")
+     * @ORM\ManyToOne(targetEntity="Personal", cascade={"all"})
      * @ORM\JoinColumn(name="personal", referencedColumnName="id")
      **/
     private $personal;
