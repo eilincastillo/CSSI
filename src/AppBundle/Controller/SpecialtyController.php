@@ -21,6 +21,14 @@ use FOS\RestBundle\Controller\Annotations\Put;
 class SpecialtyController extends FOSRestController
 {
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/specialty/
+     * @apiName indexAction
+     * @apiGroup Specialty
+     * @apiDescription Get all Specialties.
+
+     */
+    /**
      * Get all specialty
      *
      * @return mixed
