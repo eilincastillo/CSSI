@@ -1,0 +1,4 @@
+api_controller_role:
+   type: rest
+   resource: "@AppBundle/Controller/RoleController.php"
+   name_prefix:  api_role_
