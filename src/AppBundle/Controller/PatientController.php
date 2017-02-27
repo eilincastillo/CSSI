@@ -45,17 +45,17 @@ class PatientController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *      "name": "Secundaria incompleta",
-     *      "lastname": "Secundaria incompleta",
-     *      "historyNumber": "Secundaria incompleta",
-     *      "registrationDate": "Secundaria incompleta",
-     *      "accompanied": "Secundaria incompleta",
-     *      "document": "Secundaria incompleta",
-     *      "birthdate": "Secundaria incompleta",
-     *      "familyDynamics": "Secundaria incompleta",
-     *      "homeVisit": "Secundaria incompleta",
-     *      "idPlace": "Secundaria incompleta"
-     * }
+    "name": "Alejandra",
+    "lastname": "Vaamonde",
+    "historyNumber": "1234567890",
+    "registrationDate": ""MM/DD/YYYY",
+    "accompanied": "Si",
+    "document": "14111222",
+    "birthdate": "MM/DD/YYYY",
+    "familyDynamics": "Familia nuclear",
+    "homeVisit": "No",
+    "idPlace": 2
+    }
      *
      */
 
@@ -121,18 +121,18 @@ class PatientController extends FOSRestController
      * @apiDescription Create a patient.
      *
      * @apiParamExample {json} Request-Example:
-     * {
-     *      "name": "Secundaria incompleta",
-     *      "lastname": "Secundaria incompleta",
-     *      "historyNumber": "Secundaria incompleta",
-     *      "registrationDate": "Secundaria incompleta",
-     *      "accompanied": "Secundaria incompleta",
-     *      "document": "Secundaria incompleta",
-     *      "birthdate": "Secundaria incompleta",
-     *      "familyDynamics": "Secundaria incompleta",
-     *      "homeVisit": "Secundaria incompleta",
-     *      "idPlace": "Secundaria incompleta"
-     * }
+    {
+    "name": "Alejandra",
+    "lastname": "Vaamonde",
+    "historyNumber": "1234567890",
+    "registrationDate": "MM/DD/YYYY",
+    "accompanied": "Si",
+    "document": "14111222",
+    "birthdate": "MM/DD/YYYY",
+    "familyDynamics": "Familia nuclear",
+    "homeVisit": "No",
+    "idPlace": 2
+    }
      *
      */
 
