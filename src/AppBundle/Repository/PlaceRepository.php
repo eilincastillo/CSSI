@@ -13,7 +13,7 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
     public function getAddressLevel1()
     {
         $query = $this->_em->createQueryBuilder();
-        $query = $this->select('place.id', 'place.name');
+        $query = $this->select('place.id', 'place.name')
                 ->from('AppBundle:Place', 'place')
                 ->innerJoin()
                 ->where('place.id = ');
