@@ -17,6 +17,7 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
                 ->from('AppBundle:Place', 'place')
                 ->where('place.type = :addressType')
                 ->setParameter('addressType', 'Estado');
+        return $query->getQuery()->getArrayResult();
     }
 
     public function getAddressDistrict($idState)
@@ -26,5 +27,6 @@ class PlaceRepository extends \Doctrine\ORM\EntityRepository
                 ->from('AppBundle:Place', 'place')
                 ->where('place.place = :state')
                 ->setParameter('state', $idState);
+        return $query->getQuery()->getArrayResult();
     }
 }
