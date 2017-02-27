@@ -10,12 +10,21 @@ namespace AppBundle\Repository;
  */
 class PlaceRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAddressLevel1()
+    public function getAddressState()
     {
         $query = $this->_em->createQueryBuilder();
-        $query = $this->select('place.id', 'place.name')
+        $query->select('place.id', 'place.name')
                 ->from('AppBundle:Place', 'place')
-                ->innerJoin()
-                ->where('place.id = ');
+                ->where('place.type = :addressType')
+                ->setParameter('addressType', 'Estado');
+    }
+
+    public function getAddressDistrict($idState)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('place.id', 'place.name')
+                ->from('AppBundle:Place', 'place')
+                ->where('place.place = :state')
+                ->setParameter('state', $idState);
     }
 }

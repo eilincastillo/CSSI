@@ -38,7 +38,7 @@ class Place
     /**
      *
      * @ORM\ManyToOne(targetEntity="Place")
-     * @ORM\JoinColumn(name="state", referencedColumnName="id")
+     * @ORM\JoinColumn(name="place", referencedColumnName="id")
      **/
     private $place;
 

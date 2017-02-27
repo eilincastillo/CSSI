@@ -37,3 +37,8 @@ api_user:
     type:     rest
     prefix:   /api/user
     resource: "@AppBundle/Resources/config/api-user.yml"
+
+api_place:
+    type:     rest
+    prefix:   /api/place
+    resource: "@AppBundle/Resources/config/api-place.yml"
