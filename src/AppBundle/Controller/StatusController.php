@@ -25,8 +25,8 @@ class StatusController extends FOSRestController
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $specialty = $em->getRepository('AppBundle:Status')->findAll();
-        return $specialty;
+        $status = $em->getRepository('AppBundle:Status')->findAll();
+        return $status;
     }
 
 }
