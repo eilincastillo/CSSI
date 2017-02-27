@@ -43,12 +43,22 @@ class UserController extends FOSRestController
     /**
      * Get user by id
      *
+     * @var $idUser
      * @return mixed
      *
      * @Get("/{idUser}")
      */
-    public function getUserAction()
+    public function getUserAction($idUser)
     {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->find($idUser);
+
+        if($user == null)
+        {
+            return new Response('Error, user not found', Response::HTTP_CONFLICT);
+        }
+
+        return $user;
 
     }
 
