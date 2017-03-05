@@ -44,19 +44,14 @@ class User
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="roles", type="string", length=255)
      **/
 
-    private $role;
+    private $roles;
 
-    /**
-     * Set status
-     *
-     * @param string $status
-     *
-     * @return User
-     */
+
 
     /**
      *
@@ -64,6 +59,20 @@ class User
      * @ORM\JoinColumn(name="personal", referencedColumnName="id")
      **/
     private $personal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=130)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=130, nullable=true)
+     */
+    private $token;
 
     /**
      * Set personal
@@ -89,6 +98,62 @@ class User
         return $this->personal;
     }
 
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     *
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return User
+     */
+
     public function setStatus($status)
     {
         $this->status = $status;
@@ -109,25 +174,25 @@ class User
     /**
      * Set role
      *
-     * @param string $role
+     * @param string $roles
      *
      * @return User
      */
-    public function setRole($role)
+    public function setRole($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Get roles
      *
      * @return string
      */
     public function getRole()
     {
-        return array(0 => $this->status);
+        return $this->status;
     }
 
     /**

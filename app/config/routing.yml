@@ -2,6 +2,9 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+api_login:
+    path: /api/login_check
+
 #restapi
 api_specialty:
    type:     rest
