@@ -85,10 +85,7 @@ class UserController extends FOSRestController
                     $em = $this->getDoctrine()->getManager();
 
                     $status = $em->getRepository('AppBundle:Status')->find(1);
-                    $role = $em->getRepository('AppBundle:Role')->find($json["idRole"]);
 
-                    if ($role != null)
-                    {
                         $user = new User();
 
                         $user->setUsername($json["username"]);
@@ -106,15 +103,10 @@ class UserController extends FOSRestController
 
                         $user->setPersonal($personal);
                         $user->setStatus($status);
-                        $user->setRole($role);
+                        $user->setRole($json["role"]);
 
                         $em->persist($user);
                         $em->flush();
-                    }
-                    else
-                    {
-                        return new Response('Error, the role don\'t exists', Response::HTTP_CONFLICT);
-                    }
 
                     return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
                 }
@@ -154,12 +146,11 @@ class UserController extends FOSRestController
 
                     $user = $em->getRepository('AppBundle:User')->find($idUser);
                     $status = $em->getRepository('AppBundle:Status')->find($json["idStatus"]);
-                    $role = $em->getRepository('AppBundle:Role')->find($json["idRole"]);
 
 
                     if($user != null)
                     {
-                        if($status != null && $role != null)
+                        if($status != null)
                         {
 
                             $personal = $user->getPersonal();
@@ -172,7 +163,7 @@ class UserController extends FOSRestController
                             $encoder = $this->get('security.encoder_factory')->getEncoder($user);
                             $passwordCodificado = $encoder->encodePassword($json['password'],$user->getSalt());
                             $user->setPassword($passwordCodificado);
-                            $user->setRole($role);
+                            $user->setRole($json["role"]);
                             $user->setStatus($status);
                             $user->setPersonal($personal);
                             $em->persist($user);

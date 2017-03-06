@@ -3,9 +3,8 @@ security:
         AppBundle\Entity\User: { algorithm: sha512, iterations: 10 }
 
     role_hierarchy:
-        ROLE_CANDIDATE:       ROLE_CANDIDATE
-        ROLE_ADMIN:       [ROLE_MANAGER, ROLE_ASSISTANT]
-        ROLE_SUPER_ADMIN: [ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_OWNER]
+        ROLE_PERSONAL:       [ROLE_PERSONAL]
+        ROLE_ADMIN: [ROLE_ADMIN]
 
     providers:
         user:
@@ -40,4 +39,4 @@ security:
 
     access_control:
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/*, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/*, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }

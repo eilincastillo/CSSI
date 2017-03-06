@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -178,7 +179,7 @@ class User
      *
      * @return User
      */
-    public function setRole($roles)
+    public function setRoles($roles)
     {
         $this->roles = $roles;
 
@@ -190,9 +191,9 @@ class User
      *
      * @return string
      */
-    public function getRole()
+    public function getRoles()
     {
-        return $this->status;
+        return array(0 => $this->roles);
     }
 
     /**
@@ -251,5 +252,10 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function eraseCredentials()
+    {
+
     }
 }
