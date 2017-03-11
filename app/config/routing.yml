@@ -31,11 +31,6 @@ api_patient:
    prefix:   /api/patient
    resource: "@AppBundle/Resources/config/api-patient.yml"
 
-api_role:
-    type:     rest
-    prefix:   /api/role
-    resource: "@AppBundle/Resources/config/api-role.yml"
-
 api_user:
     type:     rest
     prefix:   /api/user

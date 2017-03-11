@@ -28,7 +28,7 @@ class AppointmentController extends FOSRestController
      * @Get("/")
      */
 
-    public function indexAction()
+    public function getAllAction()
     {
         $em = $this->getDoctrine()->getManager();
         $appointment = $em->getRepository('AppBundle:Appointment')->findAll();
