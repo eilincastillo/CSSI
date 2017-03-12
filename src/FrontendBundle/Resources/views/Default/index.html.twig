@@ -1,0 +1,43 @@
+<!DOCUMENT html>
+<html>
+
+<head>
+    <title>CCSI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    {# Estilos #}
+    <link rel="stylesheet" href="{{ asset('app/content/styles/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/content/lib/materialize/dist/css/materialize.css') }}">
+
+    {# Librerias de js por terceros #}
+    <script src="{{ asset('app/content/lib/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('app/content/lib/materialize/dist/js/materialize.js') }}"></script>
+    <script src="{{ asset('app/content/lib/angular/angular.js') }}"></script>
+    <script src="{{ asset('app/content/lib/ui-router/release/angular-ui-router.js') }}"></script>
+
+
+    {# Archivos de configuracion de angularjs #}
+    <script src="{{ asset('app/config/app.js') }}"></script>
+    <script src="{{ asset('app/config/config.js') }}"></script>
+    <script src="{{ asset('app/config/modules.js') }}"></script>
+    <script src="{{ asset('app/config/resources.js') }}"></script>
+    <script src="{{ asset('app/config/routes.js') }}"></script>
+
+    {# Controladores #}
+    <script src="{{ asset('app/modules/login/login.controller.js') }}"></script>
+
+    {# Servicios #}
+    <script src="{{ asset('app/modules/login/login.service.js') }}"></script>
+
+</head>
+<body ng-app="cssi">
+    <div class="container">
+        <div ui-view>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
