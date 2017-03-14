@@ -103,7 +103,7 @@ class UserController extends FOSRestController
 
                         $user->setPersonal($personal);
                         $user->setStatus($status);
-                        $user->setRole($json["role"]);
+                        $user->setRoles($json["role"]);
 
                         $em->persist($user);
                         $em->flush();
@@ -163,7 +163,7 @@ class UserController extends FOSRestController
                             $encoder = $this->get('security.encoder_factory')->getEncoder($user);
                             $passwordCodificado = $encoder->encodePassword($json['password'],$user->getSalt());
                             $user->setPassword($passwordCodificado);
-                            $user->setRole($json["role"]);
+                            $user->setRoles($json["role"]);
                             $user->setStatus($status);
                             $user->setPersonal($personal);
                             $em->persist($user);

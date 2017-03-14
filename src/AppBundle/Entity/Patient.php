@@ -65,6 +65,13 @@ class Patient
     private $document;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetime")
@@ -269,6 +276,30 @@ class Patient
     public function getDocument()
     {
         return $this->document;
+    }
+
+    /**
+     * Set document
+     *
+     * @param string $gender
+     *
+     * @return Patient
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 
     /**

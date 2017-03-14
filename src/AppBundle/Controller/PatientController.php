@@ -37,6 +37,87 @@ class PatientController extends FOSRestController
     }
 
     /**
+     * Get all patient
+     *
+     * @return mixed
+     *
+     * @Get("/report/howMany/{idPatient}")
+     */
+
+    public function howManyPatientSolicitedHelpAction($idPatient)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $patient = $em->getRepository('AppBundle:Patient')->find($idPatient);
+        $appointment = $em->getRepository('AppBundle:Appointment')->getAppointmentsByPatient($patient);
+        return array('appointment' => $appointment, 'patient' => $patient);
+    }
+
+    /**
+     * Get female patient between a range of age
+     *
+     * @return mixed
+     *
+     * @Post("/report/rangeAge")
+     */
+
+    public function getAppointmentsByPatientAction(Request $request)
+    {
+        $content = $request->getContent();
+
+        if ($content != null) {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+                    $min = $json['min'];
+                    $max = $json['max'];
+                    $patients = $em->getRepository('AppBundle:Patient')->findAll();
+                    $femalecount=0;
+                    $malecount=0;
+
+
+                    foreach ($patients as $patient)
+                    {
+                        $birthdate = $patient->getBirthdate();
+                        $day= date('d');
+                        $month=date('m');
+                        $year=date('Y');
+                        $today =$fixDate = new \DateTime(date("y-m-d",strtotime("$year"."/"."$month"."/"."$day")));
+                        $diff= $birthdate->diff($today);
+                        $diff= $diff->format('%Y ');
+
+                        if ($diff>= $min && $diff<= $max)
+                        {
+                            if ($patient->getGender() == "F")
+                                $femalecount++;
+                            else
+                                if ($patient->getGender() == "M")
+                                    $malecount++;
+
+                        }
+
+                    }
+                    $femaleTotal= $femalecount*100/(count($patients));
+                    $maleTotal= $malecount*100/(count($patients));
+
+                    return array("femalePercentage"=>$femaleTotal , "malePercentage"=>$maleTotal,
+                        "femaleTotal"=>$femalecount,"maleTotal"=>$malecount, "totalPatient"=>count($patients));
+                }
+                else
+                    return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+            } catch (Exception $ex)
+            {
+                return new Response('Error', Response::HTTP_CONFLICT);
+            }
+        }
+
+        return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+    }
+
+    /**
      * ApiDoc
      * @api {post} cssi/web/app_dev.php/api/patient/
      * @apiName createAction
