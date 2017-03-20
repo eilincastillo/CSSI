@@ -9,6 +9,8 @@
     {# Estilos #}
     <link rel="stylesheet" href="{{ asset('app/content/styles/style.css') }}">
     <link rel="stylesheet" href="{{ asset('app/content/lib/materialize/dist/css/materialize.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     {# Librerias de js por terceros #}
     <script src="{{ asset('app/content/lib/jquery/dist/jquery.js') }}"></script>
@@ -25,10 +27,19 @@
     <script src="{{ asset('app/config/routes.js') }}"></script>
 
     {# Controladores #}
+    <script src="{{ asset('app/modules/doctor/doctor.controller.js') }}"></script>
     <script src="{{ asset('app/modules/login/login.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/patient/patient.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/report/report.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/user/user.controller.js') }}"></script>
 
     {# Servicios #}
+    <script src="{{ asset('app/modules/doctor/doctor.service.js') }}"></script>
     <script src="{{ asset('app/modules/login/login.service.js') }}"></script>
+    <script src="{{ asset('app/modules/patient/patient.service.js') }}"></script>
+    <script src="{{ asset('app/modules/report/report.service.js') }}"></script>
+    <script src="{{ asset('app/modules/user/user.service.js') }}"></script>
+
 
 </head>
 <body ng-app="cssi">
