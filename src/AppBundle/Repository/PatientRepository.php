@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class PatientRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get patient by Parishes
+     */
+    public function getPatientByParishes($nameParishes)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->innerJoin('patient.place','place')
+            ->where('place.name = :nameParishes')
+            ->setParameter('nameParishes', $nameParishes);
+        return $query->getQuery()->getArrayResult();
+    }
 }

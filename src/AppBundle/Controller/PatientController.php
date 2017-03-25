@@ -54,6 +54,74 @@ class PatientController extends FOSRestController
     }
 
     /**
+     * ApiDoc
+     * @api {post} cssi/web/app_dev.php/api/patient/report/patientParishes
+     * @apiName getPatientByParishesAction
+     * @apiGroup Report
+     * @apiDescription Get all patient by Parishes.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+    "nameParishes": "La Vega"
+    }
+     */
+
+    /**
+     * Get all patient by Parishes
+     *
+     * @return mixed
+     *
+     * @Post("/report/patientParishes")
+     */
+
+    public function getPatientByParishesAction(Request $request)
+    {
+        $content = $request->getContent();
+
+        if ($content != null) {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+                    $parishes = $em->getRepository('AppBundle:Place')->findByName($json['nameParishes']);
+
+                    if ($parishes !=null)
+                    {
+                        $patients = $em->getRepository('AppBundle:Patient')->getPatientByParishes($json['nameParishes']);
+                        return array("totalPatient"=>count($patients) , "patients"=>$patients);
+                    }
+                    else
+                        return new Response('Error',Response::HTTP_CONFLICT);
+
+                }
+                else
+                    return new Response('Error',Response::HTTP_CONFLICT);
+            } catch (Exception $ex)
+            {
+                return new Response('Error', Response::HTTP_CONFLICT);
+            }
+        }
+        return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+    }
+
+    /**
+     * ApiDoc
+     * @api {post} cssi/web/app_dev.php/api/patient/report/rangeAge
+     * @apiName getAppointmentsByPatientAction
+     * @apiGroup Report
+     * @apiDescription Get female patient between a range of age.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+    "min": 12,
+    "max": 25
+    }
+     *
+     */
+
+    /**
      * Get female patient between a range of age
      *
      * @return mixed
