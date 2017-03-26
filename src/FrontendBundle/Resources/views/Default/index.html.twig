@@ -27,6 +27,7 @@
     <script src="{{ asset('app/config/routes.js') }}"></script>
 
     {# Controladores #}
+    <script src="{{ asset('app/modules/menu/menu.controller.js') }}"></script>
     <script src="{{ asset('app/modules/doctor/doctor.controller.js') }}"></script>
     <script src="{{ asset('app/modules/login/login.controller.js') }}"></script>
     <script src="{{ asset('app/modules/patient/patient.controller.js') }}"></script>
@@ -43,9 +44,7 @@
 
 </head>
 <body ng-app="cssi">
-    <div class="container">
-        <div ui-view>
-        </div>
+    <div ui-view>
     </div>
 </body>
 
