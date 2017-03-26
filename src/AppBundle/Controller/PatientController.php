@@ -108,6 +108,74 @@ class PatientController extends FOSRestController
 
     /**
      * ApiDoc
+     * @api {post} cssi/web/app_dev.php/api/patient/report/patientByDocument
+     * @apiName findPatientByDocumentOrHistoryNumberAction
+     * @apiGroup Report
+     * @apiDescription find Patient by Document or HistoryNumber.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+    "document": "",
+    "historyNumber": "11111"
+    }
+     */
+
+    /**
+     * find Patient by Document or HistoryNumber
+     *
+     * @return mixed
+     *
+     * @Post("/report/patientByDocument")
+     */
+
+    public function findPatientByDocumentOrHistoryNumberAction(Request $request)
+    {
+        $content = $request->getContent();
+
+        if ($content != null) {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    if ($json['document'] !="")
+                    {
+                        $patients = $em->getRepository('AppBundle:Patient')->findPatientByDocument($json['document']);
+
+                        if ($patients != null)
+                            return ($patients);
+                        else
+                            return new Response('Error patient don\'t exist',Response::HTTP_NO_CONTENT);
+                    }
+                    else
+                        if ($json['historyNumber'] !="")
+                        {
+                            $patients = $em->getRepository('AppBundle:Patient')->findPatientByHistoryNumber($json['historyNumber']);
+
+                            if ($patients != null)
+                                return ($patients);
+                            else
+                                return new Response('Error',Response::HTTP_NO_CONTENT);
+                        }
+                        else
+                            return new Response('Error',Response::HTTP_CONFLICT);
+
+                }
+                else
+                    return new Response('Error',Response::HTTP_CONFLICT);
+
+            } catch (Exception $ex)
+            {
+                return new Response('Error', Response::HTTP_CONFLICT);
+            }
+        }
+        return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+    }
+
+    /**
+     * ApiDoc
      * @api {post} cssi/web/app_dev.php/api/patient/report/rangeAge
      * @apiName getAppointmentsByPatientAction
      * @apiGroup Report

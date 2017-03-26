@@ -23,4 +23,30 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('nameParishes', $nameParishes);
         return $query->getQuery()->getArrayResult();
     }
+
+    /**
+     * Get patient by Document
+     */
+    public function findPatientByDocument($document)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.document = :document')
+            ->setParameter('document', $document);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
+     * Get patient by HistoryNumber
+     */
+    public function findPatientByHistoryNumber($historyNumber)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.historyNumber = :historyNumber')
+            ->setParameter('historyNumber', $historyNumber);
+        return $query->getQuery()->getArrayResult();
+    }
 }
