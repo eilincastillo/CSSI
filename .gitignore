@@ -15,4 +15,4 @@
 /composer.phar
 /.idea
 /doc
-/web/*
+/web/app/content/lib/
