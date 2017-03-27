@@ -1,4 +1,5 @@
-(function () {
+(function ()
+{
 
     'use strict';
 
@@ -6,7 +7,21 @@
 
     function DoctorCtrl(DoctorService)
     {
+        var self = this;
+        self.doctorList = [];
 
+        self.getDoctorList = function ()
+        {
+            DoctorService.getAll()
+                .then(function ()
+                {
+
+                })
+                .catch(function()
+                {
+
+                });
+        }
     }
 
 })();

@@ -2,6 +2,7 @@
 
 angular.module('cssi', [
     'ui.router',
+    'ngResource',
     'cssi.routes',
     'cssi.resources',
     'cssi.controllers.doctor',
@@ -16,6 +17,7 @@ angular.module('cssi', [
     'cssi.services.report',
     'cssi.services.user',
     'cssi.services.logger',
-    'cssi.services.validate'
+    'cssi.services.validate',
+    'cssi.factories.doctor'
 
 ]);

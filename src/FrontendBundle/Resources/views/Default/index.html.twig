@@ -5,8 +5,8 @@
     <title>CCSI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">
+    {#<link rel="shortcut icon" href="favicon.icon') }}" type="image/x-icon">#}
+    {#<link rel="icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">#}
 
     {# Estilos #}
     <link rel="stylesheet" href="{{ asset('app/content/lib/materialize/dist/css/materialize.css') }}">
@@ -19,6 +19,7 @@
     <script src="{{ asset('app/content/lib/materialize/dist/js/materialize.js') }}"></script>
     <script src="{{ asset('app/content/lib/angular/angular.js') }}"></script>
     <script src="{{ asset('app/content/lib/ui-router/release/angular-ui-router.js') }}"></script>
+    <script src="{{ asset('app/content/lib/angular-resource/angular-resource.js') }}"></script>
 
 
     {# Archivos de configuracion de angularjs #}
@@ -44,6 +45,10 @@
     <script src="{{ asset('app/modules/user/user.service.js') }}"></script>
     <script src="{{ asset('app/modules/services/logger.service.js') }}"></script>
     <script src="{{ asset('app/modules/services/validate.service.js') }}"></script>
+
+    {# Fabricas #}
+    <script src="{{ asset('app/modules/doctor/doctor.factory.js') }}"></script>
+
 
 
 </head>
