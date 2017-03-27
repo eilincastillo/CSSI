@@ -13,3 +13,5 @@ angular.module('cssi.services.login', []);
 angular.module('cssi.services.patient', []);
 angular.module('cssi.services.report', []);
 angular.module('cssi.services.user', []);
+angular.module('cssi.services.logger', []);
+angular.module('cssi.services.validate', []);

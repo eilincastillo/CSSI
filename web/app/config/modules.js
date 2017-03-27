@@ -14,6 +14,8 @@ angular.module('cssi', [
     'cssi.services.login',
     'cssi.services.patient',
     'cssi.services.report',
-    'cssi.services.user'
+    'cssi.services.user',
+    'cssi.services.logger',
+    'cssi.services.validate'
 
 ]);

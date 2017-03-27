@@ -3,15 +3,15 @@
 angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvider)
 {
     $stateProvider
-        .state( 'login', {
-            url: '/',
-            templateUrl: '../app/views/login/login.html',
-            controller: 'LoginCtrl as ctrl'
-        })
         .state('menu', {
             url: '/menu',
             abstract: true,
             templateUrl: '../app/views/menu/menu.html'
+        })
+        .state( 'menu.login', {
+            url: '/',
+            templateUrl: '../app/views/login/login.html',
+            controller: 'LoginCtrl as ctrl'
         })
         .state('menu.doctor', {
             url: '/doctores/listado',

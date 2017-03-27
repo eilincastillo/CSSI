@@ -5,10 +5,12 @@
     <title>CCSI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">
 
     {# Estilos #}
-    <link rel="stylesheet" href="{{ asset('app/content/styles/style.css') }}">
     <link rel="stylesheet" href="{{ asset('app/content/lib/materialize/dist/css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/content/styles/style.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -40,11 +42,13 @@
     <script src="{{ asset('app/modules/patient/patient.service.js') }}"></script>
     <script src="{{ asset('app/modules/report/report.service.js') }}"></script>
     <script src="{{ asset('app/modules/user/user.service.js') }}"></script>
+    <script src="{{ asset('app/modules/services/logger.service.js') }}"></script>
+    <script src="{{ asset('app/modules/services/validate.service.js') }}"></script>
 
 
 </head>
-<body ng-app="cssi">
-    <div ui-view>
+<body ng-app="cssi" class="pattern-background">
+    <div ui-view >
     </div>
 </body>
 

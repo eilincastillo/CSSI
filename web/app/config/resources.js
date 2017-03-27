@@ -1,4 +1,8 @@
 'use strict';
 
 angular.module('cssi.resources')
-    .constant("key", "value");
+    .constant("CSSIAPI",
+    {
+        URL: "",
+        ENV: "development"
+    });
