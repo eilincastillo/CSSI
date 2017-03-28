@@ -6,10 +6,12 @@
 
     function DoctorFactory($resource, CSSIAPI, RESOURCE)
     {
-        var url = CSSIAPI.URL + RESOURCE.DOCTOR + ':doctorId';
-        var request = $resource(url, {},
+        var url = CSSIAPI.URL + RESOURCE.DOCTOR;
+        var request = $resource(url, { },
             {
                 update: {method: 'PUT'}
+            },{
+                stripTrailingSlashes: false
             });
 
 
@@ -25,7 +27,7 @@
 
         function getAllDoctors()
         {
-            request.query({doctorId: null},
+            request.query(null,
             function success(data)
             {
                 console.log(data);
