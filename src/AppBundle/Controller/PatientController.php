@@ -168,6 +168,56 @@ class PatientController extends FOSRestController
 
     /**
      * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/patient/report/patientByJob
+     * @apiName getAllPatientsByJobAction
+     * @apiGroup Report
+     * @apiDescription Get all patients by Job.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "name": "Cardiologia",
+    "count": 1
+    },
+    {
+    "name": "Dermatologia",
+    "count": 2
+    }
+    ]
+     */
+
+    /**
+     * Get all patients by Specialty
+     *
+     * @return mixed
+     *
+     * @Get("/report/patientByJob")
+     */
+
+    public function getPatientByJobAction()
+    {
+        try
+        {
+            $em = $this->getDoctrine()->getManager();
+            $response= array();
+
+            $patientsWithJob = $em->getRepository('AppBundle:Patient')->findPatientByJobStatus("true");
+            $patientsWithoutJob = $em->getRepository('AppBundle:Patient')->findPatientByJobStatus("false");
+
+            array_push($response,(array( "name" =>"with_job", "count" =>count($patientsWithJob) )) );
+            array_push($response,(array( "name" =>"without_job", "count" =>count($patientsWithoutJob) )) );
+
+            return ($response);
+
+        } catch (Exception $ex)
+        {
+            return new Response('Error', Response::HTTP_CONFLICT);
+        }
+    }
+
+    /**
+     * ApiDoc
      * @api {get} cssi/web/app_dev.php/api/patient/report/patientBySpecialty
      * @apiName getAllPatientsByParishesAction
      * @apiGroup Report
@@ -379,12 +429,15 @@ class PatientController extends FOSRestController
     "name": "Alejandra",
     "lastname": "Vaamonde",
     "historyNumber": "1234567890",
-    "registrationDate": ""MM/DD/YYYY",
+    "registrationDate": "MM/DD/YYYY",
     "accompanied": "Si",
     "document": "14111222",
+    "gender": "M",
     "birthdate": "MM/DD/YYYY",
     "familyDynamics": "Familia nuclear",
     "homeVisit": "No",
+    "job": "false",
+    "job_detail": "",
     "idPlace": 2
     }
      *
@@ -425,6 +478,9 @@ class PatientController extends FOSRestController
                         $patient->setBirthdate($fixDate);
                         $patient->setFamilyDynamics($json["familyDynamics"]);
                         $patient->setHomeVisit($json["homeVisit"]);
+                        $patient->setGender($json["gender"]);
+                        $patient->setJob($json["job"]);
+                        $patient->setJobDetail($json["job_detail"]);
                         $patient->setPlace($place);
 
                         $em->persist($patient);
@@ -458,10 +514,13 @@ class PatientController extends FOSRestController
     "historyNumber": "1234567890",
     "registrationDate": "MM/DD/YYYY",
     "accompanied": "Si",
+    "gender": "M",
     "document": "14111222",
     "birthdate": "MM/DD/YYYY",
     "familyDynamics": "Familia nuclear",
     "homeVisit": "No",
+    "job": "true",
+    "job_detail": "Plomero",
     "idPlace": 2
     }
      *
@@ -502,6 +561,9 @@ class PatientController extends FOSRestController
                         $patient->setBirthdate($fixDate);
                         $patient->setFamilyDynamics($json["familyDynamics"]);
                         $patient->setHomeVisit($json["homeVisit"]);
+                        $patient->setGender($json["gender"]);
+                        $patient->setJob($json["job"]);
+                        $patient->setJobDetail($json["job_detail"]);
                         $patient->setPlace($place);
 
                         $em->persist($patient);

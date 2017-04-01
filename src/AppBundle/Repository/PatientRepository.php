@@ -51,6 +51,19 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * Get patient by JobStatus
+     */
+    public function findPatientByJobStatus($job)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.job = :job')
+            ->setParameter('job', $job);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
      * Get patient of apointment by specialty
      */
     public function getPatientAppointmentsBySpecialty($idSpecialty)
