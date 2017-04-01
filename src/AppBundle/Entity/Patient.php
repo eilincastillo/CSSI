@@ -93,6 +93,20 @@ class Patient
     private $homeVisit;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="jobDetail", type="string", length=255, nullable=true)
+     */
+    private $jobDetail;
+
+    /**
      *
      * @ORM\ManyToOne(targetEntity="Place")
      * @ORM\JoinColumn(name="place", referencedColumnName="id")
@@ -133,6 +147,48 @@ class Patient
     {
         return $this->id;
     }
+
+    /**
+     * Get job
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return Patient
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+    }
+
+    /**
+     * Get job detail
+     * @return string
+     */
+    public function getJobDetail()
+    {
+        return $this->jobDetail;
+    }
+
+    /**
+     * Set job detail
+     * @param string $jobDetail
+     * @return Patient
+     */
+    public function setJobDetail($jobDetail)
+    {
+        $this->jobDetail = $jobDetail;
+    }
+
+
 
     /**
      * Set historyNumber

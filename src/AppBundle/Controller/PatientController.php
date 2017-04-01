@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Patient;
+use AppBundle\Entity\Place;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class PatientController extends FOSRestController
      * @api {post} cssi/web/app_dev.php/api/patient/report/patientParishes
      * @apiName getPatientByParishesAction
      * @apiGroup Report
-     * @apiDescription Get all patient by Parishes.
+     * @apiDescription Get a patient by Parishes.
      *
      * @apiParamExample {json} Request-Example:
      * {
@@ -67,7 +68,7 @@ class PatientController extends FOSRestController
      */
 
     /**
-     * Get all patient by Parishes
+     * Get a patient by Parishes
      *
      * @return mixed
      *
@@ -105,6 +106,119 @@ class PatientController extends FOSRestController
         }
         return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
     }
+
+    /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/patient/report/allPatientParishes
+     * @apiName getAllPatientsByParishesAction
+     * @apiGroup Report
+     * @apiDescription Get all patients by Parishes.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "name": "El Paraiso",
+    "count": 2
+    },
+    {
+    "name": "La Vega",
+    "count": 1
+    }
+    ]
+     */
+
+    /**
+     * Get all patients by Parishes
+     *
+     * @return mixed
+     *
+     * @Get("/report/allPatientParishes")
+     */
+
+    public function getAllPatientsByParishesAction()
+    {
+        try
+        {
+            $em = $this->getDoctrine()->getManager();
+            $parishes = $em->getRepository('AppBundle:Place')->getAddressDistrict(1);
+            $patients = $em->getRepository('AppBundle:Patient')->findAll();
+            $patientsInParish= array();
+
+            foreach ($parishes as $parish)
+            {
+                $contPatient=0;
+                foreach ($patients as $patient)
+                {
+                    if ($patient->getPlace()->getName() == $parish["name"])
+                        $contPatient++;
+                }
+                $name= $parish["name"];
+                array_push($patientsInParish,(array( "name" =>$name, "count" =>$contPatient )) );
+
+            }
+            return ($patientsInParish);
+
+        } catch (Exception $ex)
+        {
+            return new Response('Error', Response::HTTP_CONFLICT);
+        }
+
+    }
+
+    /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/patient/report/patientBySpecialty
+     * @apiName getAllPatientsByParishesAction
+     * @apiGroup Report
+     * @apiDescription Get all patients by Specialty.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "name": "Cardiologia",
+    "count": 1
+    },
+    {
+    "name": "Dermatologia",
+    "count": 2
+    }
+    ]
+     */
+
+    /**
+     * Get all patients by Specialty
+     *
+     * @return mixed
+     *
+     * @Get("/report/patientBySpecialty")
+     */
+
+    public function getPatientBySpecialtyAction()
+    {
+        try
+        {
+            $em = $this->getDoctrine()->getManager();
+            $specialties = $em->getRepository('AppBundle:Specialty')->findAll();
+            $patientsInSpecialty= array();
+
+            foreach ($specialties as $specialty)
+            {
+
+                $patients = $em->getRepository('AppBundle:Patient')->getPatientAppointmentsBySpecialty($specialty->getId());
+                $contPatient = count($patients);
+                $name= $specialty->getName();
+                array_push($patientsInSpecialty,(array( "name" =>$name, "count" =>$contPatient )) );
+            }
+            return ($patientsInSpecialty);
+
+        } catch (Exception $ex)
+        {
+            return new Response('Error', Response::HTTP_CONFLICT);
+        }
+    }
+
 
     /**
      * ApiDoc

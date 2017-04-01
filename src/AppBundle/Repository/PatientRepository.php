@@ -49,4 +49,20 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('historyNumber', $historyNumber);
         return $query->getQuery()->getArrayResult();
     }
+
+    /**
+     * Get patient of apointment by specialty
+     */
+    public function getPatientAppointmentsBySpecialty($idSpecialty)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('DISTINCT  patient.id as patient_id ')
+            ->from('AppBundle:Appointment', 'appointment')
+            ->leftJoin( 'appointment.patient', 'patient')
+            ->innerJoin('appointment.doctor','doctor')
+            ->innerJoin('doctor.specialty','specialty')
+            ->where('specialty.id = :idSpecialty')
+            ->setParameter('idSpecialty', $idSpecialty);
+        return $query->getQuery()->getArrayResult();
+    }
 }
