@@ -13,5 +13,5 @@ angular.module('cssi.resources')
         PATIENT: "/api/patient/",
         APPOINTMENT: "/api/appointment/",
         STATUS: "/api/status/",
-        SPECIALTY: "/api/specialty"
+        SPECIALTY: "/api/specialty/"
     });
