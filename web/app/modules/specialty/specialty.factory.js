@@ -1,12 +1,10 @@
 (function ()
 {
-    'use strict';
+    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', SpecialtyFactory]);
 
-    angular.module('cssi.factories.doctor').factory('DoctorFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', DoctorFactory]);
-
-    function DoctorFactory($q, $resource, CSSIAPI, RESOURCE)
+    function SpecialtyFactory($q, $resource, CSSIAPI, RESOURCE)
     {
-        var url = CSSIAPI.URL + RESOURCE.DOCTOR;
+        var url = CSSIAPI.URL + RESOURCE.SPECIALTY;
         var request = $resource(url, { },
             {
                 'query':  {method:'GET', isArray:true},
@@ -17,34 +15,34 @@
 
 
         var factory =
-        {
-            getAll: getAllDoctors,
-            get: getDoctor,
-            update: updateDoctor,
-            add: addDoctor
-        };
+            {
+                getAll: getAllSpecialty,
+                get: getSpecialty,
+                update: updateSpecialty,
+                add: addSpecialty
+            };
 
         return factory;
 
-        function getAllDoctors()
+        function getAllSpecialty()
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
             request.query(null,
-            function success(data)
-            {
-                defered.resolve(data);
-            },
-            function error(e)
-            {
-                defered.reject();
-            });
+                function success(data)
+                {
+                    defered.resolve(data);
+                },
+                function error(e)
+                {
+                    defered.reject();
+                });
 
             return promise;
         }
 
-        function getDoctor(doctorId)
+        function getSpecialty(doctorId)
         {
 
             var defered = $q.defer();
@@ -64,15 +62,14 @@
             return promise;
         }
 
-        function updateDoctor()
+        function updateSpecialty()
         {
 
         }
 
-        function addDoctor()
+        function addSpecialty()
         {
 
         }
     }
-
 })();

@@ -4,7 +4,8 @@ angular.module('cssi.resources')
     .constant("CSSIAPI",
     {
         URL: "http://localhost/cssi/web",
-        ENV: "development"
+        ENV: "development",
+        HEADER: {'Content-Type': 'application/json'}
     })
     .constant("RESOURCE",
     {

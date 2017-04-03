@@ -48,6 +48,16 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/report/report.html',
             controller: 'ReportCtrl as ctrl'
 
+        })
+        .state('menu.specialty', {
+            url: '/especialidades/listado',
+            templateUrl: '../app/views/specialty/list/specialty-list.html',
+            controller: 'SpecialtyCtrl as ctrl'
+        })
+        .state('menu.specialty-add', {
+            url: '/especialidades/agregar',
+            templateUrl: '../app/views/specialty/add/specialty-add.html',
+            controller: 'SpecialtyCtrl as ctrl'
         });
 
     $urlRouterProvider.otherwise('/');

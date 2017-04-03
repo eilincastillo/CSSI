@@ -13,13 +13,14 @@
         self.getDoctorList = function ()
         {
             DoctorService.getAll()
-                .then(function ()
+                .then(function (data)
                 {
-
+                    self.doctorList = data;
+                    console.log(self.doctorList);
                 })
-                .catch(function()
+                .catch(function(e)
                 {
-
+                    console.log(e);
                 });
         }
     }

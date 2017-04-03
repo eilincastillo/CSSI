@@ -2,15 +2,29 @@
 
     'use strict';
 
-    angular.module('cssi.services.doctor').service('DoctorService', ['DoctorFactory', DoctorService]);
+    angular.module('cssi.services.doctor').service('DoctorService', ['$q', 'DoctorFactory', DoctorService]);
 
-    function DoctorService(DoctorFactory)
+    function DoctorService($q, DoctorFactory)
     {
         this.getAll = getAll;
 
         function getAll()
         {
-            DoctorFactory.getAll();
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+
+            DoctorFactory.getAll()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function(e)
+                {
+                    defered.reject(e);
+                });
+
+            return promise;
         }
     }
 
