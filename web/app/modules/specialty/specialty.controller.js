@@ -3,9 +3,9 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.specialty').controller('SpecialtyCtrl', ['SpecialtyService', SpecialtyCtrl]);
+    angular.module('cssi.controllers.specialty').controller('SpecialtyCtrl', ['$state', 'SpecialtyService', SpecialtyCtrl]);
 
-    function SpecialtyCtrl(SpecialtyService)
+    function SpecialtyCtrl($state, SpecialtyService)
     {
         var self = this;
         self.specialtyList = [];
@@ -20,6 +20,19 @@
                 .catch(function(e)
                 {
                     console.log(e);
+                });
+        }
+
+        self.addSpecialty = function (specialtyName)
+        {
+            SpecialtyService.add(specialtyName)
+                .then(function (data)
+                {
+                    $state.go('menu.specialty');
+                })
+                .catch(function (e)
+                {
+
                 });
         }
     }

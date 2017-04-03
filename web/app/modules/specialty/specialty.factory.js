@@ -67,9 +67,23 @@
 
         }
 
-        function addSpecialty()
+        function addSpecialty(specialtyName)
         {
+            var defered = $q.defer();
+            var promise = defered.promise;
 
+            request.save({name: specialtyName},
+                function success(data)
+                {
+                    defered.resolve(data);
+                },
+                function error(err)
+                {
+                    defered.reject();
+                });
+            //TODO: tratar datos
+
+            return promise;
         }
     }
 })();
