@@ -11,8 +11,8 @@ namespace AppBundle\Repository;
 class AppointmentRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Get appointments by patient
-     */
+ * Get appointments by patient
+ */
     public function getAppointmentsByPatient($patient)
     {
         $query = $this->_em->createQueryBuilder();
@@ -25,4 +25,19 @@ class AppointmentRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('patient', $patient);
         return $query->getQuery()->getArrayResult();
     }
+
+    /**
+     * Get appointments by patient and date
+     */
+    public function getAppointmentsByPatientAndDate()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('appointment.id as idAppointment,  appointment.date as date, appointment.percentageAid, appointment.price, 
+        patient.id as idPatient')
+            ->from('AppBundle:Appointment', 'appointment')
+            ->innerJoin('appointment.patient', 'patient');
+
+        return $query->getQuery()->getArrayResult();
+    }
+
 }

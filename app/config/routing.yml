@@ -40,3 +40,8 @@ api_place:
     type:     rest
     prefix:   /api/place
     resource: "@AppBundle/Resources/config/api-place.yml"
+
+api_report:
+    type:     rest
+    prefix:   /api/report
+    resource: "@AppBundle/Resources/config/api-report.yml"
