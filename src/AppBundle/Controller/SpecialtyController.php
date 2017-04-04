@@ -44,6 +44,39 @@ class SpecialtyController extends FOSRestController
     }
 
     /**
+     * Get a specialty
+     * @var Request $request, $idSpecialty
+     * @return mixed
+     *
+     * @Get("/{idSpecialty}")
+     */
+    public function getAction(Request $request,$idSpecialty)
+    {
+        $content = $request->getContent();
+        if ($content != null)
+        {
+            $json = json_decode($content, true);
+            try
+            {
+                if ($json != null)
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
+
+                    return $specialty;
+                }
+            }
+            catch (Exception $ex)
+            {
+                return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+            }
+        }
+        return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+    }
+
+
+    /**
      * Create a speciality
      * @var Request $request
      * @return mixed
@@ -137,5 +170,8 @@ class SpecialtyController extends FOSRestController
         }
         return new Response('Error, the specialty was not edited',Response::HTTP_CONFLICT);
     }
+
+
+
 
 }

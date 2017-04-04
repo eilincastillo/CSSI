@@ -58,6 +58,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             url: '/especialidades/agregar',
             templateUrl: '../app/views/specialty/add/specialty-add.html',
             controller: 'SpecialtyCtrl as ctrl'
+        })
+        .state('menu.specialty-update', {
+            url: '/especialidades/actualizar/:specialtyId',
+            templateUrl: '../app/views/specialty/update/specialty-update.html',
+            controller: 'SpecialtyCtrl as ctrl'
         });
 
     $urlRouterProvider.otherwise('/');

@@ -4,8 +4,8 @@
 
     function SpecialtyFactory($q, $resource, CSSIAPI, RESOURCE)
     {
-        var url = CSSIAPI.URL + RESOURCE.SPECIALTY;
-        var request = $resource(url, { },
+        var url = CSSIAPI.URL + RESOURCE.SPECIALTY + ':specialtyId';
+        var request = $resource(url, { specialtyId: '@id' },
             {
                 'query':  {method:'GET', isArray:true},
                 'update': {method: 'PUT'}
@@ -42,13 +42,13 @@
             return promise;
         }
 
-        function getSpecialty(doctorId)
+        function getSpecialty(specialtyId)
         {
 
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.get({doctorId: doctorId},
+            request.get({specialtyId: specialtyId},
                 function success(data)
                 {
                     defered.resolve(data);
@@ -62,9 +62,22 @@
             return promise;
         }
 
-        function updateSpecialty()
+        function updateSpecialty(specialtyId, specialtyName)
         {
+            var defered = $q.defer();
+            var promise = defered.promise;
 
+            request.update({specialtyId: specialtyId}, { id: specialtyId, name: specialtyName},
+                function success(data)
+                {
+                    defered.resolve(data);
+                },
+                function error(err)
+                {
+                    defered.reject();
+                });
+
+            return promise;
         }
 
         function addSpecialty(specialtyName)

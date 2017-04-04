@@ -12,7 +12,12 @@
             <tbody ng-repeat="specialty in ctrl.specialtyList">
             <tr>
                 <td>
-                    {{ specialty.name  }}
+                    <p>{{ specialty.name  }}</p>
+                </td>
+                <td>
+                    <a ui-sref="menu.specialty-update({ specialtyId: specialty.id })">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
                 </td>
             </tr>
             </tbody>
