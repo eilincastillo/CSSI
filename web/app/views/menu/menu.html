@@ -1,0 +1,17 @@
+<nav ng-controller="MenuCtrl as ctrl" class="dark-green">
+    <div class="container nav-wrapper">
+        <a class="brand-logo">
+            <figure class="image-container">
+                <img class="image" src="../app/content/images/logo.jpg" alt="Logo">
+            </figure>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a ui-sref="menu.doctor" ui-sref-active="active">MEDICOS</a></li>
+            <li><a ui-sref="menu.patient" ui-sref-active="active">PACIENTES</a></li>
+            <li><a ui-sref="menu.user" ui-sref-active="active">USUARIOS</a></li>
+            <li><a ui-sref="menu.report" ui-sref-active="active">REPORTES</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div ui-view class="container top-space"></div>

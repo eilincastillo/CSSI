@@ -1,0 +1,34 @@
+<div class="row" ng-init="ctrl.getDoctorList()">
+    <div class="row">
+        <h1>Listar a los medicos</h1>
+    </div>
+    <div class="row">
+        <table class="bordered">
+            <thead>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Especialidad
+            </th>
+            <th>
+                Estado
+            </th>
+            </thead>
+            <tbody ng-repeat="doctor in ctrl.doctorList">
+                <tr>
+                    <td>
+                        {{ doctor.lastname + ', ' + doctor.name  }}
+                    </td>
+                    <td>
+                        {{ doctor.specialty.name }}
+                    </td>
+                    <td>
+                        {{ doctor.status.name }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

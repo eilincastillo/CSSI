@@ -1,0 +1,26 @@
+{
+  "name": "cssi",
+  "homepage": "https://github.com/eilincastillo/cssi",
+  "authors": [
+    "Marco Franceschi <franceschi.marco@gmail.com>",
+    "Eilin Castillo <castilloeilin@gmail.com>"
+  ],
+  "description": "Servicio Comunitario para Centro de Salud Santa Ines",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/app/content/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ui-router": "0.4.2",
+    "angular": "1.6.2",
+    "materialize": "^0.98.0",
+    "angular-route": "^1.6.3",
+    "angular-resource": "^1.6.3"
+  }
+}

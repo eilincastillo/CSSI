@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="row">
+        <h1>Listar pacientes</h1>
+    </div>
+    <div class="row">
+        <table>
+            <thead>
+            <th>
+                Cédula
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Número de consultas
+            </th>
+            </thead>
+            <tbody ng-repeat="patient in patientList">
+            <tr>
+                <td>
+                    {{ patient.document }}
+                </td>
+                <td>
+                    {{ patient.lastname + ', ' + patient.name }}
+                </td>
+                <td>
+                    <a href="#">4</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

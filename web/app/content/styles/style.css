@@ -1,0 +1,75 @@
+body
+{
+    color: #000;
+}
+
+input
+{
+}
+
+::-webkit-input-placeholder
+{
+    border-bottom: solid 1px #fff;
+}
+
+input[placeholder], [placeholder], *[placeholder]
+{
+    color: #fff !important;
+}
+
+label
+{
+    color: #fff;
+}
+
+
+.gradient-background
+{
+    background: #4caf50;
+    background: -moz-linear-gradient(45deg, #4caf50 1%, #b6e010 100%);
+    background: -webkit-linear-gradient(45deg, #4caf50 1%,#b6e010 100%);
+    background: linear-gradient(45deg, #4caf50 1%,#b6e010 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4caf50', endColorstr='#b6e010',GradientType=1 );
+}
+
+.image
+{
+    width: 70%;
+}
+
+.image-container
+{
+    margin: 0;
+}
+
+
+.input-field
+{
+
+}
+
+
+.pattern-background
+{
+    background-image: url('../images/bg_normal.jpg');
+}
+
+.dark-green
+{
+    background-color: #4CAF50;
+}
+
+.neutral-green
+{
+    background-color: #00695C;
+}
+
+.ligth-green
+{
+    background-color: #B6E010;
+}
+
+.top-space
+{
+    margin-top: 3em;
+}

@@ -1,0 +1,65 @@
+<!DOCUMENT html>
+<html>
+
+<head>
+    <title>CCSI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    {#<link rel="shortcut icon" href="favicon.icon') }}" type="image/x-icon">#}
+    {#<link rel="icon" href="{{ asset('favicon.icon') }}" type="image/x-icon">#}
+
+    {# Estilos #}
+    <link rel="stylesheet" href="{{ asset('app/content/lib/materialize/dist/css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/content/styles/style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    {# Librerias de js por terceros #}
+    <script src="{{ asset('app/content/lib/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('app/content/lib/materialize/dist/js/materialize.js') }}"></script>
+    <script src="{{ asset('app/content/lib/angular/angular.js') }}"></script>
+    <script src="{{ asset('app/content/lib/ui-router/release/angular-ui-router.js') }}"></script>
+    <script src="{{ asset('app/content/lib/angular-resource/angular-resource.js') }}"></script>
+
+
+    {# Archivos de configuracion de angularjs #}
+    <script src="{{ asset('app/config/app.js') }}"></script>
+    <script src="{{ asset('app/config/config.js') }}"></script>
+    <script src="{{ asset('app/config/modules.js') }}"></script>
+    <script src="{{ asset('app/config/resources.js') }}"></script>
+    <script src="{{ asset('app/config/routes.js') }}"></script>
+
+    {# Controladores #}
+    <script src="{{ asset('app/modules/menu/menu.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/doctor/doctor.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/login/login.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/patient/patient.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/report/report.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/user/user.controller.js') }}"></script>
+    <script src="{{ asset('app/modules/specialty/specialty.controller.js') }}"></script>
+
+    {# Servicios #}
+    <script src="{{ asset('app/modules/doctor/doctor.service.js') }}"></script>
+    <script src="{{ asset('app/modules/login/login.service.js') }}"></script>
+    <script src="{{ asset('app/modules/patient/patient.service.js') }}"></script>
+    <script src="{{ asset('app/modules/report/report.service.js') }}"></script>
+    <script src="{{ asset('app/modules/user/user.service.js') }}"></script>
+    <script src="{{ asset('app/modules/specialty/specialty.service.js') }}"></script>
+    <script src="{{ asset('app/modules/services/logger.service.js') }}"></script>
+    <script src="{{ asset('app/modules/services/validate.service.js') }}"></script>
+
+    {# Fabricas #}
+    <script src="{{ asset('app/modules/doctor/doctor.factory.js') }}"></script>
+    <script src="{{ asset('app/modules/specialty/specialty.factory.js') }}"></script>
+
+
+
+</head>
+<body ng-app="cssi" class="pattern-background">
+    <div ui-view >
+    </div>
+</body>
+
+
+</html>
+
