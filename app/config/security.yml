@@ -1,24 +1,42 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+        AppBundle\Entity\User: { algorithm: sha512, iterations: 10 }
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_PERSONAL:       [ROLE_PERSONAL]
+        ROLE_ADMIN: [ROLE_ADMIN]
+
     providers:
-        in_memory:
-            memory: ~
+        user:
+            entity: { class: AppBundle\Entity\User, property: username }
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        login:
+            pattern:   ^/api/login_check
+            stateless: true
+            anonymous: true
+            provider:  user
+            form_login:
+                check_path: api_login
+                require_previous_session: false
+                username_parameter: username
+                password_parameter: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+#        api:
+#            pattern:   ^/api
+#            stateless: true
+#            provider: user
+#            lexik_jwt:
+#                authorization_header:
+#                    enabled: true
+#                    prefix:  Bearer
+#                query_parameter:
+#                    enabled: true
+#                    name:    bearer
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/*, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }

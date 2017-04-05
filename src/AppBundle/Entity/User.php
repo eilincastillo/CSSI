@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -44,26 +45,35 @@ class User
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="roles", type="string", length=255)
      **/
 
-    private $role;
+    private $roles;
 
-    /**
-     * Set status
-     *
-     * @param string $status
-     *
-     * @return User
-     */
+
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Personal")
+     * @ORM\OneToOne(targetEntity="Personal", cascade={"all"})
      * @ORM\JoinColumn(name="personal", referencedColumnName="id")
      **/
     private $personal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=130)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=130, nullable=true)
+     */
+    private $token;
 
     /**
      * Set personal
@@ -82,12 +92,68 @@ class User
     /**
      * Get personal
      *
-     * @return string
+     * @return personal
      */
     public function getPersonal()
     {
-        return array(0 => $this->personal);
+        return $this->personal;
     }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     *
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return User
+     */
 
     public function setStatus($status)
     {
@@ -109,25 +175,25 @@ class User
     /**
      * Set role
      *
-     * @param string $role
+     * @param string $roles
      *
      * @return User
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Get roles
      *
      * @return string
      */
-    public function getRole()
+    public function getRoles()
     {
-        return array(0 => $this->status);
+        return array(0 => $this->roles);
     }
 
     /**
@@ -186,5 +252,10 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function eraseCredentials()
+    {
+
     }
 }

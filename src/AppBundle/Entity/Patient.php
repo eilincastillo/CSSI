@@ -24,6 +24,21 @@ class Patient
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255)
+     */
+    private $lastname;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="historyNumber", type="string", length=255)
      */
     private $historyNumber;
@@ -50,6 +65,13 @@ class Patient
     private $document;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetime")
@@ -69,6 +91,20 @@ class Patient
      * @ORM\Column(name="homeVisit", type="string", length=255)
      */
     private $homeVisit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="jobDetail", type="string", length=255, nullable=true)
+     */
+    private $jobDetail;
 
     /**
      *
@@ -94,11 +130,11 @@ class Patient
     /**
      * Get place
      *
-     * @return string
+     * @return place
      */
     public function getPlace()
     {
-        return array(0 => $this->place);
+        return $this->place;
     }
 
 
@@ -111,6 +147,48 @@ class Patient
     {
         return $this->id;
     }
+
+    /**
+     * Get job
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return Patient
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+    }
+
+    /**
+     * Get job detail
+     * @return string
+     */
+    public function getJobDetail()
+    {
+        return $this->jobDetail;
+    }
+
+    /**
+     * Set job detail
+     * @param string $jobDetail
+     * @return Patient
+     */
+    public function setJobDetail($jobDetail)
+    {
+        $this->jobDetail = $jobDetail;
+    }
+
+
 
     /**
      * Set historyNumber
@@ -134,6 +212,54 @@ class Patient
     public function getHistoryNumber()
     {
         return $this->historyNumber;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Patient
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return Patient
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get historyNumber
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 
     /**
@@ -206,6 +332,30 @@ class Patient
     public function getDocument()
     {
         return $this->document;
+    }
+
+    /**
+     * Set document
+     *
+     * @param string $gender
+     *
+     * @return Patient
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 
     /**

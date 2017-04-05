@@ -27,10 +27,10 @@ class DoctorController extends FOSRestController
      *
      * @return mixed
      *
-     * @Get("/")
+     * @Get("")
      */
 
-    public function indexAction()
+    public function getAllAction()
     {
         $em = $this->getDoctrine()->getManager();
         $doctor = $em->getRepository('AppBundle:Doctor')->findAll();

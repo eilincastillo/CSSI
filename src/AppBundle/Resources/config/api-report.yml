@@ -1,0 +1,4 @@
+api_controller_report:
+   type: rest
+   resource: "@AppBundle/Controller/ReportController.php"
+   name_prefix:  api_report_

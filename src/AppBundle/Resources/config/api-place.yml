@@ -1,0 +1,4 @@
+api_controller_place:
+   type: rest
+   resource: "@AppBundle/Controller/PlaceController.php"
+   name_prefix:  api_place_

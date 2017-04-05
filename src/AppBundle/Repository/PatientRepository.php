@@ -10,4 +10,72 @@ namespace AppBundle\Repository;
  */
 class PatientRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get patient by Parishes
+     */
+    public function getPatientByParishes($nameParishes)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->innerJoin('patient.place','place')
+            ->where('place.name = :nameParishes')
+            ->setParameter('nameParishes', $nameParishes);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
+     * Get patient by Document
+     */
+    public function findPatientByDocument($document)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.document = :document')
+            ->setParameter('document', $document);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
+     * Get patient by HistoryNumber
+     */
+    public function findPatientByHistoryNumber($historyNumber)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.historyNumber = :historyNumber')
+            ->setParameter('historyNumber', $historyNumber);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
+     * Get patient by JobStatus
+     */
+    public function findPatientByJobStatus($job)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient')
+            ->from('AppBundle:Patient', 'patient')
+            ->where('patient.job = :job')
+            ->setParameter('job', $job);
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
+     * Get patient of apointment by specialty
+     */
+    public function getPatientAppointmentsBySpecialty($idSpecialty)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('DISTINCT  patient.id as patient_id ')
+            ->from('AppBundle:Appointment', 'appointment')
+            ->leftJoin( 'appointment.patient', 'patient')
+            ->innerJoin('appointment.doctor','doctor')
+            ->innerJoin('doctor.specialty','specialty')
+            ->where('specialty.id = :idSpecialty')
+            ->setParameter('idSpecialty', $idSpecialty);
+        return $query->getQuery()->getArrayResult();
+    }
 }
