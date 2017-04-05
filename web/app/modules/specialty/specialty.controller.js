@@ -9,7 +9,7 @@
     {
         var self = this;
         self.specialtyList = [];
-        ctrl.specialty = {};
+        self.specialty = {};
         self.specialtyId;
 
         self.getSpecialtyList = function ()
@@ -47,7 +47,7 @@
                 SpecialtyService.get(urlParameter)
                     .then(function (data)
                     {
-                        ctrl.specialty.name = data.name;
+                        self.specialty.name = data.name;
                     })
                     .catch(function (e)
                     {
@@ -63,15 +63,24 @@
 
         self.updateSpecialty = function (specialtyName)
         {
-            SpecialtyService.update(self.specialtyId, specialtyName)
-                .then(function (data)
-                {
-                    $state.go('menu.specialty');
-                })
-                .catch(function (e)
-                {
+            var urlParameter = $stateParams.specialtyId;
 
-                });
+            if(urlParameter)
+            {
+                SpecialtyService.update(urlParameter, specialtyName)
+                    .then(function ()
+                    {
+                        $state.go('menu.specialty');
+                    })
+                    .catch(function (e)
+                    {
+
+                    });
+            }
+            else
+            {
+                $state.go('menu.menu.specialty');
+            }
         }
     }
 

@@ -50,29 +50,24 @@ class SpecialtyController extends FOSRestController
      *
      * @Get("/{idSpecialty}")
      */
-    public function getAction(Request $request,$idSpecialty)
+    public function getAction($idSpecialty)
     {
-        $content = $request->getContent();
-        if ($content != null)
+
+        try
         {
-            $json = json_decode($content, true);
-            try
-            {
-                if ($json != null)
-                {
-                    $em = $this->getDoctrine()->getManager();
+                $em = $this->getDoctrine()->getManager();
 
-                    $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
+                $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
 
-                    return $specialty;
-                }
-            }
-            catch (Exception $ex)
-            {
-                return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
-            }
+                return $specialty;
+
         }
-        return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+        catch (Exception $ex)
+        {
+            return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+        }
+
+
     }
 
 

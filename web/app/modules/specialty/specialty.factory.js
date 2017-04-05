@@ -62,12 +62,12 @@
             return promise;
         }
 
-        function updateSpecialty(specialtyId, specialtyName)
+        function updateSpecialty(specialty)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.update({specialtyId: specialtyId}, { id: specialtyId, name: specialtyName},
+            request.update({specialtyId: specialty.id }, { name: specialty.name },
                 function success(data)
                 {
                     defered.resolve(data);
