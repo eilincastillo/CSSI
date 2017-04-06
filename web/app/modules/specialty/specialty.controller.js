@@ -56,7 +56,7 @@
             }
             else
             {
-                $state.go('menu.menu.specialty');
+                $state.go('menu.specialty');
             }
 
         }
@@ -79,7 +79,7 @@
             }
             else
             {
-                $state.go('menu.menu.specialty');
+                $state.go('menu.specialty');
             }
         }
     }
