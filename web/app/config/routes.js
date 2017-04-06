@@ -48,6 +48,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/user/add/user-add.html',
             controller: 'UserCtrl as ctrl'
         })
+        .state('menu.user-update', {
+            url: '/usuarios/actualizar/:userId',
+            templateUrl: '../app/views/user/update/user-update.html',
+            controller: 'UserCtrl as ctrl'
+        })
         .state('menu.report', {
             url: '/reportes',
             templateUrl: '../app/views/report/report.html',

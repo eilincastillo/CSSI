@@ -12,11 +12,6 @@
         self.doctor = {};
         self.doctorId;
 
-        $(document).ready(function ()
-        {
-            $('#specialtyList').material_select();
-            $('#statusList').material_select();
-        });
 
         self.getDoctorList = function ()
         {
@@ -84,10 +79,6 @@
                 .then(function (data)
                 {
                     self.specialtyList = data;
-                    if(!updateView)
-                    {
-                        self.specialtyList.selectedOption = { id: '', name: 'Seleccione una especialidad' };
-                    }
                 })
                 .catch(function (e)
                 {
