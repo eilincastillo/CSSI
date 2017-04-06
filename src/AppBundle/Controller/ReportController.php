@@ -164,7 +164,12 @@ class ReportController extends FOSRestController
                         $patients = $em->getRepository('AppBundle:Patient')->findPatientByDocument($json['document']);
 
                         if ($patients != null)
-                            return ($patients);
+                        {
+                            $view = $this->view($patients, 202);
+                            return $this->handleView($view);
+                            //return ($patients);
+                        }
+
                         else
                             return new Response('Error patient don\'t exist',Response::HTTP_NO_CONTENT);
                     }
@@ -174,7 +179,11 @@ class ReportController extends FOSRestController
                             $patients = $em->getRepository('AppBundle:Patient')->findPatientByHistoryNumber($json['historyNumber']);
 
                             if ($patients != null)
-                                return ($patients);
+                            {
+                                $view = $this->view($patients, 202);
+                                return $this->handleView($view);
+                                //return ($patients);
+                            }
                             else
                                 return new Response('Error',Response::HTTP_NO_CONTENT);
                         }

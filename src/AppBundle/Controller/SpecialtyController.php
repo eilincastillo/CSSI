@@ -77,6 +77,20 @@ class SpecialtyController extends FOSRestController
 
 
     /**
+     * ApiDoc
+     * @api {put} cssi/web/app_dev.php/api/specialty/
+     * @apiName createAction
+     * @apiGroup Appointment
+     * @apiDescription Create a speciality.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+     *"name": "Odontologia"
+     * }
+     *
+     */
+
+    /**
      * Create a speciality
      * @var Request $request
      * @return mixed
@@ -110,8 +124,10 @@ class SpecialtyController extends FOSRestController
                         return new Response('Error, the specialty already exists',Response::HTTP_CONFLICT);
 
 
-                    //return $specificationCriteria;
-                    return new Response('The specialty was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($specialty, 202);
+                    return $this->handleView($view);
+                    //return new Response($specialty, Response::HTTP_ACCEPTED);
+
                 }
             }
             catch (Exception $ex)
@@ -159,8 +175,9 @@ class SpecialtyController extends FOSRestController
                     else
                         return new Response('Error, the specialty don\'t exists',Response::HTTP_CONFLICT);
 
-
-                    return new Response('The specialty was successfully edited', Response::HTTP_ACCEPTED);
+                    $view = $this->view($specialty, 202);
+                    return $this->handleView($view);
+                    //return new Response('The specialty was successfully edited', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)

@@ -110,7 +110,9 @@ class PatientController extends FOSRestController
                     else
                         return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
 
-                    return new Response('The patient was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($patient, 202);
+                    return $this->handleView($view);
+                    //return new Response('The patient was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)
@@ -193,7 +195,9 @@ class PatientController extends FOSRestController
                     else
                         return new Response('Error, the place or patient don\'t exists',Response::HTTP_CONFLICT);
 
-                    return new Response('The patient was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($patient, 202);
+                    return $this->handleView($view);
+                    //return new Response('The patient was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)

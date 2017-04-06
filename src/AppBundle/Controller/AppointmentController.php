@@ -102,7 +102,9 @@ class AppointmentController extends FOSRestController
                         return new Response('Error, the place or patient don\'t exists',Response::HTTP_CONFLICT);
 
 
-                    return new Response('The appointment was successfully added', Response::HTTP_ACCEPTED);
+                    //return new Response('The appointment was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($appointment, 202);
+                    return $this->handleView($view);
                 }
             }
             catch (Exception $ex)
@@ -179,8 +181,9 @@ class AppointmentController extends FOSRestController
                     else
                         return new Response('Error, the place or patient don\'t exists',Response::HTTP_CONFLICT);
 
-
-                    return new Response('The appointment was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($appointment, 202);
+                    return $this->handleView($view);
+                    //return new Response('The appointment was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)

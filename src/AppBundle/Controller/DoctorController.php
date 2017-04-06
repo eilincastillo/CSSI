@@ -90,7 +90,9 @@ class DoctorController extends FOSRestController
                     else
                         return new Response('Error, the specialty don\'t exists',Response::HTTP_CONFLICT);
 
-                    return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
+                    $view = $this->view($doctor, 202);
+                    return $this->handleView($view);
+                    //return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)
@@ -144,8 +146,9 @@ class DoctorController extends FOSRestController
                     else
                         return new Response('Error, the Doctor don\'t exists',Response::HTTP_CONFLICT);
 
-
-                    return new Response('The doctor was successfully edited', Response::HTTP_ACCEPTED);
+                    $view = $this->view($doctor, 202);
+                    return $this->handleView($view);
+                    //return new Response('The doctor was successfully edited', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)
