@@ -54,8 +54,14 @@
             var defered = $q.defer();
             var promise = defered.promise;
 
+            var addedDoctor =
+                {
+                    name: doctor.name,
+                    lastname: doctor.lastname,
+                    idSpecialty: doctor.specialty.id
+                };
 
-            DoctorFactory.add(doctor)
+            DoctorFactory.add(addedDoctor)
                 .then(function (data)
                 {
                     defered.resolve(data);
@@ -80,7 +86,7 @@
                     lastname: doctor.lastname,
                     idSpecialty: doctor.specialty.id,
                     idStatus: doctor.status.id
-                }
+                };
 
             DoctorFactory.update(updatedDoctor)
                 .then(function (data)

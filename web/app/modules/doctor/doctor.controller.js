@@ -44,47 +44,56 @@
                 });
         }
 
-        self.getParameter = function ()
+        self.getParameter = function (updateView)
         {
-            var urlParameter = $stateParams.doctorId;
 
-            if(urlParameter)
+            if(updateView)
             {
-                DoctorService.get(urlParameter)
-                    .then(function (data)
-                    {
-                        self.doctor = data;
-                    })
-                    .catch(function (e)
-                    {
+                var urlParameter = $stateParams.doctorId;
 
-                    });
+                if(urlParameter)
+                {
+                    DoctorService.get(urlParameter)
+                        .then(function (data)
+                        {
+                            self.doctor = data;
 
-                SpecialtyService.getAll()
-                    .then(function (data)
-                    {
-                        self.specialtyList = data;
-                    })
-                    .catch(function (e)
-                    {
+                        })
+                        .catch(function (e)
+                        {
 
-                    });
+                        });
 
-                StatusService.getAll()
-                    .then(function (data)
-                    {
-                        self.statusList = data;
-                    })
-                    .catch(function (e)
-                    {
+                    StatusService.getAll()
+                        .then(function (data)
+                        {
+                            self.statusList = data;
+                        })
+                        .catch(function (e)
+                        {
 
-                    });
-
+                        });
+                }
+                else
+                {
+                    $state.go('menu.doctor');
+                }
             }
-            else
-            {
-                $state.go('menu.doctor');
-            }
+
+            SpecialtyService.getAll()
+                .then(function (data)
+                {
+                    self.specialtyList = data;
+                    if(!updateView)
+                    {
+                        self.specialtyList.selectedOption = { id: '', name: 'Seleccione una especialidad' };
+                    }
+                })
+                .catch(function (e)
+                {
+
+                });
+
         }
 
         self.updateDoctor = function (doctor)
