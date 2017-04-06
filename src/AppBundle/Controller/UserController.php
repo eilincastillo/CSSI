@@ -108,7 +108,10 @@ class UserController extends FOSRestController
                         $em->persist($user);
                         $em->flush();
 
-                    return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
+                        $view = $this->view($user, 202);
+                        return $this->handleView($view);
+                    //return ($patients);
+                    //return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)
@@ -176,20 +179,16 @@ class UserController extends FOSRestController
                     else
                         return new Response('Error, the User don\'t exists', Response::HTTP_CONFLICT);
 
-                    return new Response('The user was successfully edited', Response::HTTP_ACCEPTED);
-
-
+                    //return new Response('The user was successfully edited', Response::HTTP_ACCEPTED);
+                    $view = $this->view($user, 202);
+                    return $this->handleView($view);
                 }
-
-
             }
             catch (Exception $ex)
             {
                 return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
             }
         }
-
         return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
-
     }
 }
