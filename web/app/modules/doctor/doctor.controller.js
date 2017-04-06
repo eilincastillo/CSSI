@@ -3,14 +3,20 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
+    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$stateParams', 'StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
 
-    function DoctorCtrl(DoctorService)
+    function DoctorCtrl($stateParams, StatusService, SpecialtyService, DoctorService)
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
         self.doctor = {};
         self.doctorId;
+
+        $(document).ready(function ()
+        {
+            $('#specialtyList').material_select();
+            $('#statusList').material_select();
+        });
 
         self.getDoctorList = function ()
         {
@@ -54,6 +60,26 @@
 
                     });
 
+                SpecialtyService.getAll()
+                    .then(function (data)
+                    {
+                        self.specialtyList = data;
+                    })
+                    .catch(function (e)
+                    {
+
+                    });
+
+                StatusService.getAll()
+                    .then(function (data)
+                    {
+                        self.statusList = data;
+                    })
+                    .catch(function (e)
+                    {
+
+                    });
+
             }
             else
             {
@@ -67,7 +93,7 @@
 
             if(urlParameter)
             {
-                DoctorService.update(urlParameter, doctor)
+                DoctorService.update(doctor)
                     .then(function ()
                     {
                         $state.go('menu.doctor');

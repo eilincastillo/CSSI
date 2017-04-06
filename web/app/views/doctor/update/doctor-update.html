@@ -17,8 +17,8 @@
         <div class="row">
             <div class="input-field col s6">
                 <div class="input-field col s12">
-                    <select ng-repeat="status in ctrl.statusList">
-                        <option value="{{ status.id }}">{{ status.name }}</option>
+                    <select id="statusList" class="browser-default" ng-options="status.name for status in ctrl.statusList track by status.id"
+                    ng-model="ctrl.doctor.status">
                     </select>
                     <label for="icon_prefix">Estado</label>
                 </div>
@@ -27,8 +27,8 @@
         <div class="row">
             <div class="input-field col s6">
                 <div class="input-field col s12">
-                    <select ng-repeat="specialty in ctrl.specialtyList">
-                        <option value="{{ specialty.id }}" disabled selected>{{ specialty.name }}</option>
+                    <select id="specialtyList" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
+                    ng-model="ctrl.doctor.specialty">
                     </select>
                     <label for="icon_prefix">Especialidad</label>
                 </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updateSpecialty(ctrl.specialty.name)">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updateDoctor(ctrl.doctor)">
                     {{ 'Editar' | uppercase }}
                 </button>
             </div>

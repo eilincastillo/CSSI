@@ -73,8 +73,16 @@
             var defered = $q.defer();
             var promise = defered.promise;
 
+            var updatedDoctor =
+                {
+                    id: doctor.id,
+                    name: doctor.name,
+                    lastname: doctor.lastname,
+                    idSpecialty: doctor.specialty.id,
+                    idStatus: doctor.status.id
+                }
 
-            DoctorFactory.update(doctor)
+            DoctorFactory.update(updatedDoctor)
                 .then(function (data)
                 {
                     defered.resolve(data);

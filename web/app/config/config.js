@@ -17,5 +17,6 @@ angular.module('cssi.services.specialty', []);
 angular.module('cssi.services.user', []);
 angular.module('cssi.services.logger', []);
 angular.module('cssi.services.validate', []);
+angular.module('cssi.services.status', []);
 angular.module('cssi.factories.doctor', []);
 angular.module('cssi.factories.specialty', []);

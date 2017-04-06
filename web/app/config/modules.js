@@ -20,6 +20,7 @@ angular.module('cssi', [
     'cssi.services.specialty',
     'cssi.services.logger',
     'cssi.services.validate',
+    'cssi.services.status',
     'cssi.factories.doctor',
     'cssi.factories.specialty'
 
