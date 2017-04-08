@@ -49,16 +49,19 @@
             return promise;
         }
 
-        function add(doctor)
+        function add(user)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
             var addedUser =
                 {
-                    name: doctor.name,
-                    lastname: doctor.lastname,
-                    idSpecialty: doctor.specialty.id
+                    document: user.personal.document,
+                    name: user.personal.name,
+                    lastName: user.personal.lastname,
+                    username: user.username,
+                    password: user.password,
+                    role: 'ROLE_PERSONAL'
                 };
 
             UserFactory.add(addedUser)

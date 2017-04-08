@@ -1,6 +1,6 @@
 <div class="row" ng-init="ctrl.getUserList()">
     <div class="row">
-        <h1>Listado de doctores</h1>
+        <h1>Listado de usuarios</h1>
     </div>
     <div class="row">
         <table class="bordered">
@@ -34,7 +34,7 @@
                         {{ user.status.name }}
                     </td>
                     <td>
-                        <a ui-sref="menu.specialty-update({ specialtyId: specialty.id })">
+                        <a ui-sref="menu.user-update({ userId: user.id })">
                             <i class="material-icons">mode_edit</i>
                         </a>
                     </td>

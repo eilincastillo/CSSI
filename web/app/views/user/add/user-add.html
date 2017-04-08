@@ -1,1 +1,59 @@
 <h1>Agregar usuario</h1>
+
+<div class="row" ng-init="ctrl.getParameter(false)">
+    <form class="col s12">
+        <div class="row">
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="number" class="validate" ng-model="ctrl.user.personal.document">
+                        <label for="icon_prefix">Cédula de identidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.name">
+                        <label for="icon_prefix">Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.lastname">
+                        <label for="icon_prefix">Apellido</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.username">
+                        <label for="icon_prefix">Nombre de usuario</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="password" class="validate" ng-model="ctrl.user.password">
+                        <label for="icon_prefix">Contraseña</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="password" class="validate" ng-model="ctrl.user.retypePassword">
+                        <label for="icon_prefix">Repetir contraseña</label>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addUser(ctrl.user)">
+                    {{ 'Agregar' | uppercase }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
