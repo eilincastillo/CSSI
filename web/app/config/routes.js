@@ -38,6 +38,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/patient/add/patient-add.html',
             controller: 'PatientCtrl as ctrl'
         })
+        .state('menu.patient-update', {
+            url: '/pacientes/actualizar/:patientId',
+            templateUrl: '../app/views/patient/update/patient-update.html',
+            controller: 'PatientCtrl as ctrl'
+        })
         .state('menu.user', {
             url: '/usuarios/listado',
             templateUrl: '../app/views/user/list/user-list.html',

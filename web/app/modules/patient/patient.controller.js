@@ -2,10 +2,142 @@
 {
     'use strict';
 
-    angular.module('cssi.controllers.patient').controller('PatientCtrl', ['PatientService', PatientCtrl]);
+    angular.module('cssi.controllers.patient').controller('PatientCtrl', ['$state', '$stateParams', 'PatientService', PatientCtrl]);
 
-    function PatientCtrl(PatientService)
+    function PatientCtrl($state, $stateParams, PatientService)
     {
+        var self = this;
+        self.occupationStep;
+        self.contactStep;
+        self.personalStep = true;
 
+        self.getPatientList = function ()
+        {
+            PatientService.getAll()
+                .then(function (data)
+                {
+                    self.userList = data;
+                })
+                .catch(function(e)
+                {
+                    console.log(e);
+                });
+        }
+
+        self.addPatient = function (patient)
+        {
+            PatientService.add(patient)
+                .then(function (data)
+                {
+                    $state.go('menu.patient');
+                })
+                .catch(function (e)
+                {
+
+                });
+        }
+
+        self.backStep = function ()
+        {
+            if(self.contactStep)
+            {
+                self.personalStep = true;
+                self.contactStep = false;
+                self.occupationStep = false;
+            }
+            else if(self.occupationStep)
+            {
+                self.personalStep = false;
+                self.contactStep = true;
+                self.occupationStep = false;
+            }
+        }
+
+        self.nextStep = function ()
+        {
+            if(self.personalStep)
+            {
+                self.personalStep = false;
+                self.contactStep = true;
+                self.occupationStep = false;
+            }
+            else if(self.contactStep)
+            {
+                self.personalStep = false;
+                self.contactStep = false;
+                self.occupationStep = true;
+            }
+            else if(self.occupationStep)
+            {
+                self.personalStep = false;
+                self.contactStep = false;
+                self.occupationStep = false;
+            }
+        }
+
+        self.getParameter = function (updateView)
+        {
+            self.occupationStep = self.contactStep = false;
+            self.personalStep = true;
+
+
+            if(updateView)
+            {
+                var urlParameter = $stateParams.patientId;
+
+                if(urlParameter)
+                {
+                    PatientService.get(urlParameter)
+                        .then(function (data)
+                        {
+                            self.user = data;
+
+                        })
+                        .catch(function (e)
+                        {
+
+                        });
+
+                    StatusService.getAll()
+                        .then(function (data)
+                        {
+                            self.statusList = data;
+                        })
+                        .catch(function (e)
+                        {
+
+                        });
+
+                    self.roleList = UserService.getRoles();
+                }
+                else
+                {
+                    $state.go('menu.patient');
+                }
+            }
+
+        }
+
+        self.updatePatient = function (patient)
+        {
+            var urlParameter = $stateParams.patientId;
+
+            if(urlParameter)
+            {
+                PatientService.update(patient)
+                    .then(function ()
+                    {
+                        $state.go('menu.patient');
+                    })
+                    .catch(function (e)
+                    {
+
+                    });
+            }
+            else
+            {
+                $state.go('menu.patient');
+            }
+        }
     }
 })();
