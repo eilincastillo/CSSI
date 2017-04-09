@@ -137,6 +137,27 @@ class ReportController extends FOSRestController
     "document": "",
     "historyNumber": "11111"
     }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "id": 1,
+    "name": "Fulana",
+    "lastname": "Diaz",
+    "historyNumber": "111111111",
+    "registrationDate": "2017-03-08T00:00:00+0100",
+    "accompanied": "No",
+    "document": "123458",
+    "gender": "F",
+    "birthdate": "1997-03-11T00:00:00+0100",
+    "familyDynamics": "Familia nuclear",
+    "homeVisit": "No",
+    "job": "true",
+    "jobDetail": "bla bla"
+    }
+    ]
      */
 
     /**
@@ -215,6 +236,17 @@ class ReportController extends FOSRestController
     "max": 25
     }
      *
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "femalePercentage": 50,
+    "malePercentage": 25,
+    "femaleTotal": 2,
+    "maleTotal": 1,
+    "totalPatient": 4
+    }
      */
 
     /**
@@ -407,6 +439,31 @@ class ReportController extends FOSRestController
      * {
     "nameParishes": "La Vega"
     }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "totalPatient": 1,
+    "patients": [
+    {
+    "id": 2,
+    "name": "Mengano",
+    "lastname": "Perez",
+    "historyNumber": "222222222",
+    "registrationDate": "2016-03-01T00:00:00+0100",
+    "accompanied": "Si",
+    "document": "222222",
+    "gender": "M",
+    "birthdate": "1960-03-15T00:00:00+0100",
+    "familyDynamics": "No tiene familia",
+    "homeVisit": "Si",
+    "job": "false",
+    "jobDetail": ""
+    }
+    ]
+    }
+     *
      */
 
     /**
@@ -474,6 +531,15 @@ class ReportController extends FOSRestController
     "year": 2016
     }
     }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "totalPatient": 2,
+    "totalHelp": 187500
+    }
+     *
      */
 
     /**

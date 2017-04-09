@@ -26,7 +26,24 @@ class SpecialtyController extends FOSRestController
      * @apiName indexAction
      * @apiGroup Specialty
      * @apiDescription Get all Specialties.
-
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "id": 1,
+    "name": "Cardiologia"
+    },
+    {
+    "id": 2,
+    "name": "Dermatologia"
+    },
+    {
+    "id": 3,
+    "name": "Pediatria"
+    }
+    ]
      */
     /**
      * Get all specialty
@@ -44,50 +61,63 @@ class SpecialtyController extends FOSRestController
     }
 
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/specialty/{idSpecialty}
+     * @apiName getAction
+     * @apiGroup Specialty
+     * @apiDescription Get a Specialties.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "id": 1,
+    "name": "Cardiologia"
+    }
+
+     */
+
+    /**
      * Get a specialty
      * @var Request $request, $idSpecialty
      * @return mixed
      *
      * @Get("/{idSpecialty}")
      */
-    public function getAction(Request $request,$idSpecialty)
+    public function getAction($idSpecialty)
     {
-        $content = $request->getContent();
-        if ($content != null)
+        try
         {
-            $json = json_decode($content, true);
-            try
-            {
-                if ($json != null)
-                {
-                    $em = $this->getDoctrine()->getManager();
-
-                    $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
-
-                    return $specialty;
-                }
-            }
-            catch (Exception $ex)
-            {
-                return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
-            }
+            $em = $this->getDoctrine()->getManager();
+            $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
+            return $specialty;
         }
-        return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+        catch (Exception $ex)
+        {
+            return new Response('Error, the specialty was not found',Response::HTTP_CONFLICT);
+        }
     }
 
 
     /**
      * ApiDoc
-     * @api {put} cssi/web/app_dev.php/api/specialty/
+     * @api {post} cssi/web/app_dev.php/api/specialty/
      * @apiName createAction
-     * @apiGroup Appointment
+     * @apiGroup Specialty
      * @apiDescription Create a speciality.
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *"name": "Odontologia"
-     * }
+     "name": "Odontologia"
+      }
      *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "id": 4,
+    "name": "Odontologia"
+    }
      */
 
     /**
@@ -137,6 +167,27 @@ class SpecialtyController extends FOSRestController
         }
         return new Response('Error, the specialty was not inserted',Response::HTTP_CONFLICT);
     }
+
+    /**
+     * ApiDoc
+     * @api {put} cssi/web/app_dev.php/api/specialty/{idSpecialty}
+     * @apiName updateAction
+     * @apiGroup Specialty
+     * @apiDescription Edit a speciality.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+    "name": "Odontologia"
+    }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "id": 4,
+    "name": "Odontologia"
+    }
+     */
 
     /**
      * Edit a specialty

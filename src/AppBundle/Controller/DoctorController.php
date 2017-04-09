@@ -23,6 +23,32 @@ use Symfony\Component\HttpFoundation\Response;
 class DoctorController extends FOSRestController
 {
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/doctor/
+     * @apiName getAllAction
+     * @apiGroup Doctor
+     * @apiDescription Get all doctor.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *[
+    {
+    "id": 1,
+    "name": "Cruz Maria",
+    "lastname": "Vaamonde",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologia"
+    },
+    "status": {
+    "id": 1,
+    "name": "Active"
+    }
+    }
+     * ]
+     */
+
+    /**
      * Get all doctor
      *
      * @return mixed
@@ -38,6 +64,29 @@ class DoctorController extends FOSRestController
     }
 
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/doctor/active
+     * @apiName activeDoctorsAction
+     * @apiGroup Doctor
+     * @apiDescription Get active doctor.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *[
+    {
+    "id": 1,
+    "name": "Cruz Maria",
+    "lastname": "Vaamonde"
+    },
+    {
+    "id": 2,
+    "name": "Ana",
+    "lastname": "Perez"
+    }
+    ]
+     */
+
+    /**
      * Get active doctors
      *
      * @return mixed
@@ -51,9 +100,40 @@ class DoctorController extends FOSRestController
         $doctors = $em->getRepository('AppBundle:Doctor')->getActiveDoctors(1);
         return $doctors;
     }
+    /**
+     * ApiDoc
+     * @api {post} cssi/web/app_dev.php/api/doctor/
+     * @apiName createAction
+     * @apiGroup Doctor
+     * @apiDescription Create a doctor.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+     *"idSpecialty": 1,
+    "name": "Alejandra",
+    "lastname": "Lopez"
+      }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *{
+    "id": 3,
+    "name": "Alejandra",
+    "lastname": "Lopez",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologia"
+    },
+    "status": {
+    "id": 1,
+    "name": "Active"
+    }
+    }
+     */
 
     /**
-     * Create a speciality
+     * Create a doctor
      * @var Request $request
      * @return mixed
      *
@@ -102,6 +182,38 @@ class DoctorController extends FOSRestController
         }
         return new Response('Error, the doctor was not inserted',Response::HTTP_CONFLICT);
     }
+
+    /**
+     * ApiDoc
+     * @api {put} cssi/web/app_dev.php/api/doctor/
+     * @apiName updateAction
+     * @apiGroup Doctor
+     * @apiDescription Edit a doctor.
+     *
+     * @apiParamExample {json} Request-Example:
+     * {
+     *"idSpecialty": 1,
+    "name": "Alejandra",
+    "lastname": "Lopez"
+    }
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *{
+    "id": 3,
+    "name": "Alejandra",
+    "lastname": "Lopez",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologia"
+    },
+    "status": {
+    "id": 1,
+    "name": "Active"
+    }
+    }
+     */
 
     /**
      * Edit a doctor

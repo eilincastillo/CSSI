@@ -15,6 +15,28 @@ use FOS\RestBundle\Controller\Annotations\Get;
 class StatusController extends FOSRestController
 {
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/status/
+     * @apiName indexAction
+     * @apiGroup Status
+     * @apiDescription Get all status.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * [
+    {
+    "id": 1,
+    "name": "Active"
+    },
+    {
+    "id": 2,
+    "name": "Inactive"
+    }
+    ]
+     */
+
+    /**
      * Get all status
      *
      * @return mixed
