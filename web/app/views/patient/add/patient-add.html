@@ -61,13 +61,32 @@
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.address">
-                        <label for="icon_prefix">Ubicación</label>
+                        <div class="input-field col s12">
+                            <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
+                                    ng-model="ctrl.user.address.state">
+                            </select>
+                            <label for="icon_prefix">Estado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="districtList" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id"
+                                    ng-model="ctrl.user.address.district">
+                            </select>
+                            <label for="icon_prefix">Parroquia</label>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col s6">
-
+                <div class="row">
+                    <div class="input-field col s6">
+                        <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.district"></textarea>
+                        <label for="textarea1">Detalle de dirección</label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row" ng-show="ctrl.occupationStep">

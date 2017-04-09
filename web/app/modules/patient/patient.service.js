@@ -2,12 +2,16 @@
 {
     'use strict';
 
-    angular.module('cssi.services.patient').service('PatientService', ['$q', 'PatientFactory', PatientService]);
+    angular.module('cssi.services.patient').service('PatientService', ['$q', 'PlaceService', 'PatientFactory', PatientService]);
 
-    function PatientService($q, PatientFactory)
+    function PatientService($q, PlaceService, PatientFactory)
     {
         this.getAll = getAll;
         this.get = get;
+        this.getGender = getGender;
+        this.getEmployee = getEmployeeState;
+        this.getScholarship = getScholarship;
+        this.getState = getState;
         this.add = add;
         this.update = update;
 
@@ -47,6 +51,59 @@
                 });
 
             return promise;
+        }
+
+        function getGender()
+        {
+            var genderList = [];
+
+            genderList.push({ id: 1, name: 'Femenino'});
+            genderList.push({ id: 2, name: 'Masculino'});
+
+            return genderList;
+        }
+
+        function getEmployeeState()
+        {
+            var employeeStateList = [];
+
+            employeeStateList.push({ id: 1, name: 'Empleado'});
+            employeeStateList.push({ id: 2, name: 'Desempleado'});
+
+            return employeeStateList;
+        }
+
+        function getState()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            PlaceService.getStates()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (error)
+                {
+                    defered.reject();
+                });
+
+            return promise;
+        }
+
+
+        function getScholarship()
+        {
+            var scholarshipList = [];
+
+            scholarshipList.push({ id: 1, name: 'Ninguno'});
+            scholarshipList.push({ id: 2, name: 'Primaria'});
+            scholarshipList.push({ id: 3, name: 'Bachillerato'});
+            scholarshipList.push({ id: 4, name: 'Técnico'});
+            scholarshipList.push({ id: 5, name: 'Universitario'});
+
+
+            return scholarshipList;
         }
 
         function add(patient)

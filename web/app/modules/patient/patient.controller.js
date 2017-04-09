@@ -7,6 +7,7 @@
     function PatientCtrl($state, $stateParams, PatientService)
     {
         var self = this;
+        self.genderList = self.employeeList = self.scholarshipList = [];
         self.occupationStep;
         self.contactStep;
         self.personalStep = true;
@@ -85,6 +86,7 @@
             {
                 var urlParameter = $stateParams.patientId;
 
+
                 if(urlParameter)
                 {
                     PatientService.get(urlParameter)
@@ -108,13 +110,27 @@
 
                         });
 
-                    self.roleList = UserService.getRoles();
                 }
                 else
                 {
                     $state.go('menu.patient');
                 }
+
             }
+
+            PatientService.getState()
+                .then(function (data)
+                {
+                    self.stateList = data;
+                })
+                .catch(function (e)
+                {
+
+                });
+
+            self.genderList = PatientService.getGender();
+            self.employeeList = PatientService.getEmployee();
+            self.scholarshipList = PatientService.getScholarship();
 
         }
 
