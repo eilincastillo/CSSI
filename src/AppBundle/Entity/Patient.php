@@ -24,21 +24,6 @@ class Patient
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
-     */
-    private $lastname;
-
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="historyNumber", type="string", length=255)
      */
     private $historyNumber;
@@ -50,19 +35,7 @@ class Patient
      */
     private $registrationDate;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="accompanied", type="string", length=255)
-     */
-    private $accompanied;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="document", type="string", length=255, nullable=true)
-     */
-    private $document;
 
     /**
      * @var string
@@ -85,12 +58,6 @@ class Patient
      */
     private $familyDynamics;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="homeVisit", type="string", length=255)
-     */
-    private $homeVisit;
 
     /**
      * @var string
@@ -112,6 +79,37 @@ class Patient
      * @ORM\JoinColumn(name="place", referencedColumnName="id")
      **/
     private $place;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Personal", cascade={"all"})
+     * @ORM\JoinColumn(name="personal", referencedColumnName="id")
+     **/
+    private $personal;
+
+    /**
+     * Set personal
+     *
+     * @param string $personal
+     *
+     * @return Patient
+     */
+    public function setPersonal($personal)
+    {
+        $this->personal = $personal;
+
+        return $this;
+    }
+
+    /**
+     * Get personal
+     *
+     * @return personal
+     */
+    public function getPersonal()
+    {
+        return $this->personal;
+    }
 
     /**
      * Set place
@@ -215,54 +213,6 @@ class Patient
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Patient
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     *
-     * @return Patient
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get historyNumber
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
      * Set registrationDate
      *
      * @param \DateTime $registrationDate
@@ -284,54 +234,6 @@ class Patient
     public function getRegistrationDate()
     {
         return $this->registrationDate;
-    }
-
-    /**
-     * Set accompanied
-     *
-     * @param string $accompanied
-     *
-     * @return Patient
-     */
-    public function setAccompanied($accompanied)
-    {
-        $this->accompanied = $accompanied;
-
-        return $this;
-    }
-
-    /**
-     * Get accompanied
-     *
-     * @return string
-     */
-    public function getAccompanied()
-    {
-        return $this->accompanied;
-    }
-
-    /**
-     * Set document
-     *
-     * @param string $document
-     *
-     * @return Patient
-     */
-    public function setDocument($document)
-    {
-        $this->document = $document;
-
-        return $this;
-    }
-
-    /**
-     * Get document
-     *
-     * @return string
-     */
-    public function getDocument()
-    {
-        return $this->document;
     }
 
     /**
@@ -406,27 +308,4 @@ class Patient
         return $this->familyDynamics;
     }
 
-    /**
-     * Set homeVisit
-     *
-     * @param string $homeVisit
-     *
-     * @return Patient
-     */
-    public function setHomeVisit($homeVisit)
-    {
-        $this->homeVisit = $homeVisit;
-
-        return $this;
-    }
-
-    /**
-     * Get homeVisit
-     *
-     * @return string
-     */
-    public function getHomeVisit()
-    {
-        return $this->homeVisit;
-    }
 }

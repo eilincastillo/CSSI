@@ -29,6 +29,20 @@ class Appointment
     private $date;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="accompanied", type="string", length=255)
+     */
+    private $accompanied;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="homeVisit", type="string", length=255)
+     */
+    private $homeVisit;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="price", type="float")
@@ -339,4 +353,38 @@ class Appointment
     {
         return $this->expectationsPatient;
     }
+
+    /**
+     * @return string
+     */
+    public function getAccompanied()
+    {
+        return $this->accompanied;
+    }
+
+    /**
+     * @param string $accompanied
+     */
+    public function setAccompanied($accompanied)
+    {
+        $this->accompanied = $accompanied;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHomeVisit()
+    {
+        return $this->homeVisit;
+    }
+
+    /**
+     * @param string $homeVisit
+     */
+    public function setHomeVisit($homeVisit)
+    {
+        $this->homeVisit = $homeVisit;
+    }
+
+
 }

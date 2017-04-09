@@ -24,6 +24,7 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
         return $query->getQuery()->getArrayResult();
     }
 
+
     /**
      * Get patient by Document
      */
