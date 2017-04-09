@@ -2,12 +2,12 @@
 {
     'use strict';
     
-    angular.module('cssi.controllers.user').controller('UserCtrl', ['$stateParams', 'StatusService', 'UserService', UserCtrl]);
+    angular.module('cssi.controllers.user').controller('UserCtrl', ['$state', '$stateParams', 'StatusService', 'UserService', UserCtrl]);
     
-    function UserCtrl($stateParams, StatusService, UserService)
+    function UserCtrl($state, $stateParams, StatusService, UserService)
     {
         var self = this;
-        self.userList = self.statusList = [];
+        self.userList = self.statusList = self.roleList = [];
         self.user = {};
         self.userId;
 
@@ -43,7 +43,7 @@
 
             if(updateView)
             {
-                var urlParameter = $stateParams.doctorId;
+                var urlParameter = $stateParams.userId;
 
                 if(urlParameter)
                 {
@@ -67,6 +67,8 @@
                         {
 
                         });
+
+                    self.roleList = UserService.getRoles();
                 }
                 else
                 {

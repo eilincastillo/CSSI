@@ -8,6 +8,7 @@
     {
         this.getAll = getAll;
         this.get = get;
+        this.getRoles = getRoles;
         this.add = add;
         this.update = update;
 
@@ -47,6 +48,16 @@
                 });
 
             return promise;
+        }
+        
+        function getRoles()
+        {
+            var roleList = [];
+
+            roleList.push({ id: 1, name: 'RL_PERSONAL'});
+            roleList.push({ id: 2, name: 'ROLE_ADMIN'});
+
+            return roleList;
         }
 
         function add(user)

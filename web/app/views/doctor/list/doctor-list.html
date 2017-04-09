@@ -26,6 +26,11 @@
                     <td>
                         {{ doctor.status.name }}
                     </td>
+                    <td>
+                        <a ui-sref="menu.doctor-update({ doctorId: doctor.id })">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
