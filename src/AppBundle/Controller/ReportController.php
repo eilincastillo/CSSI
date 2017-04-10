@@ -60,8 +60,8 @@ class ReportController extends FOSRestController
             $patientsWithJob = $em->getRepository('AppBundle:Patient')->findPatientByJobStatus("true");
             $patientsWithoutJob = $em->getRepository('AppBundle:Patient')->findPatientByJobStatus("false");
 
-            array_push($response,(array( "name" =>"with_job", "count" =>count($patientsWithJob) )) );
-            array_push($response,(array( "name" =>"without_job", "count" =>count($patientsWithoutJob) )) );
+            array_push($response,(array( "name" =>"withJob", "count" =>count($patientsWithJob) )) );
+            array_push($response,(array( "name" =>"withoutJob", "count" =>count($patientsWithoutJob) )) );
 
             return ($response);
 
@@ -134,6 +134,7 @@ class ReportController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
+    "nationality": "",
     "document": "",
     "historyNumber": "11111"
     }
@@ -141,23 +142,35 @@ class ReportController extends FOSRestController
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      *
-     * [
-    {
+     * {
+    "id": 14,
+    "history_number": "1234567890",
+    "registration_date": "1970-01-01T00:00:00+0100",
+    "gender": "M",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "family_dynamics": "Familia nuclear",
+    "job": "false",
+    "job_detail": "",
+    "place": {
+    "id": 2,
+    "name": "El Paraiso",
+    "type": "Parroquia",
+    "place": {
     "id": 1,
-    "name": "Fulana",
-    "lastname": "Diaz",
-    "historyNumber": "111111111",
-    "registrationDate": "2017-03-08T00:00:00+0100",
-    "accompanied": "No",
-    "document": "123458",
-    "gender": "F",
-    "birthdate": "1997-03-11T00:00:00+0100",
-    "familyDynamics": "Familia nuclear",
-    "homeVisit": "No",
-    "job": "true",
-    "jobDetail": "bla bla"
+    "name": "Distrito Capital",
+    "type": "Estado"
     }
-    ]
+    },
+    "personal": {
+    "id": 13,
+    "document": "14111222",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
+    "nationality": "V"
+    }
+    }
      */
 
     /**
@@ -182,15 +195,22 @@ class ReportController extends FOSRestController
 
                     if ($json['document'] !="")
                     {
-                        $patients = $em->getRepository('AppBundle:Patient')->findPatientByDocument($json['document']);
 
-                        if ($patients != null)
+                        $personal = $em->getRepository('AppBundle:Personal')->findOneByDocument($json['document']);
+                        //$personal = $em->getRepository('AppBundle:Personal')->getPersonalByDocumentAndNationality($json['document'],$json["nationality"]);
+
+
+                        if ($personal != null)
                         {
-                            $view = $this->view($patients, 202);
-                            return $this->handleView($view);
-                            //return ($patients);
-                        }
+                            $patients = $em->getRepository('AppBundle:Patient')->findOneByPersonal($personal->getId());
+                            if ($personal->getNationality() == $json["nationality"])
+                            {
+                                $view = $this->view($patients, 202);
+                                return $this->handleView($view);
+                                //return ($patients);
+                            }
 
+                        }
                         else
                             return new Response('Error patient don\'t exist',Response::HTTP_NO_CONTENT);
                     }
@@ -381,30 +401,34 @@ class ReportController extends FOSRestController
      *
      * @apiParamExample {json} Response-Example:
      * {
-    "NumberAppointment": 2,
+    "numberAppointment": 0,
     "patient": {
-    "id": 2,
-    "name": "Mengano",
-    "lastname": "Perez",
-    "history_number": "222222222",
-    "registration_date": "2016-03-01T00:00:00+0100",
-    "accompanied": "Si",
-    "document": "222222",
+    "id": 13,
+    "history_number": "1234567890",
+    "registration_date": "1970-01-01T00:00:00+0100",
     "gender": "M",
-    "birthdate": "1960-03-15T00:00:00+0100",
-    "family_dynamics": "No tiene familia",
-    "home_visit": "Si",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "family_dynamics": "Familia nuclear",
     "job": "false",
     "job_detail": "",
     "place": {
-    "id": 3,
-    "name": "La Vega",
+    "id": 2,
+    "name": "El Paraiso",
     "type": "Parroquia",
     "place": {
     "id": 1,
     "name": "Distrito Capital",
     "type": "Estado"
     }
+    },
+    "personal": {
+    "id": 12,
+    "document": "14000222",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
+    "nationality": "V"
     }
     }
     }
@@ -447,19 +471,20 @@ class ReportController extends FOSRestController
     "totalPatient": 1,
     "patients": [
     {
-    "id": 2,
-    "name": "Mengano",
-    "lastname": "Perez",
-    "historyNumber": "222222222",
-    "registrationDate": "2016-03-01T00:00:00+0100",
-    "accompanied": "Si",
-    "document": "222222",
+    "id": 14,
+    "historyNumber": "1234567890",
+    "registrationDate": "1970-01-01T00:00:00+0100",
     "gender": "M",
-    "birthdate": "1960-03-15T00:00:00+0100",
-    "familyDynamics": "No tiene familia",
-    "homeVisit": "Si",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "familyDynamics": "Familia nuclear",
     "job": "false",
-    "jobDetail": ""
+    "jobDetail": "",
+    "namePersonal": "Alejandra",
+    "lastnamePersonal": "Vaamonde",
+    "secondNamePersonal": "Alejandra",
+    "secondLastnamePersonal": "Vaamonde",
+    "document": "14111222",
+    "nationality": "V"
     }
     ]
     }
@@ -521,6 +546,7 @@ class ReportController extends FOSRestController
     "year": 2016
     }
     }
+     *
      * @apiParamExample {json} Request-Example:
      * {
     "type_filter": "range",

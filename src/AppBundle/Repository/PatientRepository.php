@@ -16,8 +16,13 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
     public function getPatientByParishes($nameParishes)
     {
         $query = $this->_em->createQueryBuilder();
-        $query->select('patient')
+        $query->select('patient.id, patient.historyNumber, patient.registrationDate, patient.gender, patient.birthdate,
+        patient.familyDynamics, patient.job, patient.jobDetail,
+         personal.name as namePersonal, personal.lastname as lastnamePersonal, 
+        personal.secondName as secondNamePersonal, personal.secondLastname as secondLastnamePersonal, personal.document,
+        personal.nationality')
             ->from('AppBundle:Patient', 'patient')
+            ->leftJoin('patient.personal', 'personal')
             ->innerJoin('patient.place','place')
             ->where('place.name = :nameParishes')
             ->setParameter('nameParishes', $nameParishes);
@@ -33,7 +38,8 @@ class PatientRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQueryBuilder();
         $query->select('patient')
             ->from('AppBundle:Patient', 'patient')
-            ->where('patient.document = :document')
+            ->innerJoin('patient.personal','personal')
+            ->where('personal.document = :document')
             ->setParameter('document', $document);
         return $query->getQuery()->getArrayResult();
     }
