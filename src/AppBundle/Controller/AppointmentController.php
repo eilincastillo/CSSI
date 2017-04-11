@@ -21,6 +21,70 @@ use Symfony\Component\HttpFoundation\Response;
 class AppointmentController extends FOSRestController
 {
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/appointment/
+     * @apiName getAllAction
+     * @apiGroup Appointment
+     * @apiDescription Get all appointment.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "id": 1,
+    "date": "2017-03-01T00:00:00+0100",
+    "price": 200000,
+    "percentage_aid": 10,
+    "observations": "Ninguna",
+    "reason_appointment": "Quiere ayuda",
+    "patient": {
+    "id": 1,
+    "name": "Fulana",
+    "lastname": "Diaz",
+    "history_number": "111111111",
+    "registration_date": "2017-03-08T00:00:00+0100",
+    "accompanied": "No",
+    "document": "123458",
+    "gender": "F",
+    "birthdate": "1997-03-11T00:00:00+0100",
+    "family_dynamics": "Familia nuclear",
+    "home_visit": "No",
+    "job": "true",
+    "job_detail": "bla bla",
+    "place": {
+    "id": 2,
+    "name": "El Paraiso",
+    "type": "Parroquia",
+    "place": {
+    "id": 1,
+    "name": "Distrito Capital",
+    "type": "Estado"
+    }
+    }
+    },
+    "status": {
+    "id": 1,
+    "name": "Active"
+    },
+    "doctor": {
+    "id": 1,
+    "name": "Cruz Maria",
+    "lastname": "Vaamonde",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologia"
+    },
+    "status": {
+    "id": 1,
+    "name": "Active"
+    }
+    }
+    }
+    ]
+     *
+     */
+
+    /**
      * Get all appointment
      *
      * @return mixed
@@ -44,18 +108,62 @@ class AppointmentController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *date": "MM/DD/YYYY",
+     *"date": "MM/DD/YYYY",
     "price": "100000",
     "percentageAid": "50",
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    ""caseRemitted": "No",
+    "caseRemitted": "No",
     "institutionName": "",
     "institutionType": "",
+    "accompanied": "",
+    "homeVisit": "",
     "idPatient":1
-     * }
+    }
      *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     * {
+    "id": 9,
+    "date": "2017-02-20T00:00:00+0100",
+    "accompanied": "",
+    "home_visit": "",
+    "price": 100000,
+    "percentage_aid": 50,
+    "observations": "Necesita ayuda",
+    "reason_appointment": "Necesita ayuda",
+    "result": "Aprovado",
+    "patient": {
+    "id": 13,
+    "history_number": "1234567890",
+    "registration_date": "1970-01-01T00:00:00+0100",
+    "gender": "M",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "family_dynamics": "Familia nuclear",
+    "job": "false",
+    "job_detail": "",
+    "place": {
+    "id": 2,
+    "name": "El Paraiso",
+    "type": "Parroquia",
+    "place": {
+    "id": 1,
+    "name": "Distrito Capital",
+    "type": "Estado"
+    }
+    },
+    "personal": {
+    "id": 12,
+    "document": "14111222",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
+    "nationality": "V"
+    }
+    }
+    }
      */
 
     /**
@@ -87,6 +195,8 @@ class AppointmentController extends FOSRestController
                         $appointment->setDate($fixDate);
                         $appointment->setPrice($json["price"]);
                         $appointment->setPercentageAid($json["percentageAid"]);
+                        $appointment->setHomeVisit($json["homeVisit"]);
+                        $appointment->setAccompanied($json["accompanied"]);
                         $appointment->setObservations($json["observations"]);
                         $appointment->setReasonAppointment($json["reasonAppointment"]);
                         $appointment->setResult($json["result"]);
@@ -133,9 +243,53 @@ class AppointmentController extends FOSRestController
     ""caseRemitted": "No",
     "institutionName": "",
     "institutionType": "",
+    "accompanied": "",
+    "homeVisit": "",
     "idPatient":1
      * }
      *
+     *    * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     * {
+    "id": 9,
+    "date": "2017-02-20T00:00:00+0100",
+    "accompanied": "",
+    "home_visit": "",
+    "price": 100000,
+    "percentage_aid": 50,
+    "observations": "Necesita ayuda",
+    "reason_appointment": "Necesita ayuda",
+    "result": "Aprovado",
+    "patient": {
+    "id": 13,
+    "history_number": "1234567890",
+    "registration_date": "1970-01-01T00:00:00+0100",
+    "gender": "M",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "family_dynamics": "Familia nuclear",
+    "job": "false",
+    "job_detail": "",
+    "place": {
+    "id": 2,
+    "name": "El Paraiso",
+    "type": "Parroquia",
+    "place": {
+    "id": 1,
+    "name": "Distrito Capital",
+    "type": "Estado"
+    }
+    },
+    "personal": {
+    "id": 12,
+    "document": "14111222",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
+    "nationality": "V"
+    }
+    }
+    }
      */
 
     /**
@@ -169,6 +323,8 @@ class AppointmentController extends FOSRestController
                         $appointment->setPercentageAid($json["percentageAid"]);
                         $appointment->setObservations($json["observations"]);
                         $appointment->setReasonAppointment($json["reasonAppointment"]);
+                        $appointment->setHomeVisit($json["homeVisit"]);
+                        $appointment->setAccompanied($json["accompanied"]);
                         $appointment->setResult($json["result"]);
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);

@@ -38,9 +38,30 @@ class Personal
     /**
      * @var string
      *
+     * @ORM\Column(name="secondLastname", type="string", length=255)
+     */
+    private $secondLastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secondName", type="string", length=255)
+     */
+    private $secondName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="lastname", type="string", length=255)
      */
     private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nationality", type="string", length=255)
+     */
+    private $nationality;
 
     /**
      * Get id
@@ -123,4 +144,54 @@ class Personal
     {
         return $this->lastname;
     }
+
+    /**
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param string $nationality
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecondLastname()
+    {
+        return $this->secondLastname;
+    }
+
+    /**
+     * @param string $secondLastname
+     */
+    public function setSecondLastname($secondLastname)
+    {
+        $this->secondLastname = $secondLastname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecondName()
+    {
+        return $this->secondName;
+    }
+
+    /**
+     * @param string $secondName
+     */
+    public function setSecondName($secondName)
+    {
+        $this->secondName = $secondName;
+    }
+
+
 }

@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class PersonalRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getPersonalByDocumentAndNationality($document, $nationality)
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('personal')
+            ->from('AppBundle:Personal', 'personal')
+            ->where('personal.document = :document')
+            ->andWhere('personal.nationality = :nationality')
+            ->setParameter('document', $document)
+            ->setParameter('nationality', $nationality);
+        return $query->getQuery()->getArrayResult();
+    }
 }

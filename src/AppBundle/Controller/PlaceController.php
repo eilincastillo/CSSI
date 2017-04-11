@@ -19,7 +19,28 @@ class PlaceController extends FOSRestController
 {
 
     /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/place/
+     * @apiName getStatesAction
+     * @apiGroup Place
+     * @apiDescription Get all doctor.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
      *
+     *[
+    {
+    "id": 1,
+    "name": "Distrito Capital"
+    },
+    {
+    "id": 4,
+    "name": "Vargas"
+    }
+    ]
+     */
+
+    /**
+     * Get All States
      * @return mixed
      *
      * @Get("/")
@@ -31,8 +52,29 @@ class PlaceController extends FOSRestController
         return $states;
     }
 
+    /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/place/{idState}
+     * @apiName getDistrictsAction
+     * @apiGroup Place
+     * @apiDescription Get Districts.
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *[
+    {
+    "id": 2,
+    "name": "El Paraiso"
+    },
+    {
+    "id": 3,
+    "name": "La Vega"
+    }
+    ]
+     */
 
     /**
+     * Get Districts
      * @var $idState
      *
      * @return mixed
