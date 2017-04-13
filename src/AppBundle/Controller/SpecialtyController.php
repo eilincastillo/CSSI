@@ -43,7 +43,9 @@ class SpecialtyController extends FOSRestController
     "id": 3,
     "name": "Pediatria"
     }
-    ]
+    ]*/
+
+    /**
      * Get all specialty
      *
      * @return mixed
