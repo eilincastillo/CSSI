@@ -33,14 +33,17 @@ class PatientController extends FOSRestController
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      *
-     * [
-    {
-    "id": 1,
-    "name": "Active"
+     * [  {
+    "name": {
+    "id": 13,
+    "namePersonal": "Alejandra",
+    "lastname": "Vaamonde",
+    "secondName": "Alejandra",
+    "secondLastname": "Vaamonde",
+    "document": "14000222",
+    "nationality": "V"
     },
-    {
-    "id": 2,
-    "name": "Inactive"
+    "appointments": 2
     }
     ]
      */
@@ -56,8 +59,98 @@ class PatientController extends FOSRestController
     public function getAllAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $patient = $em->getRepository('AppBundle:Patient')->findAll();
-        return $patient;
+        $patients = $em->getRepository('AppBundle:Patient')->getPatientClean();
+        $appointments = $em->getRepository('AppBundle:Appointment')->findAll();
+        $result = array();
+
+
+        foreach ($patients as $patient)
+        {
+            $cont = 0;
+            foreach ($appointments as $appointment)
+            {
+                if ($appointment->getPatient()->getId() == $patient["id"])
+                    $cont++;
+            }
+            array_push($result,(array( "name" =>$patient, "appointments" =>$cont )) );
+        }
+        return $result;
+    }
+
+    /**
+     * ApiDoc
+     * @api {get} cssi/web/app_dev.php/api/patient/{idPatient}
+     * @apiName getByIdAction
+     * @apiGroup Patient
+     * @apiDescription Get a patient byId.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * {
+    "name": "Alejandra",
+    "lastname": "Vaamonde",
+    "secondName": "Alejandra",
+    "secondLastname": "Vaamonde",
+    "document": "14000222",
+    "nationality": "V",
+    "id": 13,
+    "historyNumber": "1234567890",
+    "registrationDate": "1970-01-01T00:00:00+0100",
+    "gender": "M",
+    "birthdate": "1970-01-01T00:00:00+0100",
+    "familyDynamics": "Familia nuclear",
+    "job": "false",
+    "jobDetail": "",
+    "appointments": [
+    {
+    "id": 8,
+    "date": "2017-02-20T00:00:00+0100",
+    "percentageAid": 50,
+    "observations": "Necesita ayuda",
+    "reasonAppointment": "Necesita ayuda",
+    "result": "Aprovado",
+    "doctorName": "Cruz Maria",
+    "doctorLastname": "Vaamonde"
+    },
+    {
+    "id": 9,
+    "date": "2017-02-20T00:00:00+0100",
+    "percentageAid": 50,
+    "observations": "Necesita ayuda",
+    "reasonAppointment": "Necesita ayuda",
+    "result": "Aprovado",
+    "doctorName": "Ana",
+    "doctorLastname": "Perez"
+    }
+    ]
+    }
+     */
+
+    /**
+     * Get all patient
+     *
+     * @return mixed
+     *
+     * @Get("/{idPatient}")
+     */
+
+    public function getByIdAction($idPatient)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $patient = $em->getRepository('AppBundle:Patient')->findOneById($idPatient);
+
+        $appointments = $em->getRepository('AppBundle:Appointment')->getAppointmentsByPatient($patient);
+
+        return array ("name"=>$patient->getPersonal()->getName(),"lastname"=>$patient->getPersonal()->getLastname(),
+            "secondName"=>$patient->getPersonal()->getSecondName(),"secondLastname"=>$patient->getPersonal()->getSecondLastname(),
+            "document"=>$patient->getPersonal()->getDocument(),"nationality"=>$patient->getPersonal()->getNationality(),
+            "id"=>$patient->getId(),"historyNumber"=>$patient->getHistoryNumber(),
+            "registrationDate"=>$patient->getRegistrationDate(),"gender"=>$patient->getGender(),
+            "birthdate"=>$patient->getBirthdate(),"familyDynamics"=>$patient->getFamilyDynamics(),
+            "job"=>$patient->getJob(),"jobDetail"=>$patient->getJobDetail(),
+            "appointments"=>$appointments);
+        //return $appointments;
     }
 
 
