@@ -72,7 +72,7 @@ class PatientController extends FOSRestController
                 if ($appointment->getPatient()->getId() == $patient["id"])
                     $cont++;
             }
-            array_push($result,(array( "patient" =>$patient, "appointments" =>$cont )) );
+            array_push($result,(array( "personal" =>$patient, "appointments" =>$cont )) );
         }
         return $result;
     }
