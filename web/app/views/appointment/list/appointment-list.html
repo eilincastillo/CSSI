@@ -21,7 +21,7 @@
             <tbody ng-repeat="appointment in ctrl.patient.appointments">
                 <tr>
                     <td>
-                        {{ appointment.date  }}
+                        {{ appointment.date | date : 'shortDate'  }}
                     </td>
                     <td>
                         {{ appointment.reasonAppointment }}
@@ -31,6 +31,11 @@
                     </td>
                     <td>
                         {{ appointment.percentageAid + '%'}}
+                    </td>
+                    <td>
+                        <a ui-sref="menu.appointment-detail({ patientId: ctrl.patient.id ,appointmentId: appointment.id })">
+                            <i class="material-icons">info</i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
