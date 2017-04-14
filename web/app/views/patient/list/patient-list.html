@@ -21,10 +21,13 @@
                     {{ patient.document }}
                 </td>
                 <td>
-                    {{ patient.lastname + ', ' + patient.name }}
+                    {{ patient.personal.lastname + ' ' + patient.personal.secondLastname
+                        + ', ' + patient.personal.namePersonal  + ' ' + patient.personal.secondName }}
                 </td>
                 <td>
-                    <a href="#">4</a>
+                    <a ui-sref="">
+                        {{ patient.appointments }}
+                    </a>
                 </td>
             </tr>
             </tbody>

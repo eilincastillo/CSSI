@@ -43,6 +43,21 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/patient/update/patient-update.html',
             controller: 'PatientCtrl as ctrl'
         })
+        .state('menu.appointment', {
+            url: '/pacientes/:patientId/consultas/listado',
+            templateUrl: '../app/views/appointment/list/appointment-list.html',
+            controller: 'AppointmentCtrl as ctrl'
+        })
+        .state('menu.appointment-add', {
+            url: '/pacientes/:patientId/consultas/agregar',
+            templateUrl: '../app/views/appointment/add/appointment-add.html',
+            controller: 'AppointmentCtrl as ctrl'
+        })
+        .state('menu.appointment-detail', {
+            url: '/pacientes/:patientId/consultas/:appointmentId',
+            templateUrl: '../app/views/appointment/detail/appointment-detail.html',
+            controller: 'AppointmentCtrl as ctrl'
+        })
         .state('menu.user', {
             url: '/usuarios/listado',
             templateUrl: '../app/views/user/list/user-list.html',

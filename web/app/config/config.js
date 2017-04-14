@@ -2,6 +2,7 @@
 
 angular.module('cssi.routes', []);
 angular.module('cssi.resources', []);
+angular.module('cssi.controllers.appointment', []);
 angular.module('cssi.controllers.doctor', []);
 angular.module('cssi.controllers.login', []);
 angular.module('cssi.controllers.patient', []);
@@ -9,6 +10,7 @@ angular.module('cssi.controllers.report', []);
 angular.module('cssi.controllers.user', []);
 angular.module('cssi.controllers.menu', []);
 angular.module('cssi.controllers.specialty', []);
+angular.module('cssi.services.appointment', []);
 angular.module('cssi.services.doctor', []);
 angular.module('cssi.services.login', []);
 angular.module('cssi.services.patient', []);
@@ -20,6 +22,7 @@ angular.module('cssi.services.validate', []);
 angular.module('cssi.services.status', []);
 angular.module('cssi.services.place', []);
 angular.module('cssi.services.auth', []);
+angular.module('cssi.factories.appointment', []);
 angular.module('cssi.factories.doctor', []);
 angular.module('cssi.factories.specialty', []);
 angular.module('cssi.factories.patient', []);

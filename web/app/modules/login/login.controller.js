@@ -5,7 +5,7 @@
     function LoginCtrl(LoginService)
     {
         var self = this;
-        self.user = {}
+        self.user = {};
 
         self.login = function (user)
         {

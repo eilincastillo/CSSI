@@ -2,9 +2,9 @@
 {
     'use strict';
 
-    angular.module('cssi.services.auth').service('AuthService', ['$q', '$http', '$rootScope', AuthService]);
+    angular.module('cssi.services.auth').service('AuthService', ['$q', '$http', '$rootScope', 'CSSIAPI', 'RESOURCE', AuthService]);
 
-    function AuthService($q, $http, $rootScope)
+    function AuthService($q, $http, $rootScope, CSSIAPI, RESOURCE)
     {
         $rootScope.token;
 
@@ -19,7 +19,7 @@
 
             $http( {
                 method: 'POST',
-                url: GNOAPI.URL + RESOURCE.SESSION,
+                url: CSSIAPI.URL + RESOURCE.LOGIN,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: {username: user.username, password: user.password}
             } )

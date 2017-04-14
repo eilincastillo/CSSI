@@ -15,5 +15,6 @@ angular.module('cssi.resources')
         STATUS: "/api/status/",
         SPECIALTY: "/api/specialty/",
         USER: "/api/user/",
-        PLACE: "/api/place/"
+        PLACE: "/api/place/",
+        LOGIN: "/api/login_check"
     });
