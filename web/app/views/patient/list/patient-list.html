@@ -15,21 +15,21 @@
                 Número de consultas
             </th>
             </thead>
-            <tbody ng-repeat="patient in patientList">
-            <tr>
-                <td>
-                    {{ patient.document }}
-                </td>
-                <td>
-                    {{ patient.personal.lastname + ' ' + patient.personal.secondLastname
-                        + ', ' + patient.personal.namePersonal  + ' ' + patient.personal.secondName }}
-                </td>
-                <td>
-                    <a ui-sref="">
-                        {{ patient.appointments }}
-                    </a>
-                </td>
-            </tr>
+            <tbody ng-repeat="patient in ctrl.patientList">
+                <tr>
+                    <td>
+                        {{ patient.personal.nationality + '-' + patient.personal.document }}
+                    </td>
+                    <td>
+                        {{ patient.personal.lastname + ' ' + patient.personal.secondLastname
+                            + ', ' + patient.personal.namePersonal  + ' ' + patient.personal.secondName }}
+                    </td>
+                    <td>
+                        <a ui-sref="menu.appointment({ patientId : patient.personal.id })">
+                            {{ patient.appointments }}
+                        </a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

@@ -8,17 +8,19 @@
     function AppointmentCtrl($stateParams, AppointmentService)
     {
         var self = this;
-        self.appointmentList = [];
+        self.patient = {};
         self.appointment = {};
         self.appointmentId;
 
 
         self.getAppointmentList = function ()
         {
-            AppointmentService.getAll()
+            var urlParameter = $stateParams.patientId;
+
+            AppointmentService.getAll(urlParameter)
                 .then(function (data)
                 {
-                    self.appointmentList = data;
+                    self.patient = data;
                 })
                 .catch(function(e)
                 {

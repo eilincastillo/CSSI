@@ -99,6 +99,9 @@ class AppointmentController extends FOSRestController
         return $appointment;
     }
 
+
+
+
     /**
      * ApiDoc
      * @api {get} cssi/web/app_dev.php/api/appointment/{idAppointment}

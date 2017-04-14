@@ -1,0 +1,40 @@
+<div class="row" ng-init="ctrl.getAppointmentList()">
+    <div class="row">
+        <h1>Listar las consultas de {{ ctrl.patient.historyNumber }}</h1>
+    </div>
+    <div class="row">
+        <table class="bordered">
+            <thead>
+                <th>
+                    Fecha de consultas
+                </th>
+                <th>
+                    Motivo de la consulta
+                </th>
+                <th>
+                    Médico referido
+                </th>
+                <th>
+                    Porcentaje de ayuda brindado
+                </th>
+            </thead>
+            <tbody ng-repeat="appointment in ctrl.patient.appointments">
+                <tr>
+                    <td>
+                        {{ appointment.date  }}
+                    </td>
+                    <td>
+                        {{ appointment.reasonAppointment }}
+                    </td>
+                    <td>
+                        {{ appointment.doctorLastname + ', ' + appointment.doctorName }}
+                    </td>
+                    <td>
+                        {{ appointment.percentageAid + '%'}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

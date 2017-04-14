@@ -7,7 +7,7 @@
     function PatientCtrl($state, $stateParams, PatientService)
     {
         var self = this;
-        self.genderList = self.employeeList = self.scholarshipList = [];
+        self.patientList = self.genderList = self.employeeList = self.scholarshipList = [];
         self.occupationStep;
         self.contactStep;
         self.personalStep = true;
@@ -17,7 +17,7 @@
             PatientService.getAll()
                 .then(function (data)
                 {
-                    self.userList = data;
+                    self.patientList = data;
                 })
                 .catch(function(e)
                 {

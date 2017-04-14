@@ -25,12 +25,21 @@
 
         return factory;
 
-        function getAllAppointments()
+        function getAllAppointments(patientId)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.query(null,
+            var url = CSSIAPI.URL + RESOURCE.PATIENT + ':patientId';
+            var requestAll = $resource(url, { patientId: '@id' },
+                {
+                    'query':  {method:'GET', isArray:true}
+                },{
+                    stripTrailingSlashes: false
+                });
+
+
+            requestAll.get({patientId: patientId},
                 function success(data)
                 {
                     defered.resolve(data);

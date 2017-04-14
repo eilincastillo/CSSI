@@ -11,13 +11,13 @@
         this.add = add;
 
 
-        function getAll()
+        function getAll(patientId)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
 
-            AppointmentFactory.getAll()
+            AppointmentFactory.getAll(patientId)
                 .then(function (data)
                 {
                     defered.resolve(data);
