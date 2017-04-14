@@ -22,6 +22,7 @@ angular.module('cssi', [
     'cssi.services.validate',
     'cssi.services.status',
     'cssi.services.place',
+    'cssi.services.auth',
     'cssi.factories.doctor',
     'cssi.factories.specialty',
     'cssi.factories.patient',

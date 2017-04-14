@@ -7,7 +7,7 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="text" id="username">
+                                <input type="text" id="username" ng-model="ctrl.user.username">
                                 <label for="username">
                                     <i class="material-icons prefix">perm_identity</i>Usuario
                                 </label>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="password" id="password">
+                                <input type="password" id="password" ng-model="ctrl.user.password">
                                 <label for="password">
                                     <i class="material-icons prefix">lock</i>Clave
                                 </label>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <button class="btn waves-effect waves-light right neutral-green">
+                                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.login(ctrl.user)">
                                     {{ 'Ingresar' | uppercase }}
                                 </button>
                             </div>
