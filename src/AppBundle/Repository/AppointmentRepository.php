@@ -25,6 +25,11 @@ class AppointmentRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('patient', $patient);
         return $query->getQuery()->getArrayResult();
     }
+//->from('AppBundle:Appointment', 'appointment')
+//->innerJoin('appointment.doctor','doctor')
+//->leftJoin('appointment.patient','patient')
+//->where('patient.id = :idPatient')
+//->setParameter('idPatient', $idPatient);
 
     /**
      * Get appointments by patient and date

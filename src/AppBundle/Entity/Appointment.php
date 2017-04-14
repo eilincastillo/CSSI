@@ -105,6 +105,12 @@ class Appointment
     private $doctor;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     **/
+    private $user;
+
+    /**
      * Set patient
      *
      * @param string $patient
@@ -125,7 +131,7 @@ class Appointment
      */
     public function getPatient()
     {
-        return array(0 => $this->patient);
+        return $this->patient;
     }
 
     /**
@@ -384,6 +390,22 @@ class Appointment
     public function setHomeVisit($homeVisit)
     {
         $this->homeVisit = $homeVisit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 
 

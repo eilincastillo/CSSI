@@ -11,6 +11,21 @@ namespace AppBundle\Repository;
 class PatientRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
+     * Get patient with count appointment
+     */
+    public function getPatientClean()
+    {
+        $query = $this->_em->createQueryBuilder();
+        $query->select('patient.id,
+         personal.name as namePersonal, personal.lastname as lastname, 
+        personal.secondName as secondName, personal.secondLastname as secondLastname, personal.document,
+        personal.nationality')
+            ->from('AppBundle:Patient', 'patient')
+            ->innerJoin('patient.personal', 'personal');
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
      * Get patient by Parishes
      */
     public function getPatientByParishes($nameParishes)
