@@ -64,6 +64,33 @@ class DoctorController extends FOSRestController
     }
 
     /**
+     * Get a doctor
+     * @var Request $request, $idSpecialty
+     * @return mixed
+     *
+     * @Get("/{idDoctor}")
+     */
+    public function getAction($idDoctor)
+    {
+
+        try
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            $doctor = $em->getRepository('AppBundle:Doctor')->find($idDoctor);
+
+            return $doctor;
+
+        }
+        catch (Exception $ex)
+        {
+            return new Response('Error, the doctor was not found',Response::HTTP_CONFLICT);
+        }
+
+
+    }
+
+    /**
      * ApiDoc
      * @api {get} cssi/web/app_dev.php/api/doctor/active
      * @apiName activeDoctorsAction
@@ -84,9 +111,10 @@ class DoctorController extends FOSRestController
     "lastname": "Perez"
     }
     ]
+     *
      */
 
-    /**
+     /**
      * Get active doctors
      *
      * @return mixed
@@ -100,6 +128,7 @@ class DoctorController extends FOSRestController
         $doctors = $em->getRepository('AppBundle:Doctor')->getActiveDoctors(1);
         return $doctors;
     }
+
     /**
      * ApiDoc
      * @api {post} cssi/web/app_dev.php/api/doctor/

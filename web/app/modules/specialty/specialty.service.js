@@ -30,13 +30,13 @@
              return promise;
          }
 
-         function get()
+         function get(specialtyId)
          {
              var defered = $q.defer();
              var promise = defered.promise;
 
 
-             SpecialtyFactory.get()
+             SpecialtyFactory.get(specialtyId)
                  .then(function (data)
                  {
                      defered.resolve(data);
@@ -73,8 +73,13 @@
              var defered = $q.defer();
              var promise = defered.promise;
 
+             var specialty =
+                 {
+                     id: specialtyId,
+                     name: specialtyName
+                 }
 
-             SpecialtyFactory.update(specialtyId, specialtyName)
+             SpecialtyFactory.update(specialty)
                  .then(function (data)
                  {
                      defered.resolve(data);

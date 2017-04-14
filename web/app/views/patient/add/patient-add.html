@@ -1,2 +1,156 @@
 <h1>Agregar paciente</h1>
-WEWE
+
+<div class="row" ng-init="ctrl.getParameter(false)">
+    <form class="col s12">
+        <div class="row" ng-show="ctrl.personalStep">
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.firtsName">
+                        <label for="icon_prefix">Primer nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.secondName">
+                        <label for="icon_prefix">Segundo nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.firstLastname">
+                        <label for="icon_prefix">Primer apellido</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.secondLastname">
+                        <label for="icon_prefix">Segundo apellido</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.document">
+                        <label for="icon_prefix">Cédula de Identidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="genderList" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id"
+                                    ng-model="ctrl.user.gender">
+                            </select>
+                            <label for="icon_prefix">Sexo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="date" class="validate" ng-model="ctrl.patient.birthday">
+                        <label for="icon_prefix">Fecha de nacimiento</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" ng-show="ctrl.contactStep">
+
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
+                                    ng-model="ctrl.user.address.state">
+                            </select>
+                            <label for="icon_prefix">Estado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="districtList" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id"
+                                    ng-model="ctrl.user.address.district">
+                            </select>
+                            <label for="icon_prefix">Parroquia</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.district"></textarea>
+                        <label for="textarea1">Detalle de dirección</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="ctrl.occupationStep">
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="scholarshipList" class="browser-default" ng-options="scholarship.name for scholarship in ctrl.scholarshipList track by scholarship.id"
+                                    ng-model="ctrl.user.scholarship">
+                            </select>
+                            <label for="icon_prefix">Escolaridad</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.profession">
+                        <label for="icon_prefix">Profesión</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col s6">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <select id="employeeList" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
+                                    ng-model="ctrl.patient.employee">
+                            </select>
+                            <label for="icon_prefix">Empleado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.ocupation">
+                        <label for="icon_prefix">Ocupación</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.institution">
+                        <label for="icon_prefix">Institución en la que labora</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6" ng-hide="ctrl.personalStep">
+                <button class="btn waves-effect waves-light left neutral-green" ng-click="ctrl.backStep()">
+                    {{ 'Anterior' | uppercase }}
+                </button>
+            </div>
+            <div class="input-field col s6" ng-hide="ctrl.occupationStep">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+                    {{ 'Siguiente' | uppercase }}
+                </button>
+            </div>
+            <div class="input-field col s6" ng-show="ctrl.occupationStep">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addDoctor(ctrl.doctor)">
+                    {{ 'Agregar' | uppercase }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

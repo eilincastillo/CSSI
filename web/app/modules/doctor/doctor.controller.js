@@ -3,12 +3,15 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['DoctorService', DoctorCtrl]);
+    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$stateParams', 'StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
 
-    function DoctorCtrl(DoctorService)
+    function DoctorCtrl($stateParams, StatusService, SpecialtyService, DoctorService)
     {
         var self = this;
-        self.doctorList = [];
+        self.doctorList = self.specialtyList = self.statusList = [];
+        self.doctor = {};
+        self.doctorId;
+
 
         self.getDoctorList = function ()
         {
@@ -16,12 +19,94 @@
                 .then(function (data)
                 {
                     self.doctorList = data;
-                    console.log(self.doctorList);
                 })
                 .catch(function(e)
                 {
                     console.log(e);
                 });
+        }
+
+        self.addDoctor = function (doctor)
+        {
+            DoctorService.add(doctor)
+                .then(function (data)
+                {
+                    $state.go('menu.doctor');
+                })
+                .catch(function (e)
+                {
+
+                });
+        }
+
+        self.getParameter = function (updateView)
+        {
+
+            if(updateView)
+            {
+                var urlParameter = $stateParams.doctorId;
+
+                if(urlParameter)
+                {
+                    DoctorService.get(urlParameter)
+                        .then(function (data)
+                        {
+                            self.doctor = data;
+
+                        })
+                        .catch(function (e)
+                        {
+
+                        });
+
+                    StatusService.getAll()
+                        .then(function (data)
+                        {
+                            self.statusList = data;
+                        })
+                        .catch(function (e)
+                        {
+
+                        });
+                }
+                else
+                {
+                    $state.go('menu.doctor');
+                }
+            }
+
+            SpecialtyService.getAll()
+                .then(function (data)
+                {
+                    self.specialtyList = data;
+                })
+                .catch(function (e)
+                {
+
+                });
+
+        }
+
+        self.updateDoctor = function (doctor)
+        {
+            var urlParameter = $stateParams.doctorId;
+
+            if(urlParameter)
+            {
+                DoctorService.update(doctor)
+                    .then(function ()
+                    {
+                        $state.go('menu.doctor');
+                    })
+                    .catch(function (e)
+                    {
+
+                    });
+            }
+            else
+            {
+                $state.go('menu.doctor');
+            }
         }
     }
 

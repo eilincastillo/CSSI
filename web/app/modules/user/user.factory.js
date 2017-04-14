@@ -1,11 +1,11 @@
 (function ()
 {
-    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', SpecialtyFactory]);
+    angular.module('cssi.factories.user').factory('UserFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', UserFactory]);
 
-    function SpecialtyFactory($q, $resource, CSSIAPI, RESOURCE)
+    function UserFactory($q, $resource, CSSIAPI, RESOURCE)
     {
-        var url = CSSIAPI.URL + RESOURCE.SPECIALTY + ':specialtyId';
-        var request = $resource(url, { specialtyId: '@id' },
+        var url = CSSIAPI.URL + RESOURCE.USER + ':userId';
+        var request = $resource(url, { userId: '@id' },
             {
                 'query':  {method:'GET', isArray:true},
                 'update': {method: 'PUT'}
@@ -16,15 +16,15 @@
 
         var factory =
             {
-                getAll: getAllSpecialty,
-                get: getSpecialty,
-                update: updateSpecialty,
-                add: addSpecialty
+                getAll: getAllUsers,
+                get: getUser,
+                update: updateUser,
+                add: addUser
             };
 
         return factory;
 
-        function getAllSpecialty()
+        function getAllUsers()
         {
             var defered = $q.defer();
             var promise = defered.promise;
@@ -42,13 +42,13 @@
             return promise;
         }
 
-        function getSpecialty(specialtyId)
+        function getUser(userId)
         {
 
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.get({specialtyId: specialtyId},
+            request.get({userId: userId},
                 function success(data)
                 {
                     defered.resolve(data);
@@ -62,12 +62,12 @@
             return promise;
         }
 
-        function updateSpecialty(specialty)
+        function updateUser(user)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.update({specialtyId: specialty.id }, { name: specialty.name },
+            request.update({userId: user.id }, user,
                 function success(data)
                 {
                     defered.resolve(data);
@@ -80,12 +80,12 @@
             return promise;
         }
 
-        function addSpecialty(specialtyName)
+        function addUser(user)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.save({name: specialtyName},
+            request.save(user,
                 function success(data)
                 {
                     defered.resolve(data);

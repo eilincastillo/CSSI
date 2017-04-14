@@ -44,8 +44,6 @@ class SpecialtyController extends FOSRestController
     "name": "Pediatria"
     }
     ]
-     */
-    /**
      * Get all specialty
      *
      * @return mixed
@@ -88,9 +86,11 @@ class SpecialtyController extends FOSRestController
     {
         try
         {
-            $em = $this->getDoctrine()->getManager();
-            $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
-            return $specialty;
+                $em = $this->getDoctrine()->getManager();
+
+                $specialty = $em->getRepository('AppBundle:Specialty')->find($idSpecialty);
+
+                return $specialty;
         }
         catch (Exception $ex)
         {

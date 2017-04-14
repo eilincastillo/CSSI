@@ -23,6 +23,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/doctor/add/doctor-add.html',
             controller: 'DoctorCtrl as ctrl'
         })
+        .state('menu.doctor-update', {
+            url: '/doctores/actualizar/:doctorId',
+            templateUrl: '../app/views/doctor/update/doctor-update.html',
+            controller: 'DoctorCtrl as ctrl'
+        })
         .state('menu.patient', {
             url: '/pacientes/listado',
             templateUrl: '../app/views/patient/list/patient-list.html',
@@ -33,6 +38,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             templateUrl: '../app/views/patient/add/patient-add.html',
             controller: 'PatientCtrl as ctrl'
         })
+        .state('menu.patient-update', {
+            url: '/pacientes/actualizar/:patientId',
+            templateUrl: '../app/views/patient/update/patient-update.html',
+            controller: 'PatientCtrl as ctrl'
+        })
         .state('menu.user', {
             url: '/usuarios/listado',
             templateUrl: '../app/views/user/list/user-list.html',
@@ -41,6 +51,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
         .state('menu.user-add', {
             url: '/usuarios/agregar',
             templateUrl: '../app/views/user/add/user-add.html',
+            controller: 'UserCtrl as ctrl'
+        })
+        .state('menu.user-update', {
+            url: '/usuarios/actualizar/:userId',
+            templateUrl: '../app/views/user/update/user-update.html',
             controller: 'UserCtrl as ctrl'
         })
         .state('menu.report', {

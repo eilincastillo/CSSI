@@ -1,1 +1,46 @@
-<h1>Listar usuarios</h1>
+<div class="row" ng-init="ctrl.getUserList()">
+    <div class="row">
+        <h1>Listado de usuarios</h1>
+    </div>
+    <div class="row">
+        <table class="bordered">
+            <thead>
+            <th>
+                Cédula
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Estado
+            </th>
+            </thead>
+            <tbody ng-repeat="user in ctrl.userList">
+                <tr>
+                    <td>
+                        {{ user.personal.document }}
+                    </td>
+                    <td>
+                        {{ user.personal.lastname + ', ' + user.personal.name  }}
+                    </td>
+
+                    <td>
+                        {{ user.roles }}
+                    </td>
+                    <td>
+                        {{ user.status.name }}
+                    </td>
+                    <td>
+                        <a ui-sref="menu.user-update({ userId: user.id })">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

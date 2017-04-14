@@ -1,6 +1,6 @@
-<h1>Agregar doctor</h1>
+<h1>Actualizar doctor</h1>
 
-<div class="row" ng-init="ctrl.getParameter(false)">
+<div class="row" ng-init="ctrl.getParameter(true)">
     <form class="col s12">
         <div class="row">
             <div class="input-field col s6">
@@ -17,8 +17,18 @@
         <div class="row">
             <div class="input-field col s6">
                 <div class="input-field col s12">
+                    <select id="statusList" class="browser-default" ng-options="status.name for status in ctrl.statusList track by status.id"
+                    ng-model="ctrl.doctor.status">
+                    </select>
+                    <label for="icon_prefix">Estado</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <div class="input-field col s12">
                     <select id="specialtyList" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
-                            ng-model="ctrl.doctor.specialty">
+                    ng-model="ctrl.doctor.specialty">
                     </select>
                     <label for="icon_prefix">Especialidad</label>
                 </div>
@@ -26,8 +36,8 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addDoctor(ctrl.doctor)">
-                    {{ 'Agregar' | uppercase }}
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updateDoctor(ctrl.doctor)">
+                    {{ 'Editar' | uppercase }}
                 </button>
             </div>
         </div>
