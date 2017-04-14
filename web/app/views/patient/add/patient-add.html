@@ -63,7 +63,7 @@
                     <div class="input-field col s6">
                         <div class="input-field col s12">
                             <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
-                                    ng-model="ctrl.user.address.state">
+                                    ng-model="ctrl.user.address.state" ng-change="ctrl.loadDistricts(ctrl.user.address.state)">
                             </select>
                             <label for="icon_prefix">Estado</label>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="input-field col s6">
                         <div class="input-field col s12">
                             <select id="scholarshipList" class="browser-default" ng-options="scholarship.name for scholarship in ctrl.scholarshipList track by scholarship.id"
-                                    ng-model="ctrl.user.scholarship">
+                                    ng-model="ctrl.user.scholarship" ng-change="ctrl.toggleScholarship(ctrl.user.scholarship)">
                             </select>
                             <label for="icon_prefix">Escolaridad</label>
                         </div>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.profession">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.profession" ng-disabled="ctrl.enabledScholarship">
                         <label for="icon_prefix">Profesión</label>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="input-field col s6">
                         <div class="input-field col s12">
                             <select id="employeeList" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
-                                    ng-model="ctrl.patient.employee">
+                                    ng-model="ctrl.patient.employee" ng-change="ctrl.toggleOccupation(ctrl.patient.employee)">
                             </select>
                             <label for="icon_prefix">Empleado</label>
                         </div>
@@ -122,13 +122,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.ocupation">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.ocupation" ng-disabled="ctrl.enabledOccupation">
                         <label for="icon_prefix">Ocupación</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.institution">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.institution" ng-disabled="ctrl.enabledOccupation">
                         <label for="icon_prefix">Institución en la que labora</label>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                 </button>
             </div>
             <div class="input-field col s6" ng-show="ctrl.occupationStep">
-                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addDoctor(ctrl.doctor)">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addPatient(ctrl.patient)">
                     {{ 'Agregar' | uppercase }}
                 </button>
             </div>

@@ -7,7 +7,8 @@
     function PatientCtrl($state, $stateParams, PatientService)
     {
         var self = this;
-        self.patientList = self.genderList = self.employeeList = self.scholarshipList = [];
+        self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = [];
+        self.enabledOccupation = self.enabledScholarship = true;
         self.occupationStep;
         self.contactStep;
         self.personalStep = true;
@@ -155,5 +156,36 @@
                 $state.go('menu.patient');
             }
         }
+
+        self.loadDistricts = function (place)
+        {
+            PatientService.getDistricts(place.id)
+                .then(function (data)
+                {
+                    self.districtList = data;
+                })
+                .catch(function (e)
+                {
+
+                });
+        }
+
+        self.toggleOccupation = function (occupation)
+        {
+            if(occupation.id == 1)
+                self.enabledOccupation = false;
+            else
+                self.enabledOccupation = true;
+        }
+
+        self.toggleScholarship = function(scholarship)
+        {
+            if(scholarship.id == 5)
+                self.enabledScholarship = false;
+            else
+                self.enabledScholarship = true;
+        }
+
+
     }
 })();

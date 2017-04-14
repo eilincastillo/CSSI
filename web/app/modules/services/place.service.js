@@ -12,7 +12,8 @@
         var url = CSSIAPI.URL + RESOURCE.PLACE + ':placeId';
         var request = $resource(url, { placeId: '@id'},
             {
-                'query': { method: 'GET', isArray: true}
+                'query': { method: 'GET', isArray: true},
+                'queryDistricts': { method: 'GET', isArray: true}
             },
             {
                 stripTrailingSlashes: false
@@ -44,7 +45,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
 
-            request.get({placeId: placeId},
+            request.queryDistricts({placeId: placeId},
                 function success(data)
                 {
                     defered.resolve(data);

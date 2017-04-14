@@ -12,6 +12,7 @@
         this.getEmployee = getEmployeeState;
         this.getScholarship = getScholarship;
         this.getState = getState;
+        this.getDistricts = getDistricts;
         this.add = add;
         this.update = update;
 
@@ -91,6 +92,25 @@
             return promise;
         }
 
+        function getDistricts(placeId)
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            PlaceService.getDistricts(placeId)
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (error)
+                {
+                    defered.reject();
+                });
+
+            return promise;
+        }
+
+
 
         function getScholarship()
         {
@@ -113,14 +133,16 @@
 
             var addedPatient =
                 {
-                    name: patient.name,
+                    name: patient.firtsName,
+                    secondName: patient.firtsName,
                     lastname: patient.lastname,
-                    historyNumber: patient.specialty.id,
-                    registrationDate: '',
+                    secondLastname: patient.secondLastname,
+                    historyNumber: 'n',
+                    registrationDate: Date(),
                     accompanied: '',
                     document: '',
                     gender: '',
-                    birthdate: '',
+                    birthdate: patient.birthday,
                     familyDynamics: '',
                     homeVisit: '',
                     job: '',
