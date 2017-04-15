@@ -109,6 +109,24 @@ class AppointmentController extends FOSRestController
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      *
+     * {
+    "id": 1,
+    "accompanied": "",
+    "date": "2017-03-01T00:00:00+0100",
+    "homeVisit": "",
+    "price": 200000,
+    "percentageAid": 10,
+    "observations": "Ninguna",
+    "reasonAppointment": "Quiere ayuda",
+    "result": "No aprobado",
+    "expectationsPatient": "Ninguna",
+    "doctor": {
+    "idDoctor": 1,
+    "nameDoctor": "Cruz Maria",
+    "lastnameDoctor": "Vaamonde",
+    "specialtyDoctor": "Cardiologia"
+    }
+    }
      *
      *
      */
@@ -124,10 +142,18 @@ class AppointmentController extends FOSRestController
     public function getByIdAction($idAppointment)
     {
         $em = $this->getDoctrine()->getManager();
+        $appointment= new Appointment();
         $appointment = $em->getRepository('AppBundle:Appointment')->findOneById($idAppointment);
-        return array("id"=>$appointment->getId(), "accompanied"=>$appointment->getAccompanied(),"homeVisit"=>$appointment->getHomeVisit(),
+        return array("id"=>$appointment->getId(), "accompanied"=>$appointment->getAccompanied(),
+            "date"=>$appointment->getDate(), "homeVisit"=>$appointment->getHomeVisit(),
             "price"=>$appointment->getPrice(),"percentageAid"=> $appointment->getPercentageAid(),
-            "observations"=>$appointment->getObservations(),"reasonAppointment"=>$appointment->getReasonAppointment() );
+            "observations"=>$appointment->getObservations(),"reasonAppointment"=>$appointment->getReasonAppointment(),
+            "result"=>$appointment->getResult(),"expectationsPatient"=>$appointment->getExpectationsPatient(),
+            "doctor"=>array("idDoctor"=>$appointment->getDoctor()->getId(),
+                "nameDoctor"=>$appointment->getDoctor()->getName(),
+                "lastnameDoctor"=>$appointment->getDoctor()->getLastName(),
+                "specialtyDoctor"=>$appointment->getDoctor()->getSpecialty()->getName())
+        );
     }
 
     /**

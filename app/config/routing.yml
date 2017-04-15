@@ -3,49 +3,6 @@ frontend:
     prefix:   /
 
 app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:     /
 
-api_login:
-    path: /api/login_check
-
-#restapi
-api_specialty:
-   type:     rest
-   prefix:   /api/specialty  #importante esto es para construir las urls
-   resource: "@AppBundle/Resources/config/api-specialty.yml"
-
-api_status:
-   type:     rest
-   prefix:   /api/status
-   resource: "@AppBundle/Resources/config/api-status.yml"
-
-api_doctor:
-   type:     rest
-   prefix:   /api/doctor
-   resource: "@AppBundle/Resources/config/api-doctor.yml"
-
-api_appointment:
-   type:     rest
-   prefix:   /api/appointment
-   resource: "@AppBundle/Resources/config/api-appointment.yml"
-
-api_patient:
-   type:     rest
-   prefix:   /api/patient
-   resource: "@AppBundle/Resources/config/api-patient.yml"
-
-api_user:
-    type:     rest
-    prefix:   /api/user
-    resource: "@AppBundle/Resources/config/api-user.yml"
-
-api_place:
-    type:     rest
-    prefix:   /api/place
-    resource: "@AppBundle/Resources/config/api-place.yml"
-
-api_report:
-    type:     rest
-    prefix:   /api/report
-    resource: "@AppBundle/Resources/config/api-report.yml"

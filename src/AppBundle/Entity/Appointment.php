@@ -179,7 +179,7 @@ class Appointment
      */
     public function getDoctor()
     {
-        return array(0 => $this->doctor);
+        return $this->doctor;
     }
 
     /**

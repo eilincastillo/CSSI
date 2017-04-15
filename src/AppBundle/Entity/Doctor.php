@@ -95,7 +95,7 @@ class Doctor
      */
     public function getSpecialty()
     {
-        return array(0 => $this->specialty);
+        return $this->specialty;
     }
 
     /**
