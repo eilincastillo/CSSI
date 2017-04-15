@@ -174,23 +174,26 @@ class PatientController extends FOSRestController
     "gender": "M",
     "birthdate": "MM/DD/YYYY",
     "familyDynamics": "Familia nuclear",
+    "scholarship":"Ninguno",
+    "scholarshipDetail":"",
     "job": "false",
-    "jobDetail": "",
-    "idPlace": 2
+    "occupation": "",
+    "employmentInstitution":"",
+    "idPlace": 2,
+    "placeDetail":"Av. Paez"
     }
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      *
      * {
-    "id": 14,
-    "history_number": "1234567890",
-    "registration_date": "1970-01-01T00:00:00+0100",
+    "id": 16,
+    "history_number": "1234567764",
+    "registration_date": "2016-05-05T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "2060-05-05T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "false",
-    "job_detail": "",
+    "job": "true",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -202,14 +205,19 @@ class PatientController extends FOSRestController
     }
     },
     "personal": {
-    "id": 13,
-    "document": "14111222",
-    "name": "Alejandra",
-    "second_lastname": "Vaamonde",
-    "second_name": "Alejandra",
-    "lastname": "Vaamonde",
-    "nationality": "Si"
-    }
+    "id": 17,
+    "document": "14117222",
+    "name": "Martin",
+    "second_lastname": "Ramirez",
+    "second_name": "Andres",
+    "lastname": "Perez",
+    "nationality": "V"
+    },
+    "place_detail": "Av. San Martin",
+    "scholarship": "Bachiller",
+    "scholarship_detail": "",
+    "occupation": "Plomero",
+    "employment_institution": ""
     }
      *
      */
@@ -251,9 +259,13 @@ class PatientController extends FOSRestController
                         $fixDate = new \DateTime(date("y-m-d",strtotime($json['birthdate'])));
                         $patient->setBirthdate($fixDate);
                         $patient->setFamilyDynamics($json["familyDynamics"]);
+                        $patient->setScholarship($json["scholarship"]);
+                        $patient->setScholarshipDetail($json["scholarshipDetail"]);
                         $patient->setGender($json["gender"]);
                         $patient->setJob($json["job"]);
-                        $patient->setJobDetail($json["jobDetail"]);
+                        $patient->setOccupation($json["occupation"]);
+                        $patient->setEmploymentInstitution($json["employmentInstitution"]);
+                        $patient->setPlaceDetail($json["placeDetail"]);
                         $patient->setPlace($place);
                         $patient->setPersonal($personal);
 
@@ -298,23 +310,26 @@ class PatientController extends FOSRestController
     "document": "14111222",
     "birthdate": "MM/DD/YYYY",
     "familyDynamics": "Familia nuclear",
-    "job": "true",
-    "job_detail": "Plomero",
-    "idPlace": 2
+    "scholarship":"Ninguno",
+    "scholarshipDetail":"",
+    "job": "false",
+    "occupation": "",
+    "employmentInstitution":"",
+    "idPlace": 2,
+    "placeDetail":"Av. Paez"
     }
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      *
      * {
-    "id": 14,
-    "history_number": "1234567890",
-    "registration_date": "1970-01-01T00:00:00+0100",
+    "id": 16,
+    "history_number": "1234567764",
+    "registration_date": "2016-05-05T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "2060-05-05T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "false",
-    "job_detail": "",
+    "job": "true",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -326,14 +341,19 @@ class PatientController extends FOSRestController
     }
     },
     "personal": {
-    "id": 13,
-    "document": "14111222",
-    "name": "Alejandra",
-    "second_lastname": "Vaamonde",
-    "second_name": "Alejandra",
-    "lastname": "Vaamonde",
-    "nationality": "Si"
-    }
+    "id": 17,
+    "document": "14117222",
+    "name": "Martin",
+    "second_lastname": "Ramirez",
+    "second_name": "Andres",
+    "lastname": "Perez",
+    "nationality": "V"
+    },
+    "place_detail": "Av. San Martin",
+    "scholarship": "Bachiller",
+    "scholarship_detail": "",
+    "occupation": "Plomero",
+    "employment_institution": ""
     }
      */
 
@@ -356,8 +376,8 @@ class PatientController extends FOSRestController
                 if ($json != null)
                 {
                     $em = $this->getDoctrine()->getManager();
-                    $patient = $em->getRepository('AppBundle:Patient')->find($idPatient);
-                    $personal = $em->getRepository('AppBundle:Personal')->findByPatient($idPatient);
+                    $patient = $em->getRepository('AppBundle:Patient')->findOneById($idPatient);
+                    $personal = $patient->getPersonal();
                     $place = $em->getRepository('AppBundle:Place')->find($json['idPlace']);
 
                     if ($place !== null && $patient !== null)
@@ -375,8 +395,13 @@ class PatientController extends FOSRestController
                         $patient->setBirthdate($fixDate);
                         $patient->setFamilyDynamics($json["familyDynamics"]);
                         $patient->setGender($json["gender"]);
+                        $patient->setScholarship($json["scholarship"]);
+                        $patient->setScholarshipDetail($json["scholarshipDetail"]);
+                        $patient->setGender($json["gender"]);
                         $patient->setJob($json["job"]);
-                        $patient->setJobDetail($json["jobDetail"]);
+                        $patient->setOccupation($json["occupation"]);
+                        $patient->setEmploymentInstitution($json["employmentInstitution"]);
+                        $patient->setPlaceDetail($json["placeDetail"]);
                         $patient->setPlace($place);
                         $patient->setPersonal($personal);
 

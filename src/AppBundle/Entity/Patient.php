@@ -67,13 +67,6 @@ class Patient
     private $job;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="jobDetail", type="string", length=255, nullable=true)
-     */
-    private $jobDetail;
-
-    /**
      *
      * @ORM\ManyToOne(targetEntity="Place")
      * @ORM\JoinColumn(name="place", referencedColumnName="id")
@@ -86,6 +79,41 @@ class Patient
      * @ORM\JoinColumn(name="personal", referencedColumnName="id")
      **/
     private $personal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="placeDetail", type="string", length=255)
+     */
+    private $placeDetail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="scholarship", type="string", length=255)
+     */
+    private $scholarship;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="scholarshipDetail", type="string", length=255)
+     */
+    private $scholarshipDetail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="occupation", type="string", length=255)
+     */
+    private $occupation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="employmentInstitution", type="string", length=255)
+     */
+    private $employmentInstitution;
 
     /**
      * Set personal
@@ -166,27 +194,6 @@ class Patient
     {
         $this->job = $job;
     }
-
-    /**
-     * Get job detail
-     * @return string
-     */
-    public function getJobDetail()
-    {
-        return $this->jobDetail;
-    }
-
-    /**
-     * Set job detail
-     * @param string $jobDetail
-     * @return Patient
-     */
-    public function setJobDetail($jobDetail)
-    {
-        $this->jobDetail = $jobDetail;
-    }
-
-
 
     /**
      * Set historyNumber
@@ -307,5 +314,87 @@ class Patient
     {
         return $this->familyDynamics;
     }
+
+    /**
+     * @return string
+     */
+    public function getPlaceDetail()
+    {
+        return $this->placeDetail;
+    }
+
+    /**
+     * @param string $placeDetail
+     */
+    public function setPlaceDetail($placeDetail)
+    {
+        $this->placeDetail = $placeDetail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScholarship()
+    {
+        return $this->scholarship;
+    }
+
+    /**
+     * @param string $scholarship
+     */
+    public function setScholarship($scholarship)
+    {
+        $this->scholarship = $scholarship;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScholarshipDetail()
+    {
+        return $this->scholarshipDetail;
+    }
+
+    /**
+     * @param string $scholarshipDetail
+     */
+    public function setScholarshipDetail($scholarshipDetail)
+    {
+        $this->scholarshipDetail = $scholarshipDetail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOccupation()
+    {
+        return $this->occupation;
+    }
+
+    /**
+     * @param string $occupation
+     */
+    public function setOccupation($occupation)
+    {
+        $this->occupation = $occupation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmploymentInstitution()
+    {
+        return $this->employmentInstitution;
+    }
+
+    /**
+     * @param string $employmentInstitution
+     */
+    public function setEmploymentInstitution($employmentInstitution)
+    {
+        $this->employmentInstitution = $employmentInstitution;
+    }
+
+
 
 }
