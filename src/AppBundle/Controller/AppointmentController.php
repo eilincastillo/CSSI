@@ -168,41 +168,39 @@ class AppointmentController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *"date": "MM/DD/YYYY",
+    "date": "MM/DD/YYYY",
     "price": "100000",
     "percentageAid": "50",
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    "caseRemitted": "No",
-    "institutionName": "",
-    "institutionType": "",
     "accompanied": "",
     "homeVisit": "",
+    "expectationsPatient":"Quiere ayuda",
     "idPatient":1
     }
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "id": 9,
-    "date": "2017-02-20T00:00:00+0100",
-    "accompanied": "",
+    "id": 11,
+    "date": "2016-10-09T00:00:00+0200",
+    "accompanied": "Si",
     "home_visit": "",
     "price": 100000,
     "percentage_aid": 50,
     "observations": "Necesita ayuda",
     "reason_appointment": "Necesita ayuda",
     "result": "Aprovado",
+    "expectations_patient": "Quiere ayuda",
     "patient": {
-    "id": 13,
-    "history_number": "1234567890",
-    "registration_date": "1970-01-01T00:00:00+0100",
+    "id": 16,
+    "history_number": "1234567764",
+    "registration_date": "2016-05-05T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "1970-05-05T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "false",
-    "job_detail": "",
+    "job": "true",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -214,15 +212,39 @@ class AppointmentController extends FOSRestController
     }
     },
     "personal": {
-    "id": 12,
-    "document": "14111222",
-    "name": "Alejandra",
-    "second_lastname": "Vaamonde",
-    "second_name": "Alejandra",
-    "lastname": "Vaamonde",
+    "id": 17,
+    "document": "14117222",
+    "name": "Martin",
+    "second_lastname": "Ramirez",
+    "second_name": "Andres",
+    "lastname": "Perez",
     "nationality": "V"
-    }
-    }
+    },
+    "place_detail": "Av. San M",
+    "scholarship": "Bachiller",
+    "scholarship_detail": "",
+    "occupation": "Plomero",
+    "employment_institution": ""
+    },
+    "user": {
+    "id": 4,
+    "username": "fulana_93",
+    "password": "v/rG+KdPjIghHVIYe/1dVhfJflFmFNW4sc4u3+m32hrjAt3zVGvg1iaTZSwMvzYgE7ILS8J9RiqxjPWI/fapqA==",
+    "status": {
+    "id": 1,
+    "name": "Active"
+    },
+    "roles": "ROLE_PERSONAL",
+    "personal": {
+    "id": 14,
+    "document": "12115447",
+    "name": "Fulana",
+    "second_lastname": "Sanchez",
+    "second_name": "",
+    "lastname": "Perez",
+    "nationality": "V"
+    },
+    "salt": "65611dd1596afc0eb94a00b8b67328d2"
     }
      */
 
@@ -260,6 +282,8 @@ class AppointmentController extends FOSRestController
                         $appointment->setObservations($json["observations"]);
                         $appointment->setReasonAppointment($json["reasonAppointment"]);
                         $appointment->setResult($json["result"]);
+                        $appointment->setExpectationsPatient($json["expectationsPatient"]);
+                        $appointment->setUser($this->getUser());
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);
 //                        $appointment->setHomeVisit($json["institutionType"]);
@@ -300,35 +324,32 @@ class AppointmentController extends FOSRestController
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    ""caseRemitted": "No",
-    "institutionName": "",
-    "institutionType": "",
     "accompanied": "",
     "homeVisit": "",
-    "idPatient":1
-     * }
+    "expectationsPatient":"Quiere ayuda"
+      }
      *
      *    * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "id": 9,
-    "date": "2017-02-20T00:00:00+0100",
-    "accompanied": "",
+    "id": 11,
+    "date": "2016-10-09T00:00:00+0200",
+    "accompanied": "Si",
     "home_visit": "",
     "price": 100000,
     "percentage_aid": 50,
     "observations": "Necesita ayuda",
     "reason_appointment": "Necesita ayuda",
     "result": "Aprovado",
+    "expectations_patient": "Quiere ayuda",
     "patient": {
-    "id": 13,
-    "history_number": "1234567890",
-    "registration_date": "1970-01-01T00:00:00+0100",
+    "id": 16,
+    "history_number": "1234567764",
+    "registration_date": "2016-05-05T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "1970-05-05T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "false",
-    "job_detail": "",
+    "job": "true",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -340,15 +361,39 @@ class AppointmentController extends FOSRestController
     }
     },
     "personal": {
-    "id": 12,
-    "document": "14111222",
-    "name": "Alejandra",
-    "second_lastname": "Vaamonde",
-    "second_name": "Alejandra",
-    "lastname": "Vaamonde",
+    "id": 17,
+    "document": "14117222",
+    "name": "Martin",
+    "second_lastname": "Ramirez",
+    "second_name": "Andres",
+    "lastname": "Perez",
     "nationality": "V"
-    }
-    }
+    },
+    "place_detail": "Av. San M",
+    "scholarship": "Bachiller",
+    "scholarship_detail": "",
+    "occupation": "Plomero",
+    "employment_institution": ""
+    },
+    "user": {
+    "id": 4,
+    "username": "fulana_93",
+    "password": "v/rG+KdPjIghHVIYe/1dVhfJflFmFNW4sc4u3+m32hrjAt3zVGvg1iaTZSwMvzYgE7ILS8J9RiqxjPWI/fapqA==",
+    "status": {
+    "id": 1,
+    "name": "Active"
+    },
+    "roles": "ROLE_PERSONAL",
+    "personal": {
+    "id": 14,
+    "document": "12115447",
+    "name": "Fulana",
+    "second_lastname": "Sanchez",
+    "second_name": "",
+    "lastname": "Perez",
+    "nationality": "V"
+    },
+    "salt": "65611dd1596afc0eb94a00b8b67328d2"
     }
      */
 
@@ -357,10 +402,10 @@ class AppointmentController extends FOSRestController
      * @var Request $request
      * @return mixed
      *
-     * @Put("/{appointment}")
+     * @Put("/{idAppointment}")
      */
 
-    public function updateAction(Request $request, $appointment)
+    public function updateAction(Request $request, $idAppointment)
     {
         $content = $request->getContent();
 
@@ -372,8 +417,8 @@ class AppointmentController extends FOSRestController
                 if ($json != null)
                 {
                     $em = $this->getDoctrine()->getManager();
-                    $patient = $em->getRepository('AppBundle:Patient')->find($json["idPatient"]);
-                    $appointment =  $em->getRepository('AppBundle:Appointment')->find($appointment);
+                    $appointment =  $em->getRepository('AppBundle:Appointment')->find($idAppointment);
+                    $patient = $appointment->getPatient();
 
                     if ($patient !== null && $appointment !== null)
                     {
@@ -386,6 +431,7 @@ class AppointmentController extends FOSRestController
                         $appointment->setHomeVisit($json["homeVisit"]);
                         $appointment->setAccompanied($json["accompanied"]);
                         $appointment->setResult($json["result"]);
+                        $appointment->setExpectationsPatient($json["expectationsPatient"]);
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);
 //                        $appointment->setHomeVisit($json["institutionType"]);
