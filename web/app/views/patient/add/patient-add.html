@@ -1,8 +1,7 @@
-<h1>Agregar paciente</h1>
-
 <div class="row" ng-init="ctrl.getParameter(false)">
     <form class="col s12">
         <div class="row" ng-show="ctrl.personalStep">
+            <h2><span>1</span> {{ 'identificación del usuario' | uppercase }}</h2>
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
@@ -57,7 +56,7 @@
 
         </div>
         <div class="row" ng-show="ctrl.contactStep">
-
+            <h2><span>2</span> {{ 'contacto' | uppercase }}</h2>
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
@@ -90,6 +89,7 @@
             </div>
         </div>
         <div class="row" ng-show="ctrl.occupationStep">
+            <h2><span>3</span> {{ '' }}</h2>
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
@@ -137,7 +137,7 @@
 
         <div class="row">
             <div class="input-field col s6" ng-hide="ctrl.personalStep">
-                <button class="btn waves-effect waves-light left neutral-green" ng-click="ctrl.backStep()">
+                <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
                     {{ 'Anterior' | uppercase }}
                 </button>
             </div>
