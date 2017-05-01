@@ -80,7 +80,7 @@
 
         self.updateUser = function (user)
         {
-            var urlParameter = $stateParams.doctorId;
+            var urlParameter = $stateParams.userId;
 
             if(urlParameter)
             {

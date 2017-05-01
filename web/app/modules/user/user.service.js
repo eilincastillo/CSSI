@@ -68,9 +68,12 @@
             var addedUser =
                 {
                     document: user.personal.document,
+                    nationality: user.personal.nationality,
                     name: user.personal.name,
-                    lastName: user.personal.lastname,
+                    lastname: user.personal.lastname,
                     username: user.username,
+                    secondName:"",
+                    secondLastname:"",
                     password: user.password,
                     role: 'ROLE_PERSONAL'
                 };
@@ -88,18 +91,23 @@
             return promise;
         }
 
-        function update(doctor)
+        function update(user)
         {
             var defered = $q.defer();
             var promise = defered.promise;
 
             var updatedUser =
                 {
-                    id: doctor.id,
-                    name: doctor.name,
-                    lastname: doctor.lastname,
-                    idSpecialty: doctor.specialty.id,
-                    idStatus: doctor.status.id
+                    document: user.personal.document,
+                    nationality: user.personal.nationality,
+                    name: user.personal.name,
+                    lastname: user.personal.lastname,
+                    username: user.username,
+                    secondName:"",
+                    secondLastname:"",
+                    password: user.password,
+                    idStatus: user.status,
+                    role: user.role
                 };
 
             UserFactory.update(updatedUser)

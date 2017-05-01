@@ -249,6 +249,7 @@ class UserController extends FOSRestController
     "secondLastname": "Sanchez",
     "document": "12115447",
     "nationality": "V",
+    "idStatus": 1,
     "role":"ROLE_PERSONAL"
     }
      *
@@ -309,8 +310,11 @@ class UserController extends FOSRestController
 
                             $personal = $user->getPersonal();
                             $personal->setDocument($json["document"]);
+                            $personal->setNationality($json["nationality"]);
                             $personal->setName($json["name"]);
-                            $personal->setLastname($json["lastName"]);
+                            $personal->setLastname($json["lastname"]);
+                            $personal->setSecondName($json["secondName"]);
+                            $personal->setSecondLastname($json["secondLastname"]);
 
                             $user->setUsername($json["username"]);
                             $user->setSalt(md5(time()));
