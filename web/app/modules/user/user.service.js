@@ -54,7 +54,7 @@
         {
             var roleList = [];
 
-            roleList.push({ id: 1, name: 'RL_PERSONAL'});
+            roleList.push({ id: 1, name: 'ROLE_PERSONAL'});
             roleList.push({ id: 2, name: 'ROLE_ADMIN'});
 
             return roleList;
@@ -106,8 +106,9 @@
                     secondName:"",
                     secondLastname:"",
                     password: user.password,
-                    idStatus: user.status,
-                    role: user.role
+                    idStatus: user.status.id,
+                    role: user.roles,
+                    id: user.id
                 };
 
             UserFactory.update(updatedUser)
