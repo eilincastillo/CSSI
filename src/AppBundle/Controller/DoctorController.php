@@ -214,7 +214,7 @@ class DoctorController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {put} cssi/web/app_dev.php/api/doctor/
+     * @api {put} cssi/web/app_dev.php/api/doctor/{idDoctor}
      * @apiName updateAction
      * @apiGroup Doctor
      * @apiDescription Edit a doctor.
