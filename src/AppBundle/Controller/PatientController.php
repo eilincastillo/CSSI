@@ -148,7 +148,7 @@ class PatientController extends FOSRestController
             "id"=>$patient->getId(),"historyNumber"=>$patient->getHistoryNumber(),
             "registrationDate"=>$patient->getRegistrationDate(),"gender"=>$patient->getGender(),
             "birthdate"=>$patient->getBirthdate(),"familyDynamics"=>$patient->getFamilyDynamics(),
-            "job"=>$patient->getJob(),"jobDetail"=>$patient->getJobDetail(),
+            "job"=>$patient->getJob(),
             "appointments"=>$appointments);
         //return $appointments;
     }
