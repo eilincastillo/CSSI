@@ -1,6 +1,11 @@
 <div class="row" ng-init="ctrl.getPatientList()">
     <div class="row">
-        <h1>Listar pacientes</h1>
+        <div class="col s11">
+            <h1>Listar pacientes</h1>
+        </div>
+        <div class="col s1">
+            <button ui-sref="menu.patient-add">Agregar</button>
+        </div>
     </div>
     <div class="row">
         <table>
@@ -27,6 +32,11 @@
                     <td>
                         <a ui-sref="menu.appointment({ patientId : patient.personal.id })">
                             {{ patient.appointments }}
+                        </a>
+                    </td>
+                    <td>
+                        <a ui-sref="menu.patient-update({ patientId: patient.personal.id })">
+                            <i class="material-icons">mode_edit</i>
                         </a>
                     </td>
                 </tr>

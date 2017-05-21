@@ -3,9 +3,9 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$stateParams', 'StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
+    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$state', '$stateParams', 'StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
 
-    function DoctorCtrl($stateParams, StatusService, SpecialtyService, DoctorService)
+    function DoctorCtrl($state, $stateParams, StatusService, SpecialtyService, DoctorService)
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
