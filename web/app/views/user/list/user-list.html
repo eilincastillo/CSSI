@@ -21,7 +21,7 @@
             <tbody ng-repeat="user in ctrl.userList">
                 <tr>
                     <td>
-                        {{ user.personal.document }}
+                        {{ user.personal.nationality + ' - ' + user.personal.document }}
                     </td>
                     <td>
                         {{ user.personal.lastname + ', ' + user.personal.name  }}

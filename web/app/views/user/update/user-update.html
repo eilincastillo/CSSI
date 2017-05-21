@@ -12,6 +12,12 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
+                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.nationality">
+                        <label for="icon_prefix">Nacionalidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
                         <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.name">
                         <label for="icon_prefix">Nombre</label>
                     </div>
@@ -64,7 +70,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addDoctor(ctrl.doctor)">
+                <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updateUser(ctrl.user)">
                     {{ 'Editar' | uppercase }}
                 </button>
             </div>
