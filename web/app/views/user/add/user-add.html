@@ -6,14 +6,18 @@
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="number" class="validate" ng-model="ctrl.user.personal.document">
-                        <label for="icon_prefix">Cédula de identidad</label>
+                        <div class="input-field col s12">
+                            <select id="nationalityList" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
+                                    ng-model="ctrl.user.personal.nationality">
+                            </select>
+                            <label for="icon_prefix">Nacionalidad</label>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.nationality">
-                        <label for="icon_prefix">Nacionalidad</label>
+                        <input id="icon_prefix" type="number" class="validate" ng-model="ctrl.user.personal.document">
+                        <label for="icon_prefix">Cédula de identidad</label>
                     </div>
                 </div>
                 <div class="row">

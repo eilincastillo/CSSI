@@ -7,7 +7,7 @@
     function PatientCtrl($state, $stateParams, PatientService)
     {
         var self = this;
-        self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = [];
+        self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = self.nationalityList = [];
         self.enabledOccupation = self.enabledScholarship = true;
         self.occupationStep;
         self.contactStep;
@@ -156,6 +156,14 @@
                 $state.go('menu.patient');
             }
         }
+
+        self.getNationalities = function()
+        {
+            var nationalities = PatientService.getNationalities();
+
+            self.nationalityList = nationalities;
+        }
+
 
         self.loadDistricts = function (place)
         {

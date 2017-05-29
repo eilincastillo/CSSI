@@ -13,6 +13,7 @@
         this.getScholarship = getScholarship;
         this.getState = getState;
         this.getDistricts = getDistricts;
+        this.getNationalities = getNationalities;
         this.add = add;
         this.update = update;
 
@@ -110,6 +111,16 @@
             return promise;
         }
 
+        function getNationalities()
+        {
+            var nationalityList = [];
+
+            nationalityList.push({ id: 'V', name: 'Venezolano'});
+            nationalityList.push({ id: 'E', name:'Extranjero'});
+
+            return nationalityList;
+        }
+
 
 
         function getScholarship()
@@ -133,25 +144,29 @@
 
             var addedPatient =
                 {
-                    name: patient.firtsName,
-                    secondName: patient.firtsName,
-                    lastname: patient.lastname,
+                    
+                    name: patient.firstName,
+                    secondName: patient.secondName,
+                    lastname: patient.firstLastname,
                     secondLastname: patient.secondLastname,
                     historyNumber: 'n',
-                    registrationDate: Date(),
-                    accompanied: '',
-                    document: '',
-                    gender: '',
-                    birthdate: patient.birthday,
+                    registrationDate: new Date().toISOString(),
+                    nationality: patient.nationality.id,
+                    document: patient.document,
+                    gender: patient.gender.id,
+                    birthdate: patient.birthday.toISOString().split('T')[0],
                     familyDynamics: '',
-                    homeVisit: '',
-                    job: '',
-                    job_detail: '',
-                    idPlace: ''
+                    scholarship: patient.scholarship.name,
+                    scholarshipDetail: patient.scholarshipSpecialty,
+                    job: true,
+                    occupation: patient.occupation,
+                    employmentInstitution: patient.institution,
+                    idPlace: patient.address.district.id,
+                    placeDetail: patient.address.detail
                 };
 
 
-            DoctorFactory.add(addedPatient)
+            PatientFactory.add(addedPatient)
                 .then(function (data)
                 {
                     defered.resolve(data);

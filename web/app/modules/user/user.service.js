@@ -9,6 +9,7 @@
         this.getAll = getAll;
         this.get = get;
         this.getRoles = getRoles;
+        this.getNationalites = getNationalites;
         this.add = add;
         this.update = update;
 
@@ -60,6 +61,16 @@
             return roleList;
         }
 
+        function getNationalites()
+        {
+            var nationalityList = [];
+
+            nationalityList.push({ id: 'V', name: 'Venezolano'});
+            nationalityList.push({ id: 'E', name:'Extranjero'});
+
+            return nationalityList;
+        }
+
         function add(user)
         {
             var defered = $q.defer();
@@ -107,7 +118,7 @@
                     secondLastname:"",
                     password: user.password,
                     idStatus: user.status.id,
-                    role: user.roles,
+                    role: user.role.id,
                     id: user.id
                 };
 

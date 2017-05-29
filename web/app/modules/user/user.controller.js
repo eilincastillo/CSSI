@@ -7,7 +7,7 @@
     function UserCtrl($state, $stateParams, StatusService, UserService)
     {
         var self = this;
-        self.userList = self.statusList = self.roleList = [];
+        self.userList = self.statusList = self.roleList = self.nationalityList = [];
         self.user = {};
         self.userId;
 
@@ -27,6 +27,7 @@
 
         self.addUser = function (user)
         {
+
             UserService.add(user)
                 .then(function (data)
                 {
@@ -75,6 +76,8 @@
                     $state.go('menu.user');
                 }
             }
+
+            self.nationalityList = UserService.getNationalites();
 
         }
 
