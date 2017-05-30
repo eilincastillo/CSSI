@@ -189,46 +189,67 @@ class UserController extends FOSRestController
                 {
                     $em = $this->getDoctrine()->getManager();
 
-                    $status = $em->getRepository('AppBundle:Status')->find(1);
+                    $user = $em->getRepository('AppBundle:User')->findByUsername($json["username"]);
+                    $personal = $em->getRepository('AppBundle:Personal')->findByDocument($json["document"]);
+                    if ($user ==null)
+                    {
+                        if ($personal==null)
+                        {
+                            $em = $this->getDoctrine()->getManager();
 
-                        $user = new User();
+                            $status = $em->getRepository('AppBundle:Status')->find(1);
 
-                        $user->setUsername($json["username"]);
+                            $user = new User();
 
-                        $encoder = $this->get('security.encoder_factory')->getEncoder($user);
-                        $user->setSalt(md5(time()));
-                        $passwordCodificado = $encoder->encodePassword($json['password'],$user->getSalt());
-                        $user->setPassword($passwordCodificado);
+                            $user->setUsername($json["username"]);
 
-                        $personal = new Personal();
+                            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                            $user->setSalt(md5(time()));
+                            $passwordCodificado = $encoder->encodePassword($json['password'],$user->getSalt());
+                            $user->setPassword($passwordCodificado);
 
-                        $personal->setDocument($json["document"]);
-                        $personal->setNationality($json["nationality"]);
-                        $personal->setName($json["name"]);
-                        $personal->setLastname($json["lastname"]);
-                        $personal->setSecondName($json["secondName"]);
-                        $personal->setSecondLastname($json["secondLastname"]);
+                            $personal = new Personal();
 
-                        $user->setPersonal($personal);
-                        $user->setStatus($status);
-                        $user->setRoles($json["role"]);
+                            $personal->setDocument($json["document"]);
+                            $personal->setNationality($json["nationality"]);
+                            $personal->setName($json["name"]);
+                            $personal->setLastname($json["lastname"]);
+                            $personal->setSecondName($json["secondName"]);
+                            $personal->setSecondLastname($json["secondLastname"]);
 
-                        $em->persist($user);
-                        $em->flush();
+                            $user->setPersonal($personal);
+                            $user->setStatus($status);
+                            $user->setRoles($json["role"]);
 
-                        $view = $this->view($user, 202);
+                            $em->persist($user);
+                            $em->flush();
+
+                            $view = $this->view($user, 202);
+                            return $this->handleView($view);
+                        }
+                        else
+                        {
+                            $view = $this->view(array("message"=>"Error, a user with this document already exists"), 409);
+                            return $this->handleView($view);
+                        }
+                    }
+                    else
+                    {
+                        $view = $this->view(array("message"=>"Error, a user with this username already exists"), 409);
                         return $this->handleView($view);
+                    }
                     //return ($patients);
                     //return new Response('The doctor was successfully added', Response::HTTP_ACCEPTED);
                 }
             }
             catch (Exception $ex)
             {
-                return new Response('Error, the user was not inserted', Response::HTTP_CONFLICT);
+                $view = $this->view(array("message"=>"Generic Error, the user was not inserted"), 409);
+                return $this->handleView($view);
             }
         }
-
-        return new Response('Error, the user was not inserted', Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic Error, bad json"), 409);
+        return $this->handleView($view);
 
     }
 
