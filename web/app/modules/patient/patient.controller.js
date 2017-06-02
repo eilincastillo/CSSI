@@ -2,9 +2,9 @@
 {
     'use strict';
 
-    angular.module('cssi.controllers.patient').controller('PatientCtrl', ['$state', '$stateParams', 'PatientService', PatientCtrl]);
+    angular.module('cssi.controllers.patient').controller('PatientCtrl', ['$state', '$stateParams', 'PatientService', 'StatusService', PatientCtrl]);
 
-    function PatientCtrl($state, $stateParams, PatientService)
+    function PatientCtrl($state, $stateParams, PatientService, StatusService)
     {
         var self = this;
         self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = self.nationalityList = [];
@@ -93,7 +93,7 @@
                     PatientService.get(urlParameter)
                         .then(function (data)
                         {
-                            self.user = data;
+                            self.patient = data;
 
                         })
                         .catch(function (e)
