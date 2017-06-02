@@ -29,6 +29,7 @@ angular.module('cssi', [
     'cssi.factories.doctor',
     'cssi.factories.specialty',
     'cssi.factories.patient',
-    'cssi.factories.user'
+    'cssi.factories.user',
+    'cssi.factories.login'
 
 ]);

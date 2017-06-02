@@ -350,10 +350,16 @@ class UserController extends FOSRestController
 
                         }
                         else
-                            return new Response('Error, the status or role don\'t exists', Response::HTTP_CONFLICT);
+                        {
+                            $view = $this->view(array("message"=>"Error, the status or role don't exists"), 409);
+                            return $this->handleView($view);
+                        }
                     }
                     else
-                        return new Response('Error, the User don\'t exists', Response::HTTP_CONFLICT);
+                    {
+                        $view = $this->view(array("message"=>"Error, the User don't exists"), 409);
+                        return $this->handleView($view);
+                    }
 
                     //return new Response('The user was successfully edited', Response::HTTP_ACCEPTED);
                     $view = $this->view($user, 202);
@@ -362,9 +368,11 @@ class UserController extends FOSRestController
             }
             catch (Exception $ex)
             {
-                return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
+                $view = $this->view(array("message"=>"Generic Error, the user was not edited"), 409);
+                return $this->handleView($view);
             }
         }
-        return new Response('Error, the user was not edited', Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic Error, bad json the user was not edited"), 409);
+        return $this->handleView($view);
     }
 }
