@@ -166,24 +166,24 @@ class PatientController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-    "name": "Alejandra",
-    "secondName": "Alejandra",
-    "lastname": "Vaamonde",
-    "secondLastname": "Vaamonde",
-    "historyNumber": "1234567890",
-    "registrationDate": "MM/DD/YYYY",
-    "nationality": "Si",
-    "document": "14111222",
+    "name": "Martin",
+    "secondName": "Andres",
+    "lastname": "Perez",
+    "secondLastname": "Ramirez",
+    "historyNumber": "1234567764",
+    "registrationDate": "05/05/2016",
+    "nationality": "V",
+    "document": "14117222",
     "gender": "M",
-    "birthdate": "MM/DD/YYYY",
+    "birthdate": "05/05/1960",
     "familyDynamics": "Familia nuclear",
-    "scholarship":"Ninguno",
+    "scholarship":"Bachiller",
     "scholarshipDetail":"",
-    "job": "false",
-    "occupation": "",
+    "job": "true",
+    "occupation": "Plomero",
     "employmentInstitution":"",
     "idPlace": 2,
-    "placeDetail":"Av. Paez"
+    "placeDetail":"Av. San M"
     }
      *
      * @apiSuccessExample {json} Success-Response:
@@ -245,40 +245,63 @@ class PatientController extends FOSRestController
                 {
                     $em = $this->getDoctrine()->getManager();
                     $place = $em->getRepository('AppBundle:Place')->find($json['idPlace']);
-                    $patient = new Patient();
-                    $personal = new Personal();
+                    $patient = $em->getRepository('AppBundle:Patient')->findByHistoryNumber($json["historyNumber"]);
+                    $personal = $em->getRepository('AppBundle:Personal')->findByDocument($json['document']);
+
 
                     if ($place !== null)
                     {
-                        $personal->setName($json["name"]);
-                        $personal->setLastname($json["lastname"]);
-                        $personal->setSecondName($json["secondName"]);
-                        $personal->setSecondLastname($json["secondLastname"]);
-                        $patient->setHistoryNumber($json["historyNumber"]);
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
-                        $patient->setRegistrationDate($fixDate);
-                        $personal->setNationality($json["nationality"]);
-                        $personal->setDocument($json["document"]);
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json['birthdate'])));
-                        $patient->setBirthdate($fixDate);
-                        $patient->setFamilyDynamics($json["familyDynamics"]);
-                        $patient->setScholarship($json["scholarship"]);
-                        $patient->setScholarshipDetail($json["scholarshipDetail"]);
-                        $patient->setGender($json["gender"]);
-                        $patient->setJob($json["job"]);
-                        $patient->setOccupation($json["occupation"]);
-                        $patient->setEmploymentInstitution($json["employmentInstitution"]);
-                        $patient->setPlaceDetail($json["placeDetail"]);
-                        $patient->setPlace($place);
-                        $patient->setPersonal($personal);
+                        if ($patient==null)
+                        {
+                            if ($personal==null)
+                            {
+                                $patient = new Patient();
+                                $personal = new Personal();
 
-                        $em->persist($patient);
-                        $em->flush();
+                                $personal->setName($json["name"]);
+                                $personal->setLastname($json["lastname"]);
+                                $personal->setSecondName($json["secondName"]);
+                                $personal->setSecondLastname($json["secondLastname"]);
+                                $patient->setHistoryNumber($json["historyNumber"]);
+                                $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
+                                $patient->setRegistrationDate($fixDate);
+                                $personal->setNationality($json["nationality"]);
+                                $personal->setDocument($json["document"]);
+                                $fixDate = new \DateTime(date("y-m-d",strtotime($json['birthdate'])));
+                                $patient->setBirthdate($fixDate);
+                                $patient->setFamilyDynamics($json["familyDynamics"]);
+                                $patient->setScholarship($json["scholarship"]);
+                                $patient->setScholarshipDetail($json["scholarshipDetail"]);
+                                $patient->setGender($json["gender"]);
+                                $patient->setJob($json["job"]);
+                                $patient->setOccupation($json["occupation"]);
+                                $patient->setEmploymentInstitution($json["employmentInstitution"]);
+                                $patient->setPlaceDetail($json["placeDetail"]);
+                                $patient->setPlace($place);
+                                $patient->setPersonal($personal);
 
-                        //$response = $em->getRepository('AppBundle:Patient')->findAPatients($personal->getId());
+                                $em->persist($patient);
+                                $em->flush();
+
+                                //$response = $em->getRepository('AppBundle:Patient')->findAPatients($personal->getId());
+                            }
+                            else
+                            {
+                                $view = $this->view(array("message"=>"Error, a patient with this document already exists"), 409);
+                                return $this->handleView($view);
+                            }
+                        }
+                        else
+                        {
+                            $view = $this->view(array("message"=>"Error, a patient with this history number already exists"), 409);
+                            return $this->handleView($view);
+                        }
                     }
                     else
-                        return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+                    {
+                        $view = $this->view(array("message"=>"Error, the place don't exists"), 409);
+                        return $this->handleView($view);
+                    }
 
                     $view = $this->view($patient, 202);
                     return $this->handleView($view);
@@ -287,10 +310,12 @@ class PatientController extends FOSRestController
             }
             catch (Exception $ex)
             {
-                return new Response('Error, the patient was not inserted',Response::HTTP_CONFLICT);
+                $view = $this->view(array("message"=>"Generic error, the patient was not inserted"), 409);
+                return $this->handleView($view);
             }
         }
-        return new Response('Error, the patient was not inserted',Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic error, the patient was not inserted"), 409);
+        return $this->handleView($view);
     }
 
     /**
