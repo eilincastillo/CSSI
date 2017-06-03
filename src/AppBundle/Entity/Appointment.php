@@ -111,6 +111,13 @@ class Appointment
     private $user;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="$referredToBy", type="string", length=255, nullable=true)
+     */
+    private $referredToBy;
+
+    /**
      * Set patient
      *
      * @param string $patient
@@ -406,6 +413,22 @@ class Appointment
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReferredToBy()
+    {
+        return $this->referredToBy;
+    }
+
+    /**
+     * @param string $referredToBy
+     */
+    public function setReferredToBy($referredToBy)
+    {
+        $this->referredToBy = $referredToBy;
     }
 
 
