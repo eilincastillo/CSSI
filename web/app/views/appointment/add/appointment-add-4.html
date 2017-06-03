@@ -1,0 +1,37 @@
+ <form>
+    <div class="row">
+        <h2><span>4</span> {{ 'apoyo económico' | uppercase }}</h2>
+        <div class="col s12">
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.appointment.price">
+                    <label for="icon_prefix">Precio de consulta</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <select id="employeeList" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
+                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)">
+                        </select>
+                        <label for="icon_prefix">Apoyo brindado</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })">
+                        {{ 'Anterior' | uppercase }}
+                    </button>
+                </div>
+                <div class="input-field col s6">
+                    <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+                        {{ 'Agregar' | uppercase }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ </form>    

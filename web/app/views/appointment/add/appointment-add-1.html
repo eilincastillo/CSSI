@@ -15,17 +15,22 @@
                     <label for="icon_prefix">Referido por</label>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <select id="optionList" class="browser-default" ng-options="option.name for option in ctrl.optionList track by option.id"
+                                ng-model="ctrl.appointment.accompanied" ng-change="ctrl.toggleOccupation(ctrl.appointment.employee)">
+                        </select>
+                        <label for="icon_prefix">¿Asiste acompañado?</label>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <div class="row">
-        <div class="input-field col s6">
-            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
-                {{ 'Anterior' | uppercase }}
-            </button>
-        </div>
+
         <div class="input-field col s6" ng-hide="ctrl.occupationStep">
-            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+            <button class="btn waves-effect waves-light right neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 2 })">
                 {{ 'Siguiente' | uppercase }}
             </button>
         </div>
