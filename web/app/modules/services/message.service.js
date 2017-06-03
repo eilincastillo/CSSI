@@ -80,18 +80,35 @@
             }
         }
 
+        function displayErrorMessage(input)
+        {
+            var container = input.parentElement;
+
+            if(container)
+            {
+                var messageNode = document.createElement('span');
+                var messageContent = document.createTextNode('Error');
+
+                messageNode.appendChild(messageContent);
+                container.appendChild(messageNode);
+            }
+
+
+        }
+
+
         function inputErrorState(input)
         {
             input.classList.add('error');
             input.classList.remove('success');
-            displayErrorMessages();
+            displayErrorMessage(input);
         }
 
         function inputSuccessState(input)
         {
             input.classList.add('success');
             input.classList.remove('error');
-            clearErrorMessages();
+            clearErrorMessage();
         }
         
 

@@ -9,7 +9,6 @@
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
-        self.doctor = {};
         self.doctorId;
 
 
@@ -28,15 +27,18 @@
 
         self.addDoctor = function (doctor)
         {
-            DoctorService.add(doctor)
-                .then(function (data)
-                {
-                    $state.go('menu.doctor');
-                })
-                .catch(function (e)
-                {
+            if(DoctorService.validate(doctor))
+            {
+                DoctorService.add(doctor)
+                    .then(function (data)
+                    {
+                        $state.go('menu.doctor');
+                    })
+                    .catch(function (e)
+                    {
 
-                });
+                    });
+            }
         }
 
         self.getParameter = function (updateView)
@@ -108,6 +110,29 @@
                 $state.go('menu.doctor');
             }
         }
+
+        self.validateSelection = function(identifier)
+        {
+            var selectInput = document.getElementById(identifier);
+
+            if(selectInput)
+            {
+                DoctorService.validateSelection(selectInput);
+            }
+        }
+
+        self.validate = function(identifier)
+        {
+            var input = document.getElementById(identifier);
+
+            if(input)
+            {
+                DoctorService.validateField(input);
+            }
+        }
+
+
+
     }
 
 })();

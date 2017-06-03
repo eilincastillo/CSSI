@@ -5,24 +5,27 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s8">
-                    <input id="name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-blur="ctrl.validate('name')">
+                    <input id="name" name="Name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-blur="ctrl.validate('name')">
                     <label for="name">Nombre</label>
+                    <span id="errorName"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s8">
-                    <input id="lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-blur="ctrl.validate('lastname')">
                     <label for="lastname">Apellido</label>
+                    <input id="lastname" name="Lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-blur="ctrl.validate('lastname')">
+                    <span id="errorLastname"></span>
                 </div>
             </div>
         </div>
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="specialtyList" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
+                    <select id="specialtyList" name="Specialty" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
                             ng-model="ctrl.doctor.specialty" tabindex="3" ng-change="ctrl.validateSelection('specialtyList')">
                     </select>
                     <label for="specialtyList">Especialidad</label>
+                    <span id="errorSpecialty"></span>
                 </div>
             </div>
         </div>
