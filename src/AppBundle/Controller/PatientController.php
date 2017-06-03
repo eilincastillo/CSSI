@@ -88,20 +88,30 @@ class PatientController extends FOSRestController
      *     HTTP/1.1 200 OK
      *
      * {
+    "id": 13,
     "name": "Alejandra",
     "lastname": "Vaamonde",
     "secondName": "Alejandra",
     "secondLastname": "Vaamonde",
-    "document": "14000222",
+    "document": "141155212",
     "nationality": "V",
-    "id": 13,
-    "historyNumber": "1234567890",
-    "registrationDate": "1970-01-01T00:00:00+0100",
+    "historyNumber": "121548890",
+    "registrationDate": "2016-08-08T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "1993-10-06T00:00:00+0100",
     "familyDynamics": "Familia nuclear",
     "job": "false",
-    "jobDetail": "",
+    "jobOccupation": "",
+    "employmentInstitution": "",
+    "idPlace": 2,
+    "namePlace": "El Paraiso",
+    "placeDetail": "Av. Paez",
+    "scholarship": "Ninguno",
+    "scholarshipDetail": "",
+    "phoneNumber": "0414123456",
+    "income": "150000",
+    "expenses": "500000",
+    "savingCapacity": "true",
     "appointments": [
     {
     "id": 8,
@@ -110,7 +120,8 @@ class PatientController extends FOSRestController
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    "doctorName": "Cruz Maria",
+    "expectationsPatient": "Ninguna",
+    "doctorName": "Cruz Mariasss",
     "doctorLastname": "Vaamonde"
     },
     {
@@ -120,6 +131,7 @@ class PatientController extends FOSRestController
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
+    "expectationsPatient": "Ninguna",
     "doctorName": "Ana",
     "doctorLastname": "Perez"
     }
@@ -142,16 +154,19 @@ class PatientController extends FOSRestController
 
         $appointments = $em->getRepository('AppBundle:Appointment')->getAppointmentsByPatient($patient);
 
-        return array ("name"=>$patient->getPersonal()->getName(),"lastname"=>$patient->getPersonal()->getLastname(),
+        return array ("id"=>$patient->getId(),"name"=>$patient->getPersonal()->getName(),"lastname"=>$patient->getPersonal()->getLastname(),
             "secondName"=>$patient->getPersonal()->getSecondName(),"secondLastname"=>$patient->getPersonal()->getSecondLastname(),
             "document"=>$patient->getPersonal()->getDocument(),"nationality"=>$patient->getPersonal()->getNationality(),
-            "id"=>$patient->getId(),"historyNumber"=>$patient->getHistoryNumber(),
+            "historyNumber"=>$patient->getHistoryNumber(),
             "registrationDate"=>$patient->getRegistrationDate(),"gender"=>$patient->getGender(),
             "birthdate"=>$patient->getBirthdate(),"familyDynamics"=>$patient->getFamilyDynamics(),
             "job"=>$patient->getJob(),"jobOccupation"=>$patient->getOccupation(),
             "employmentInstitution"=>$patient->getEmploymentInstitution(),
+            "idPlace"=>$patient->getPlace()->getId(),"namePlace"=>$patient->getPlace()->getName(),
             "placeDetail"=>$patient->getPlaceDetail(),"scholarship"=>$patient->getScholarship(),
-            "scholarshipDetail"=>$patient->getScholarshipDetail(),
+            "scholarshipDetail"=>$patient->getScholarshipDetail(),"phoneNumber"=>$patient->getPhoneNumber(),
+            "income"=>$patient->getIncome(),"expenses"=>$patient->getExpenses(),
+            "savingCapacity"=>$patient->getSavingCapacity(),
             "appointments"=>$appointments);
         //return $appointments;
     }
@@ -171,7 +186,6 @@ class PatientController extends FOSRestController
     "lastname": "Perez",
     "secondLastname": "Ramirez",
     "historyNumber": "1234567764",
-    "registrationDate": "05/05/2016",
     "nationality": "V",
     "document": "14117222",
     "gender": "M",
@@ -268,7 +282,7 @@ class PatientController extends FOSRestController
                                 $personal->setSecondName($json["secondName"]);
                                 $personal->setSecondLastname($json["secondLastname"]);
                                 $patient->setHistoryNumber($json["historyNumber"]);
-                                $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
+                                $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                                 $patient->setRegistrationDate($fixDate);
                                 $personal->setNationality($json["nationality"]);
                                 $personal->setDocument($json["document"]);
@@ -341,7 +355,6 @@ class PatientController extends FOSRestController
     "lastname": "Vaamonde",
     "secondLastname": "Vaamonde",
     "historyNumber": "1234567890",
-    "registrationDate": "MM/DD/YYYY",
     "nationality": "V",
     "gender": "M",
     "document": "14111222",
@@ -428,7 +441,7 @@ class PatientController extends FOSRestController
                         $personal->setSecondName($json["secondName"]);
                         $personal->setSecondLastname($json["secondLastname"]);
                         $patient->setHistoryNumber($json["historyNumber"]);
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
+                        $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                         $patient->setRegistrationDate($fixDate);
                         $personal->setNationality($json["nationality"]);
                         $personal->setDocument($json["document"]);
