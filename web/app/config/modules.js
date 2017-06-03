@@ -25,7 +25,6 @@ angular.module('cssi', [
     'cssi.services.status',
     'cssi.services.place',
     'cssi.services.auth',
-    'cssi.services.message',
     'cssi.factories.appointment',
     'cssi.factories.doctor',
     'cssi.factories.specialty',

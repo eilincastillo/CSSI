@@ -2,60 +2,33 @@
 
     'use strict';
 
-    angular.module('cssi.services.doctor').service('DoctorService', ['$q', 'DoctorFactory', 'ValidateService', 'MessageService', DoctorService]);
+    angular.module('cssi.services.doctor').service('DoctorService', ['$q', 'DoctorFactory', 'ValidateService', DoctorService]);
 
-    function DoctorService($q, DoctorFactory, ValidateService, MessageService)
+    function DoctorService($q, DoctorFactory, ValidateService)
     {
         this.getAll = getAll;
         this.get = get;
         this.add = add;
         this.update = update;
-        this.validate = validateDoctor;
-        this.validateField = validateField;
         this.validateSelection = validateSelection;
-
+        this.validateField = validateField;
+        this.validate = validate;
 
         function validateSelection(selectInput)
         {
-            if(ValidateService.isEmpty(selectInput.value))
-                MessageService.success(selectInput);
-            else
-                MessageService.error(selectInput);
+            ValidateService.validateSelection(selectInput);
         }
 
+        
         function validateField(input)
         {
             switch(input.name)
             {
                 case 'Name':
-                case 'lastname':
-                    validateTextField(input);
+                case 'Lastname':
+                    ValidateService.validateText(input);
                     break;
             }
-        }
-
-        function validateTextField(input)
-        {
-            if(ValidateService.isValidText(input.value))
-                MessageService.success(input);
-            else
-                MessageService.error(input);
-        }
-
-        function validateDoctor(doctor)
-        {
-            var result = false;
-
-            if(ValidateService.requiredFields(doctor.name, doctor.lastname, doctor.specialty))
-            {
-                result = true;
-            }
-            else
-            {
-                MessageService.show();
-            }
-
-            return result;
         }
 
 
@@ -96,6 +69,19 @@
 
             return promise;
         }
+
+        function validate(doctor)
+        {
+            var result = false;
+
+            if(ValidateService.requiredFields(doctor))
+            {
+                result = true;
+            }    
+
+            return result;
+        }
+
 
         function add(doctor)
         {

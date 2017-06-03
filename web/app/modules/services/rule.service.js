@@ -7,13 +7,11 @@
 
     'use strict';
 
-    angular.module('cssi.services.rule').service('RuleService', [RuleService]);
+    angular.module('cssi.services.validate').service('RuleService', [RuleService]);
 
     function RuleService()
     {
 
-        this.account = validateAccount;
-        
         this.requiredFields = requiredAttributes;
         this.isValidPhone = isValidPhone;
         this.isValidEmail = isValidEmail;
@@ -185,16 +183,16 @@
         /**
         * @private
         * @description: Verifica que los campos no esten vacios
-        * @param: {arguments} campos suministrado por el usuario
+        * @param: {entity} campos suministrado por el usuario
         * @return: booleano, true si es correcto, false en caso contrario 
         */
-        function requiredAttributes()
+        function requiredAttributes(entity)
         {
             var result = true;
 
-            for(var i = 0; i < arguments.length; i++)
+            for(var i = 0; i < Object.keys(entity).length; i++)
             {
-                if(arguments[i] === undefined || arguments[i] === null)
+                if(Object.values(entity)[i] === undefined || Object.values(entity)[i] === null)
                     result = false;
             }
 

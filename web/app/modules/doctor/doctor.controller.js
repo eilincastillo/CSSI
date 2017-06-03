@@ -9,6 +9,7 @@
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
+        self.doctor = {};
         self.doctorId;
 
 

@@ -2,7 +2,7 @@
 {
     'use strict';
 
-    angular.module('cssi.services.message').service('MessageService', [MessageService]);
+    angular.module('cssi.services.validate').service('MessageService', [MessageService]);
 
     function MessageService()
     {
@@ -44,7 +44,7 @@
 
         function displayErrorMessages()
         {
-            let alert = document.getElementById('alert-danger');
+            let alert = document.getElementById('global-message');
 
 
             if(alert)
@@ -69,7 +69,7 @@
 
         function clearErrorMessages()
         {
-            let alert = document.getElementById('alert-danger');
+            let alert = document.getElementById('global-message');
 
             if(alert && alert.children.length > 0)
             {
@@ -80,35 +80,34 @@
             }
         }
 
-        function displayErrorMessage(input)
+        function displayErrorMessage(input, message)
         {
-            var container = input.parentElement;
+            var alert = document.getElementById(input.dataset.field);
 
-            if(container)
+            if(alert)
             {
-                var messageNode = document.createElement('span');
-                var messageContent = document.createTextNode('Error');
+                var re = /[@]/;
 
-                messageNode.appendChild(messageContent);
-                container.appendChild(messageNode);
+                if(message.match(re) != null)
+                    message = message.replace(re, input.name);
+
+                alert.innerText = message;
             }
-
-
         }
 
 
-        function inputErrorState(input)
+        function inputErrorState(input, errorMessage)
         {
             input.classList.add('error');
             input.classList.remove('success');
-            displayErrorMessage(input);
+            displayErrorMessage(input, errorMessage);
         }
 
         function inputSuccessState(input)
         {
             input.classList.add('success');
             input.classList.remove('error');
-            clearErrorMessage();
+            displayErrorMessage(input, '');
         }
         
 

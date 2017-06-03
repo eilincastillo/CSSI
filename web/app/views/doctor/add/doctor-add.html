@@ -1,20 +1,20 @@
 <h1>Agregar doctor</h1>
-
+<h4 id="global-message"></h4>
 <div class="row" ng-init="ctrl.getParameter(false)">
     <form class="col s12">
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s8">
-                    <input id="name" name="Name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-blur="ctrl.validate('name')">
+                    <input id="name" name="Name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-blur="ctrl.validate('name')" data-field="metaName">
                     <label for="name">Nombre</label>
-                    <span id="errorName"></span>
+                    <span id="metaName"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s8">
                     <label for="lastname">Apellido</label>
-                    <input id="lastname" name="Lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-blur="ctrl.validate('lastname')">
-                    <span id="errorLastname"></span>
+                    <input id="lastname" name="Lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-blur="ctrl.validate('lastname')" data-field="metaLastname">
+                    <span id="metaLastname"></span>
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="specialtyList" name="Specialty" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
-                            ng-model="ctrl.doctor.specialty" tabindex="3" ng-change="ctrl.validateSelection('specialtyList')">
+                            ng-model="ctrl.doctor.specialty" tabindex="3" ng-change="ctrl.validateSelection('specialtyList')" data-field="metaSpecialty">
                     </select>
                     <label for="specialtyList">Especialidad</label>
-                    <span id="errorSpecialty"></span>
+                    <span id="metaSpecialty"></span>
                 </div>
             </div>
         </div>
