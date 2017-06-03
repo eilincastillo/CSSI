@@ -1,0 +1,35 @@
+ <form>
+    <div class="row">
+        <h2><span>1</span> {{ 'entrevista social' | uppercase }}</h2>
+        <div class="col s12">
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.scholarshipSpecialty" ng-disabled="ctrl.enabledScholarship">
+                    <label for="icon_prefix">Número de historia</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.occupation" ng-disabled="ctrl.enabledOccupation">
+                    <label for="icon_prefix">Referido por</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+                {{ 'Anterior' | uppercase }}
+            </button>
+        </div>
+        <div class="input-field col s6" ng-hide="ctrl.occupationStep">
+            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+                {{ 'Siguiente' | uppercase }}
+            </button>
+        </div>
+    </div>
+
+ </form>
+

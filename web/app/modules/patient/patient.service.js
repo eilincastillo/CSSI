@@ -149,7 +149,7 @@
                     secondName: patient.secondName,
                     lastname: patient.firstLastname,
                     secondLastname: patient.secondLastname,
-                    historyNumber: 'n',
+                    historyNumber: Math.floor(Math.random() * 10000000),
                     registrationDate: new Date().toISOString(),
                     nationality: patient.nationality.id,
                     document: patient.document,

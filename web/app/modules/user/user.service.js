@@ -79,7 +79,7 @@
             var addedUser =
                 {
                     document: user.personal.document,
-                    nationality: user.personal.nationality,
+                    nationality: user.personal.nationality.id,
                     name: user.personal.name,
                     lastname: user.personal.lastname,
                     username: user.username,

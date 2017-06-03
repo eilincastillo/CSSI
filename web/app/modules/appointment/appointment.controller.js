@@ -12,6 +12,28 @@
         self.appointment = {};
         self.appointmentId;
 
+        self.init = function()
+        {
+            var step = $stateParams.appointmentStep;
+
+            if( isEmpty(step) && step > 0 && step < 5)
+            {
+                var currentView = '../app/views/appointment/add/appointment-add-' + step + '.html';
+                self.includePage = currentView;
+            }
+
+        }
+
+        function isEmpty(step)
+        {
+            var result = false;
+
+            if(step != null && step != undefined && step != '')
+                result = true;
+
+            return result;
+        }
+
 
         self.getAppointmentList = function ()
         {

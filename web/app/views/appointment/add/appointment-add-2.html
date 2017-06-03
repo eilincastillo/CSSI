@@ -1,0 +1,38 @@
+ <form>
+    <div class="row">
+        <h2><span>2</span> {{ 'motivo de la consulta' | uppercase }}</h2>
+        <div class="col s12">
+             <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <textarea id="result" class="materialize-textarea" ng-model="ctrl.appointment.result"></textarea>
+                        <label for="result">Explique brevemente el motivo por el que asiste a CSSI - CAP</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <textarea id="result" class="materialize-textarea" ng-model="ctrl.appointment.result"></textarea>
+                        <label for="result">¿Qué espera del CSSI - Atención al paciente?</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+                {{ 'Anterior' | uppercase }}
+            </button>
+        </div>
+        <div class="input-field col s6" ng-hide="ctrl.occupationStep">
+            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+                {{ 'Siguiente' | uppercase }}
+            </button>
+        </div>
+    </div>
+
+ </form>
+

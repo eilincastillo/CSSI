@@ -34,7 +34,7 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             controller: 'PatientCtrl as ctrl'
         })
         .state('menu.patient-add', {
-            url: '/pacientes/agregar',
+            url: '/pacientes/agregar/:patientStep',
             templateUrl: '../app/views/patient/add/patient-add.html',
             controller: 'PatientCtrl as ctrl'
         })
@@ -49,7 +49,7 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             controller: 'AppointmentCtrl as ctrl'
         })
         .state('menu.appointment-add', {
-            url: '/pacientes/:patientId/consultas/agregar',
+            url: '/pacientes/:patientId/consultas/agregar/:appointmentStep',
             templateUrl: '../app/views/appointment/add/appointment-add.html',
             controller: 'AppointmentCtrl as ctrl'
         })

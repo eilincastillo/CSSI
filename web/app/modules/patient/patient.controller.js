@@ -13,6 +13,30 @@
         self.contactStep;
         self.personalStep = true;
 
+
+        self.init = function()
+        {
+            var step = $stateParams.patientStep;
+
+            if( isEmpty(step) && step > 0 && step < 5)
+            {
+                var currentView = '../app/views/patient/add/patient-add-' + step + '.html';
+                self.includePage = currentView;
+            }
+
+        }
+
+        function isEmpty(step)
+        {
+            var result = false;
+
+            if(step != null && step != undefined && step != '')
+                result = true;
+
+            return result;
+        }
+
+
         self.getPatientList = function ()
         {
             PatientService.getAll()
@@ -41,40 +65,12 @@
 
         self.backStep = function ()
         {
-            if(self.contactStep)
-            {
-                self.personalStep = true;
-                self.contactStep = false;
-                self.occupationStep = false;
-            }
-            else if(self.occupationStep)
-            {
-                self.personalStep = false;
-                self.contactStep = true;
-                self.occupationStep = false;
-            }
+            console.log('Atras');
         }
 
         self.nextStep = function ()
         {
-            if(self.personalStep)
-            {
-                self.personalStep = false;
-                self.contactStep = true;
-                self.occupationStep = false;
-            }
-            else if(self.contactStep)
-            {
-                self.personalStep = false;
-                self.contactStep = false;
-                self.occupationStep = true;
-            }
-            else if(self.occupationStep)
-            {
-                self.personalStep = false;
-                self.contactStep = false;
-                self.occupationStep = false;
-            }
+            console.log('Siguiente');
         }
 
         self.getParameter = function (updateView)

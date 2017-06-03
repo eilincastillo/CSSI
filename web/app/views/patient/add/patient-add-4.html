@@ -1,0 +1,57 @@
+<form>
+    <div class="row" >
+        <h2><span>4</span> {{ 'dinámica familiar' | uppercase }}</h2>
+        <div class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
+                    <label for="textarea1">Ingreso estimado</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
+                    <label for="textarea1">Egreso estimado</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
+                                ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)">
+                        </select>
+                        <label for="icon_prefix">Tiene usted capacidad de ahorro</label>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <div class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.detail"></textarea>
+                    <label for="textarea1">Dinámica familiar</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
+                    <label for="textarea1">Teléfono de contacto</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+                {{ 'Anterior' | uppercase }}
+            </button>
+        </div>
+        <div class="input-field col s6">
+            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addPatient(ctrl.patient)">
+                {{ 'Agregar' | uppercase }}
+            </button>
+        </div>
+    </div>
+
+</form>

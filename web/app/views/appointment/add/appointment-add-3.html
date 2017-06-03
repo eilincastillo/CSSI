@@ -1,0 +1,56 @@
+ <form>
+    <div class="row">
+        <h2><span>3</span> {{ 'resultado de la entrevista' | uppercase }}</h2>
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <textarea id="result" class="materialize-textarea" ng-model="ctrl.appointment.result"></textarea>
+                        <label for="result">Resultados</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <select id="optionList" class="browser-default" ng-options="option.name for option in ctrl.optionList track by option.id"
+                                ng-model="ctrl.appointment.domiciliary" ng-change="ctrl.toggleOccupation(ctrl.appointment.employee)">
+                        </select>
+                        <label for="icon_prefix">Necesidad de visita domiciliaria</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <select id="employeeList" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
+                                ng-model="ctrl.appointment.employee" ng-change="ctrl.toggleOccupation(ctrl.appointment.employee)">
+                        </select>
+                        <label for="icon_prefix">Apoyo brindado</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.appointment.address.detail"></textarea>
+                        <label for="textarea1">Especifique/ Observaciones</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+                        {{ 'Anterior' | uppercase }}
+                    </button>
+                </div>
+                <div class="input-field col s6">
+                    <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+                        {{ 'Agregar' | uppercase }}
+                    </button>
+                </div>
+            </div>
+    </div>
+
+ </form>
+
