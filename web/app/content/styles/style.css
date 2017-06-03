@@ -76,6 +76,7 @@ label
 
 .error
 {
+    border-color: red;
     color: red;
 }
 

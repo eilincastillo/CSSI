@@ -9,7 +9,12 @@
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
-        self.doctor = {};
+        self.doctor = 
+        {
+            name: null,
+            lastname: null,
+            specialty: null
+        };
         self.doctorId;
 
 
@@ -94,7 +99,7 @@
         {
             var urlParameter = $stateParams.doctorId;
 
-            if(urlParameter)
+            if(urlParameter && DoctorService.validate(doctor))
             {
                 DoctorService.update(doctor)
                     .then(function ()
@@ -105,10 +110,6 @@
                     {
 
                     });
-            }
-            else
-            {
-                $state.go('menu.doctor');
             }
         }
 

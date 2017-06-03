@@ -5,7 +5,7 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s8">
-                    <input id="name" name="Name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-blur="ctrl.validate('name')" data-field="metaName">
+                    <input id="name" name="Nombre" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus data-field="metaName">
                     <label for="name">Nombre</label>
                     <span id="metaName"></span>
                 </div>
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="input-field col s8">
                     <label for="lastname">Apellido</label>
-                    <input id="lastname" name="Lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-blur="ctrl.validate('lastname')" data-field="metaLastname">
+                    <input id="lastname" name="Apellido" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" data-field="metaLastname">
                     <span id="metaLastname"></span>
                 </div>
             </div>
@@ -21,8 +21,8 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="specialtyList" name="Specialty" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
-                            ng-model="ctrl.doctor.specialty" tabindex="3" ng-change="ctrl.validateSelection('specialtyList')" data-field="metaSpecialty">
+                    <select id="specialtyList" name="Especialidad" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
+                            ng-model="ctrl.doctor.specialty" tabindex="3" data-field="metaSpecialty">
                     </select>
                     <label for="specialtyList">Especialidad</label>
                     <span id="metaSpecialty"></span>

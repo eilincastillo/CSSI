@@ -10,28 +10,9 @@
         this.get = get;
         this.add = add;
         this.update = update;
-        this.validateSelection = validateSelection;
-        this.validateField = validateField;
         this.validate = validate;
 
-        function validateSelection(selectInput)
-        {
-            ValidateService.validateSelection(selectInput);
-        }
-
         
-        function validateField(input)
-        {
-            switch(input.name)
-            {
-                case 'Name':
-                case 'Lastname':
-                    ValidateService.validateText(input);
-                    break;
-            }
-        }
-
-
         function getAll()
         {
             var defered = $q.defer();
@@ -74,7 +55,15 @@
         {
             var result = false;
 
-            if(ValidateService.requiredFields(doctor))
+            var nameInput = document.getElementById('name');
+            var lastnameInput = document.getElementById('lastname');
+            var selectInput = document.getElementById('specialtyList');
+
+            if(ValidateService.validateNotEmpty(nameInput)
+                && ValidateService.validateNotEmpty(lastnameInput)
+                && ValidateService.validateSelection(selectInput)
+                && ValidateService.validateText(nameInput)
+                && ValidateService.validateText(lastnameInput))
             {
                 result = true;
             }    

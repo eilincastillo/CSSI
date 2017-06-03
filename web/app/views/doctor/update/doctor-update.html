@@ -1,36 +1,45 @@
 <h1>Actualizar doctor</h1>
-
+<h4 id="global-message"></h4>
 <div class="row" ng-init="ctrl.getParameter(true)">
     <form class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.doctor.name">
-                <label for="icon_prefix">Nombre</label>
+        <div class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="name" class="active">Nombre</label>
+                    <input id="name" name="Name" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus ng-change="ctrl.validate('name')" data-field="metaName">
+                    <span id="metaName" class="error"></span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.doctor.lastname">
-                <label for="icon_prefix">Apellido</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <div class="input-field col s12">
-                    <select id="statusList" class="browser-default" ng-options="status.name for status in ctrl.statusList track by status.id"
-                    ng-model="ctrl.doctor.status">
-                    </select>
-                    <label for="icon_prefix">Estado</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    <label for="lastname" class="active">Apellido</label>
+                    <input id="lastname" name="Lastname" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" ng-change="ctrl.validate('lastname')" data-field="metaLastname">
+                    <span id="metaLastname" class="error"></span>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <div class="input-field col s12">
-                    <select id="specialtyList" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
-                    ng-model="ctrl.doctor.specialty">
-                    </select>
-                    <label for="icon_prefix">Especialidad</label>
+        <div class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <label for="statusList" class="active">Estado</label>
+                        <select id="statusList" class="browser-default" ng-options="status.name for status in ctrl.statusList track by status.id"
+                        ng-model="ctrl.doctor.status" tabindex="3" ng-change="ctrl.validateSelection('statusList')" data-field="metaStatus">
+                        </select>
+                        <span id="metaStatus" class="error"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <label for="specialtyList" class="active">Especialidad</label>
+                        <select id="specialtyList" name="Specialty" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
+                        ng-model="ctrl.doctor.specialty" tabindex="4" ng-change="ctrl.validateSelection('specialtyList')" data-field="metaSpecialty">
+                        </select>
+                        <span id="metaSpecialty" class="error"></span>
+
+                    </div>
                 </div>
             </div>
         </div>

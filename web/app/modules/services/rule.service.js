@@ -21,7 +21,21 @@
         this.isValidLength = isValidLength;
         this.isValidText = isValidText;
         this.isEmpty = isEmpty;
+        this.isEmptyOption = isEmptyOption;
 
+
+        function isEmptyOption(value)
+        {
+            var result = false;
+
+            if(requiredAttributes(value) && typeof value === "string" && value != '?')
+            {
+                result = true;
+            }
+
+            return result;
+
+        }
 
         function isEmpty(value)
         {
@@ -188,16 +202,23 @@
         */
         function requiredAttributes(entity)
         {
-            var result = true;
+            var properties = Object.keys(entity).length;
+            var i = 0;
+            var result = (properties > 0)? true : false;
 
-            for(var i = 0; i < Object.keys(entity).length; i++)
+            while( result && i < properties)
             {
-                if(Object.values(entity)[i] === undefined || Object.values(entity)[i] === null)
+                if(Object.values(entity)[i] === undefined 
+                    || Object.values(entity)[i] === null
+                    || Object.values(entity)[i] === '')
                     result = false;
+
+                i++;
             }
 
             return result;
         }
+
 
         /**
         * @private
