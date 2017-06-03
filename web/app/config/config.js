@@ -22,6 +22,7 @@ angular.module('cssi.services.validate', []);
 angular.module('cssi.services.status', []);
 angular.module('cssi.services.place', []);
 angular.module('cssi.services.auth', []);
+angular.module('cssi.services.message', []);
 angular.module('cssi.factories.appointment', []);
 angular.module('cssi.factories.doctor', []);
 angular.module('cssi.factories.specialty', []);

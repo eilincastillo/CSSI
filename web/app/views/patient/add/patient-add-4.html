@@ -32,18 +32,12 @@
                     <label for="textarea1">Dinámica familiar</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
-                    <label for="textarea1">Teléfono de contacto</label>
-                </div>
-            </div>
         </div>
     </div>
 
     <div class="row">
         <div class="input-field col s6">
-            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+            <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.patient-add({ patientStep: 3 })">
                 {{ 'Anterior' | uppercase }}
             </button>
         </div>

@@ -40,12 +40,12 @@
     </div>
     <div class="row">
         <div class="input-field col s6">
-            <button class="waves-effect waves-teal btn-flat left neutral-green" ng-click="ctrl.backStep()">
+            <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.patient-add({ patientStep: 1 })">
                 {{ 'Anterior' | uppercase }}
             </button>
         </div>
         <div class="input-field col s6" >
-            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.nextStep()">
+            <button class="btn waves-effect waves-light right neutral-green" ui-sref="menu.patient-add({ patientStep: 3 })">
                 {{ 'Siguiente' | uppercase }}
             </button>
         </div>
