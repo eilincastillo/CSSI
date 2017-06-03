@@ -152,6 +152,7 @@ class AppointmentController extends FOSRestController
             "price"=>$appointment->getPrice(),"percentageAid"=> $appointment->getPercentageAid(),
             "observations"=>$appointment->getObservations(),"reasonAppointment"=>$appointment->getReasonAppointment(),
             "result"=>$appointment->getResult(),"expectationsPatient"=>$appointment->getExpectationsPatient(),
+            "referredToBy"=>$appointment->getReferredToBy(),
             "doctor"=>array("idDoctor"=>$appointment->getDoctor()->getId(),
                 "nameDoctor"=>$appointment->getDoctor()->getName(),
                 "lastnameDoctor"=>$appointment->getDoctor()->getLastName(),
@@ -168,24 +169,24 @@ class AppointmentController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-    "date": "MM/DD/YYYY",
     "price": "100000",
     "percentageAid": "50",
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    "accompanied": "",
+    "accompanied": "Si",
     "homeVisit": "",
     "expectationsPatient":"Quiere ayuda",
     "idDoctor" : 1,
-    "idPatient":1
+    "idPatient":21,
+    "referredToBy" :""
     }
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "id": 11,
-    "date": "2016-10-09T00:00:00+0200",
+    "id": 16,
+    "date": "2017-06-03T00:00:00+0200",
     "accompanied": "Si",
     "home_visit": "",
     "price": 100000,
@@ -195,13 +196,13 @@ class AppointmentController extends FOSRestController
     "result": "Aprovado",
     "expectations_patient": "Quiere ayuda",
     "patient": {
-    "id": 16,
-    "history_number": "1234567764",
-    "registration_date": "2016-05-05T00:00:00+0200",
+    "id": 21,
+    "history_number": "121548890",
+    "registration_date": "2016-08-08T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-05-05T00:00:00+0100",
+    "birthdate": "1993-10-06T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "true",
+    "job": "false",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -213,39 +214,38 @@ class AppointmentController extends FOSRestController
     }
     },
     "personal": {
-    "id": 17,
-    "document": "14117222",
-    "name": "Martin",
-    "second_lastname": "Ramirez",
-    "second_name": "Andres",
-    "lastname": "Perez",
+    "id": 24,
+    "document": "141155212",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
     "nationality": "V"
     },
-    "place_detail": "Av. San M",
-    "scholarship": "Bachiller",
+    "place_detail": "Av. Paez",
+    "scholarship": "Ninguno",
     "scholarship_detail": "",
-    "occupation": "Plomero",
-    "employment_institution": ""
+    "occupation": "",
+    "employment_institution": "",
+    "phone_number": "0414123456",
+    "income": "150000",
+    "expenses": "500000",
+    "saving_capacity": "true"
     },
-    "user": {
-    "id": 4,
-    "username": "fulana_93",
-    "password": "v/rG+KdPjIghHVIYe/1dVhfJflFmFNW4sc4u3+m32hrjAt3zVGvg1iaTZSwMvzYgE7ILS8J9RiqxjPWI/fapqA==",
+    "doctor": {
+    "id": 1,
+    "name": "Cruz Mariasss",
+    "lastname": "Vaamonde",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologías"
+    },
     "status": {
     "id": 1,
     "name": "Active"
+    }
     },
-    "roles": "ROLE_PERSONAL",
-    "personal": {
-    "id": 14,
-    "document": "12115447",
-    "name": "Fulana",
-    "second_lastname": "Sanchez",
-    "second_name": "",
-    "lastname": "Perez",
-    "nationality": "V"
-    },
-    "salt": "65611dd1596afc0eb94a00b8b67328d2"
+    "referred_to_by": ""
     }
      */
 
@@ -277,7 +277,7 @@ class AppointmentController extends FOSRestController
                     {
                         if ($patient !== null)
                         {
-                            $fixDate = new \DateTime(date("y-m-d",strtotime($json["date"])));
+                            $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                             $appointment->setDate($fixDate);
                             $appointment->setPrice($json["price"]);
                             $appointment->setPercentageAid($json["percentageAid"]);
@@ -289,9 +289,7 @@ class AppointmentController extends FOSRestController
                             $appointment->setExpectationsPatient($json["expectationsPatient"]);
                             $appointment->setUser($this->getUser());
                             $appointment->setDoctor($doctor);
-//                        $appointment->set($json["caseRemitted"]);
-//                        $appointment->setFamilyDynamics($json["institutionName"]);
-//                        $appointment->setHomeVisit($json["institutionType"]);
+                            $appointment->setReferredToBy($json["referredToBy"]);
                             $appointment->setPatient($patient);
 
                             $em->persist($appointment);
@@ -333,23 +331,24 @@ class AppointmentController extends FOSRestController
      *
      * @apiParamExample {json} Request-Example:
      * {
-     *date": "MM/DD/YYYY",
     "price": "100000",
     "percentageAid": "50",
     "observations": "Necesita ayuda",
     "reasonAppointment": "Necesita ayuda",
     "result": "Aprovado",
-    "accompanied": "",
+    "accompanied": "Si",
     "homeVisit": "",
+    "expectationsPatient":"Quiere ayuda",
     "idDoctor" : 1,
-    "expectationsPatient":"Quiere ayuda"
-      }
+    "idPatient":21,
+    "referredToBy" :""
+    }
      *
      *    * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
      * {
-    "id": 11,
-    "date": "2016-10-09T00:00:00+0200",
+    "id": 16,
+    "date": "2017-06-03T00:00:00+0200",
     "accompanied": "Si",
     "home_visit": "",
     "price": 100000,
@@ -359,13 +358,13 @@ class AppointmentController extends FOSRestController
     "result": "Aprovado",
     "expectations_patient": "Quiere ayuda",
     "patient": {
-    "id": 16,
-    "history_number": "1234567764",
-    "registration_date": "2016-05-05T00:00:00+0200",
+    "id": 21,
+    "history_number": "121548890",
+    "registration_date": "2016-08-08T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-05-05T00:00:00+0100",
+    "birthdate": "1993-10-06T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
-    "job": "true",
+    "job": "false",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -377,39 +376,38 @@ class AppointmentController extends FOSRestController
     }
     },
     "personal": {
-    "id": 17,
-    "document": "14117222",
-    "name": "Martin",
-    "second_lastname": "Ramirez",
-    "second_name": "Andres",
-    "lastname": "Perez",
+    "id": 24,
+    "document": "141155212",
+    "name": "Alejandra",
+    "second_lastname": "Vaamonde",
+    "second_name": "Alejandra",
+    "lastname": "Vaamonde",
     "nationality": "V"
     },
-    "place_detail": "Av. San M",
-    "scholarship": "Bachiller",
+    "place_detail": "Av. Paez",
+    "scholarship": "Ninguno",
     "scholarship_detail": "",
-    "occupation": "Plomero",
-    "employment_institution": ""
+    "occupation": "",
+    "employment_institution": "",
+    "phone_number": "0414123456",
+    "income": "150000",
+    "expenses": "500000",
+    "saving_capacity": "true"
     },
-    "user": {
-    "id": 4,
-    "username": "fulana_93",
-    "password": "v/rG+KdPjIghHVIYe/1dVhfJflFmFNW4sc4u3+m32hrjAt3zVGvg1iaTZSwMvzYgE7ILS8J9RiqxjPWI/fapqA==",
+    "doctor": {
+    "id": 1,
+    "name": "Cruz Mariasss",
+    "lastname": "Vaamonde",
+    "specialty": {
+    "id": 1,
+    "name": "Cardiologías"
+    },
     "status": {
     "id": 1,
     "name": "Active"
+    }
     },
-    "roles": "ROLE_PERSONAL",
-    "personal": {
-    "id": 14,
-    "document": "12115447",
-    "name": "Fulana",
-    "second_lastname": "Sanchez",
-    "second_name": "",
-    "lastname": "Perez",
-    "nationality": "V"
-    },
-    "salt": "65611dd1596afc0eb94a00b8b67328d2"
+    "referred_to_by": ""
     }
      */
 
@@ -439,7 +437,7 @@ class AppointmentController extends FOSRestController
 
                     if ($patient !== null && $appointment !== null && $doctor !==null)
                     {
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json["date"])));
+                        $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                         $appointment->setDate($fixDate);
                         $appointment->setPrice($json["price"]);
                         $appointment->setPercentageAid($json["percentageAid"]);
@@ -450,6 +448,7 @@ class AppointmentController extends FOSRestController
                         $appointment->setResult($json["result"]);
                         $appointment->setExpectationsPatient($json["expectationsPatient"]);
                         $appointment->setDoctor($doctor);
+                        $appointment->setReferredToBy($json["referredToBy"]);
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);
 //                        $appointment->setHomeVisit($json["institutionType"]);

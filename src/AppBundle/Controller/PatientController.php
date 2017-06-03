@@ -186,7 +186,6 @@ class PatientController extends FOSRestController
     "lastname": "Perez",
     "secondLastname": "Ramirez",
     "historyNumber": "1234567764",
-    "registrationDate": "05/05/2016",
     "nationality": "V",
     "document": "14117222",
     "gender": "M",
@@ -283,7 +282,7 @@ class PatientController extends FOSRestController
                                 $personal->setSecondName($json["secondName"]);
                                 $personal->setSecondLastname($json["secondLastname"]);
                                 $patient->setHistoryNumber($json["historyNumber"]);
-                                $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
+                                $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                                 $patient->setRegistrationDate($fixDate);
                                 $personal->setNationality($json["nationality"]);
                                 $personal->setDocument($json["document"]);
@@ -356,7 +355,6 @@ class PatientController extends FOSRestController
     "lastname": "Vaamonde",
     "secondLastname": "Vaamonde",
     "historyNumber": "1234567890",
-    "registrationDate": "MM/DD/YYYY",
     "nationality": "V",
     "gender": "M",
     "document": "14111222",
@@ -443,7 +441,7 @@ class PatientController extends FOSRestController
                         $personal->setSecondName($json["secondName"]);
                         $personal->setSecondLastname($json["secondLastname"]);
                         $patient->setHistoryNumber($json["historyNumber"]);
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json["registrationDate"])));
+                        $fixDate = new \DateTime(date("y-m-d",strtotime(date("m/d/Y"))));
                         $patient->setRegistrationDate($fixDate);
                         $personal->setNationality($json["nationality"]);
                         $personal->setDocument($json["document"]);
