@@ -183,8 +183,13 @@ class PatientController extends FOSRestController
     "occupation": "Plomero",
     "employmentInstitution":"",
     "idPlace": 2,
-    "placeDetail":"Av. San M"
-    }
+    "placeDetail":"Av. San M",
+    "phoneNumber": "0414123456",
+    "income":"150000",
+    "expenses": "500000",
+    "savingCapacity":"true"
+     *
+     *
      *
      * @apiSuccessExample {json} Success-Response:
      *     HTTP/1.1 200 OK
@@ -279,6 +284,10 @@ class PatientController extends FOSRestController
                                 $patient->setPlaceDetail($json["placeDetail"]);
                                 $patient->setPlace($place);
                                 $patient->setPersonal($personal);
+                                $patient->setPhoneNumber($json["phoneNumber"]);
+                                $patient->setIncome($json["income"]);
+                                $patient->setExpenses($json["expenses"]);
+                                $patient->setSavingCapacity($json["savingCapacity"]);
 
                                 $em->persist($patient);
                                 $em->flush();
@@ -344,7 +353,11 @@ class PatientController extends FOSRestController
     "occupation": "",
     "employmentInstitution":"",
     "idPlace": 2,
-    "placeDetail":"Av. Paez"
+    "placeDetail":"Av. Paez",
+    "phoneNumber": "0414123456",
+    "income":"150000",
+    "expenses": "500000",
+    "savingCapacity":"true"
     }
      *
      * @apiSuccessExample {json} Success-Response:
@@ -432,6 +445,11 @@ class PatientController extends FOSRestController
                         $patient->setPlaceDetail($json["placeDetail"]);
                         $patient->setPlace($place);
                         $patient->setPersonal($personal);
+                        $patient->setPersonal($personal);
+                        $patient->setPhoneNumber($json["phoneNumber"]);
+                        $patient->setIncome($json["income"]);
+                        $patient->setExpenses($json["expenses"]);
+                        $patient->setSavingCapacity($json["savingCapacity"]);
 
                         $em->persist($patient);
                         $em->flush();

@@ -177,6 +177,7 @@ class AppointmentController extends FOSRestController
     "accompanied": "",
     "homeVisit": "",
     "expectationsPatient":"Quiere ayuda",
+    "idDoctor" : 1,
     "idPatient":1
     }
      *
@@ -269,32 +270,44 @@ class AppointmentController extends FOSRestController
                 {
                     $em = $this->getDoctrine()->getManager();
                     $patient = $em->getRepository('AppBundle:Patient')->find($json["idPatient"]);
+                    $doctor = $em->getRepository('AppBundle:Doctor')->find($json["idDoctor"]);
                     $appointment = new Appointment();
 
-                    if ($patient !== null)
+                    if ($doctor !==null)
                     {
-                        $fixDate = new \DateTime(date("y-m-d",strtotime($json["date"])));
-                        $appointment->setDate($fixDate);
-                        $appointment->setPrice($json["price"]);
-                        $appointment->setPercentageAid($json["percentageAid"]);
-                        $appointment->setHomeVisit($json["homeVisit"]);
-                        $appointment->setAccompanied($json["accompanied"]);
-                        $appointment->setObservations($json["observations"]);
-                        $appointment->setReasonAppointment($json["reasonAppointment"]);
-                        $appointment->setResult($json["result"]);
-                        $appointment->setExpectationsPatient($json["expectationsPatient"]);
-                        $appointment->setUser($this->getUser());
+                        if ($patient !== null)
+                        {
+                            $fixDate = new \DateTime(date("y-m-d",strtotime($json["date"])));
+                            $appointment->setDate($fixDate);
+                            $appointment->setPrice($json["price"]);
+                            $appointment->setPercentageAid($json["percentageAid"]);
+                            $appointment->setHomeVisit($json["homeVisit"]);
+                            $appointment->setAccompanied($json["accompanied"]);
+                            $appointment->setObservations($json["observations"]);
+                            $appointment->setReasonAppointment($json["reasonAppointment"]);
+                            $appointment->setResult($json["result"]);
+                            $appointment->setExpectationsPatient($json["expectationsPatient"]);
+                            $appointment->setUser($this->getUser());
+                            $appointment->setDoctor($doctor);
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);
 //                        $appointment->setHomeVisit($json["institutionType"]);
-                        $appointment->setPatient($patient);
+                            $appointment->setPatient($patient);
 
-                        $em->persist($appointment);
-                        $em->flush();
+                            $em->persist($appointment);
+                            $em->flush();
+                        }
+                        else
+                        {
+                            $view = $this->view(array("message"=>"Error, the patient don't exists"), 409);
+                            return $this->handleView($view);
+                        }
                     }
                     else
-                        return new Response('Error, the place or patient don\'t exists',Response::HTTP_CONFLICT);
-
+                    {
+                        $view = $this->view(array("message"=>"Error, the doctor don't exists"), 409);
+                        return $this->handleView($view);
+                    }
 
                     //return new Response('The appointment was successfully added', Response::HTTP_ACCEPTED);
                     $view = $this->view($appointment, 202);
@@ -303,10 +316,12 @@ class AppointmentController extends FOSRestController
             }
             catch (Exception $ex)
             {
-                return new Response('Error, the appointment was not inserted',Response::HTTP_CONFLICT);
+                $view = $this->view(array("message"=>"Generic Error, the appointment was not edited"), 409);
+                return $this->handleView($view);
             }
         }
-        return new Response('Error, the appointment was not inserted',Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic Error, the appointment was not edited"), 409);
+        return $this->handleView($view);
     }
 
     /**
@@ -326,6 +341,7 @@ class AppointmentController extends FOSRestController
     "result": "Aprovado",
     "accompanied": "",
     "homeVisit": "",
+    "idDoctor" : 1,
     "expectationsPatient":"Quiere ayuda"
       }
      *
@@ -419,8 +435,9 @@ class AppointmentController extends FOSRestController
                     $em = $this->getDoctrine()->getManager();
                     $appointment =  $em->getRepository('AppBundle:Appointment')->find($idAppointment);
                     $patient = $appointment->getPatient();
+                    $doctor = $em->getRepository('AppBundle:Doctor')->find($json["idDoctor"]);
 
-                    if ($patient !== null && $appointment !== null)
+                    if ($patient !== null && $appointment !== null && $doctor !==null)
                     {
                         $fixDate = new \DateTime(date("y-m-d",strtotime($json["date"])));
                         $appointment->setDate($fixDate);
@@ -432,6 +449,7 @@ class AppointmentController extends FOSRestController
                         $appointment->setAccompanied($json["accompanied"]);
                         $appointment->setResult($json["result"]);
                         $appointment->setExpectationsPatient($json["expectationsPatient"]);
+                        $appointment->setDoctor($doctor);
 //                        $appointment->set($json["caseRemitted"]);
 //                        $appointment->setFamilyDynamics($json["institutionName"]);
 //                        $appointment->setHomeVisit($json["institutionType"]);
@@ -441,7 +459,10 @@ class AppointmentController extends FOSRestController
                         $em->flush();
                     }
                     else
-                        return new Response('Error, the place or patient don\'t exists',Response::HTTP_CONFLICT);
+                    {
+                        $view = $this->view(array("message"=>"Error, the patient or doctor or appointment don't exists"), 409);
+                        return $this->handleView($view);
+                    }
 
                     $view = $this->view($appointment, 202);
                     return $this->handleView($view);
@@ -450,9 +471,11 @@ class AppointmentController extends FOSRestController
             }
             catch (Exception $ex)
             {
-                return new Response('Error, the appointment was not inserted',Response::HTTP_CONFLICT);
+                $view = $this->view(array("message"=>"Generic Error, the appointment was not edited"), 409);
+                return $this->handleView($view);
             }
         }
-        return new Response('Error, the appointment was not inserted',Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic Error, the appointment was not edited"), 409);
+        return $this->handleView($view);
     }
 }
