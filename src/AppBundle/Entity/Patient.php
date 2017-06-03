@@ -116,6 +116,34 @@ class Patient
     private $employmentInstitution;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="phoneNumber", type="string", length=255)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="income", type="string", length=255)
+     */
+    private $income;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="expenses", type="string", length=255)
+     */
+    private $expenses;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="savingCapacity", type="string", length=255)
+     */
+    private $savingCapacity;
+
+    /**
      * Set personal
      *
      * @param string $personal
@@ -395,6 +423,69 @@ class Patient
         $this->employmentInstitution = $employmentInstitution;
     }
 
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIncome()
+    {
+        return $this->income;
+    }
+
+    /**
+     * @param string $income
+     */
+    public function setIncome($income)
+    {
+        $this->income = $income;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpenses()
+    {
+        return $this->expenses;
+    }
+
+    /**
+     * @param string $expenses
+     */
+    public function setExpenses($expenses)
+    {
+        $this->expenses = $expenses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSavingCapacity()
+    {
+        return $this->savingCapacity;
+    }
+
+    /**
+     * @param string $savingCapacity
+     */
+    public function setSavingCapacity($savingCapacity)
+    {
+        $this->savingCapacity = $savingCapacity;
+    }
 
 
 }
