@@ -1,14 +1,19 @@
 (function ()
 {
-    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', SpecialtyFactory]);
+    'use strict';
 
-    function SpecialtyFactory($q, $resource, CSSIAPI, RESOURCE)
+    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', SpecialtyFactory]);
+
+    function SpecialtyFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.SPECIALTY + ':specialtyId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { specialtyId: '@id' },
             {
-                'query':  {method:'GET', isArray:true},
-                'update': {method: 'PUT'}
+                'save': { method: 'POST', headers: { 'Authorization' : auth }},
+                'get': { method: 'GET', headers: { 'Authorization' : auth }},
+                'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }},
+                'update': {method: 'PUT', headers: { 'Authorization' : auth }}
             },{
                 stripTrailingSlashes: false
             });
@@ -57,7 +62,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }
@@ -94,7 +98,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

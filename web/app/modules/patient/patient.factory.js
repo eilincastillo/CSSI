@@ -7,10 +7,13 @@
     function PatientFactory($q, $resource, CSSIAPI, RESOURCE)
     {
         var url = CSSIAPI.URL + RESOURCE.PATIENT + ':patientId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { patientId: '@id' },
             {
-                'query':  {method:'GET', isArray:true},
-                'update': {method: 'PUT'}
+                'save': {method: 'POST', headers: { 'Authorization' : auth }},
+                'get': { method: 'GET', headers: { 'Authorization' : auth }},
+                'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }},
+                'update': {method: 'PUT', headers: { 'Authorization' : auth }}
             },{
                 stripTrailingSlashes: false
             });
@@ -58,7 +61,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }
@@ -95,7 +97,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

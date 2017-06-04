@@ -2,15 +2,18 @@
 {
     'use strict';
 
-    angular.module('cssi.factories.doctor').factory('DoctorFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', DoctorFactory]);
+    angular.module('cssi.factories.doctor').factory('DoctorFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', DoctorFactory]);
 
-    function DoctorFactory($q, $resource, CSSIAPI, RESOURCE)
+    function DoctorFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.DOCTOR + ':doctorId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { doctorId: '@id' },
             {
-                'query':  {method:'GET', isArray:true},
-                'update': {method: 'PUT'}
+                'save': { method: 'POST', headers: { 'Authorization' : auth }},
+                'get': { method: 'GET', headers: { 'Authorization' : auth }},
+                'query':  {method:'GET', isArray:true,  headers: { 'Authorization' : auth }},
+                'update': {method: 'PUT', headers: { 'Authorization' : auth }}
             },{
                 stripTrailingSlashes: false
             });
@@ -59,7 +62,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }
@@ -96,7 +98,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

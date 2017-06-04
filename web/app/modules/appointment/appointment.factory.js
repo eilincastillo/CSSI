@@ -2,15 +2,18 @@
 {
     'use strict';
 
-    angular.module('cssi.factories.appointment').factory('AppointmentFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', AppointmentFactory]);
+    angular.module('cssi.factories.appointment').factory('AppointmentFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', AppointmentFactory]);
 
-    function AppointmentFactory($q, $resource, CSSIAPI, RESOURCE)
+    function AppointmentFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.APPOINTMENT + ':appointmentId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { appointmentId: '@id' },
             {
-                'query':  {method:'GET', isArray:true},
-                'update': {method: 'PUT'}
+                'get': { method: 'GET',  headers: { 'Authorization' : auth }},
+                'save': { method: 'POST', headers: { 'Authorization' : auth }},
+                'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }},
+                'update': {method: 'PUT', headers: { 'Authorization' : auth }}
             },{
                 stripTrailingSlashes: false
             });
@@ -33,7 +36,7 @@
             var url = CSSIAPI.URL + RESOURCE.PATIENT + ':patientId';
             var requestAll = $resource(url, { patientId: '@id' },
                 {
-                    'query':  {method:'GET', isArray:true}
+                    'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }}
                 },{
                     stripTrailingSlashes: false
                 });
@@ -67,7 +70,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }
@@ -87,7 +89,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

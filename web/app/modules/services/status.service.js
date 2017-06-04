@@ -5,14 +5,16 @@
 {
     'use strict';
 
-    angular.module('cssi.services.status').service('StatusService', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', StatusService]);
+    angular.module('cssi.services.status').service('StatusService', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', StatusService]);
 
-    function StatusService($q, $resource, CSSIAPI, RESOURCE)
+    function StatusService($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.STATUS + ':statusId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { statusId: '@id'},
             {
-                'query': { method: 'GET', isArray: true}
+                'get': { method: 'GET', headers: { 'Authorization' : auth }},
+                'query': { method: 'GET', isArray: true, headers: { 'Authorization' : auth }}
             },
             {
                 stripTrailingSlashes: false
@@ -53,7 +55,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

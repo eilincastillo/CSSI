@@ -5,15 +5,16 @@
 {
     'use strict';
 
-    angular.module('cssi.services.place').service('PlaceService', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', PlaceService]);
+    angular.module('cssi.services.place').service('PlaceService', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', PlaceService]);
 
-    function PlaceService($q, $resource, CSSIAPI, RESOURCE)
+    function PlaceService($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.PLACE + ':placeId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { placeId: '@id'},
             {
-                'query': { method: 'GET', isArray: true},
-                'queryDistricts': { method: 'GET', isArray: true}
+                'query': { method: 'GET', isArray: true, headers: { 'Authorization' : auth }},
+                'queryDistricts': { method: 'GET', isArray: true, headers: { 'Authorization' : auth }}
             },
             {
                 stripTrailingSlashes: false
@@ -54,7 +55,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

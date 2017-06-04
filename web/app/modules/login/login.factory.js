@@ -15,7 +15,7 @@
 
         var factory =
         {
-            login: login
+            generateToken: login
         };
 
         return factory;
@@ -28,7 +28,7 @@
             request.save(doctor,
                 function success(data)
                 {
-                    defered.resolve(data);
+                    defered.resolve(data.token);
                 },
                 function error(err)
                 {

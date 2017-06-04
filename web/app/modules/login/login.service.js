@@ -1,22 +1,32 @@
-(function () {
+(function () 
+{
 
-    angular.module('cssi.services.login').service('LoginService', ['AuthService', LoginService]);
+    'use strict';
 
-    function LoginService(AuthService)
+    angular.module('cssi.services.login').service('LoginService', ['$q', '$rootScope', 'LoginFactory', LoginService]);
+
+    function LoginService($q, $rootScope, LoginFactory)
     {
         this.login = login;
         
         function login(user)
         {
-            AuthService.createToken(user)
-                .then(function ()
+
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            LoginFactory.generateToken(user)
+                .then(function (token)
                 {
-                    console.log('Valido');
+                    $rootScope.token = token;
+                    defered.resolve();
                 })
-                .catch(function ()
+                .catch(function (e)
                 {
-                    console.log('Invalido');
+                    defered.reject(e);
                 });
+
+            return promise;
         }
     }
 

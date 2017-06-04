@@ -1,14 +1,19 @@
 (function ()
 {
-    angular.module('cssi.factories.user').factory('UserFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', UserFactory]);
+    'use strict';
+     
+    angular.module('cssi.factories.user').factory('UserFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', UserFactory]);
 
-    function UserFactory($q, $resource, CSSIAPI, RESOURCE)
+    function UserFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
     {
         var url = CSSIAPI.URL + RESOURCE.USER + ':userId';
+        var auth = AUTH.concat($rootScope.token);
         var request = $resource(url, { userId: '@id' },
             {
-                'query':  {method:'GET', isArray:true},
-                'update': {method: 'PUT'}
+                'save': { method: 'POST', headers: { 'Authorization' : auth }},
+                'get': { method: 'GET', headers: { 'Authorization' : auth }},
+                'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }},
+                'update': {method: 'PUT', headers: { 'Authorization' : auth }}
             },{
                 stripTrailingSlashes: false
             });

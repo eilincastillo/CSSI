@@ -7,6 +7,7 @@ angular.module('cssi.resources')
         ENV: "development",
         HEADER: {'Content-Type': 'application/json'}
     })
+    .constant("AUTH", "Bearer ")
     .constant("RESOURCE",
     {
         DOCTOR: "/api/doctor/",
