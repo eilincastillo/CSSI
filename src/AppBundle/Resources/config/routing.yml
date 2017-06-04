@@ -7,6 +7,11 @@ api_specialty:
    prefix:   /api/specialty  #importante esto es para construir las urls
    resource: "@AppBundle/Resources/config/api-specialty.yml"
 
+api_loging:
+   type:     rest
+   prefix:   /api/login_check
+   resource: "@AppBundle/Resources/config/api-login.yml"
+
 api_status:
    type:     rest
    prefix:   /api/status

@@ -10,6 +10,7 @@
         this.get = get;
         this.add = add;
         this.validate = validate;
+        this.getAccompaniedOptions = getAccompaniedOptions;
 
 
         function getAll(patientId)
@@ -29,6 +30,16 @@
                 });
 
             return promise;
+        }
+
+        function getAccompaniedOptions()
+        {
+            var accompaniedList = [];
+
+            accompaniedList.push({ id: 'true', name: 'Si'});
+            accompaniedList.push({ id: 'false', name:'No'});
+
+            return accompaniedList;
         }
 
         function get(appointmentId)
@@ -71,22 +82,73 @@
 
         function validateFirstStep()
         {
-            //VALIDACIONES DE LA PRIMERA PANTALLA
+            var result = false;
+
+            var referredToByInput = document.getElementById('referredToBy');
+            var selectInput = document.getElementById('accompanied');
+
+            if(ValidateService.validateNotEmpty(referredToByInput)
+                && ValidateService.validateSelection(selectInput)
+                && ValidateService.validateText(referredToByInput))
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         function validateSecondStep()
         {
-            //VALIDACIONES DE LA SEGUNDA PANTALLA
+            var result = false;
+
+            var reasonAppointmentInput = document.getElementById('reasonAppointment');
+            var expectationsPatientInput = document.getElementById('expectationsPatient');
+
+            if(ValidateService.validateNotEmpty(reasonAppointmentInput)
+                && ValidateService.validateNotEmpty(expectationsPatientInput)
+                && ValidateService.validateText(reasonAppointmentInput)
+                && ValidateService.validateText(expectationsPatientInput))
+            {
+                result = true;
+            }
+            return result;
         }
 
         function validateThirdStep()
         {
-            //VALIDACIONES DE LA TERCERA PANTALLA
+            var result = false;
+
+            var resultInput = document.getElementById('result');
+            var homeVisitSelectInput = document.getElementById('homeVisit');
+            var percentageAidSelectInput = document.getElementById('percentageAid');
+            var observationsInput = document.getElementById('observations');
+
+            if(ValidateService.validateNotEmpty(resultInput)
+                && ValidateService.validateNotEmpty(observationsInput)
+                && ValidateService.validateText(resultInput)
+                && ValidateService.validateSelection(homeVisitSelectInput)
+                && ValidateService.validateSelection(percentageAidSelectInput)
+                && ValidateService.validateText(observationsInput))
+            {
+                result = true;
+            }
+            return result;
         }
 
         function validateAppoinment()
         {
-            //VALIDACIONES DEL OBJETO COMPLETO
+            var result = false;
+
+            var priceInput = document.getElementById('price');
+            var doctorSelectInput = document.getElementById('doctor');
+
+            if(ValidateService.validateNotEmpty(priceInput)
+                && ValidateService.validateText(priceInput)
+                && ValidateService.validateSelection(doctorSelectInput))
+            {
+                result = true;
+            }
+            return result;
         }
 
 

@@ -25,11 +25,11 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="percentageAid" name="Porcentaje" class="browser-default" ng-options="doctor.name for doctor in ctrl.doctorList track by doctor.id"
-                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="3" data-field="metaPercentageAid">
+                        <select id="doctor" name="Porcentaje" class="browser-default" ng-options="doctor.name for doctor in ctrl.doctorList track by doctor.id"
+                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="3" data-field="metaDoctor">
                         </select>
-                        <label for="percentageAid">Médico asignado</label>
-                        <span id="metaPercentageAid"></span>
+                        <label for="doctor">Médico asignado</label>
+                        <span id="metaDoctor"></span>
                     </div>
                 </div>
             </div>
