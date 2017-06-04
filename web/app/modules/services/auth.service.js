@@ -6,8 +6,6 @@
 
     function AuthService($state, $q, $rootScope, AUTH)
     {
-        var storage = sessionStorage;
-
         this.saveToken = save;
         this.getToken = getToken;
 
@@ -21,16 +19,16 @@
 
         function save(token)
         {
-            storage.setItem('token', token);
+            $rootScope.storage.setItem('token', token);
         }
 
         function isAuthenticated()
         {
             var result = false;
 
-            if(storage.getItem('token') !== undefined
-                && storage.getItem('token') !== null
-                && storage.getItem('token') !== '')
+            if($rootScope.storage.getItem('token') !== undefined
+                && $rootScope.storage.getItem('token') !== null
+                && $rootScope.storage.getItem('token') !== '')
                 {
                     result = true;
                 }
@@ -48,7 +46,7 @@
 
             if(isAuthenticated())
             {
-                return AUTH.concat(storage.getItem('token'));
+                return AUTH.concat($rootScope.storage.getItem('token'));
             }
             else
             {
