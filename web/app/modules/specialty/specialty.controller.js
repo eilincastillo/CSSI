@@ -27,15 +27,19 @@
 
         self.addSpecialty = function (specialtyName)
         {
-            SpecialtyService.add(specialtyName)
-                .then(function (data)
-                {
-                    $state.go('menu.specialty');
-                })
-                .catch(function (e)
-                {
+            if(SpecialtyService.validate(specialtyName))
+            {
+                SpecialtyService.add(specialtyName)
+                    .then(function (data)
+                    {
+                        $state.go('menu.specialty');
+                    })
+                    .catch(function (e)
+                    {
 
-                });
+                    });
+            }
+
         }
 
         self.getParameter = function ()
@@ -65,7 +69,7 @@
         {
             var urlParameter = $stateParams.specialtyId;
 
-            if(urlParameter)
+            if(urlParameter && SpecialtyService.validate(specialtyName))
             {
                 SpecialtyService.update(urlParameter, specialtyName)
                     .then(function ()
@@ -77,10 +81,10 @@
 
                     });
             }
-            else
-            {
-                $state.go('menu.specialty');
-            }
+            // else
+            // {
+            //     $state.go('menu.specialty');
+            // }
         }
     }
 

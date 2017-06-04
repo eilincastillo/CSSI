@@ -2,14 +2,15 @@
 {
      'use strict';
 
-     angular.module('cssi.services.specialty').service('SpecialtyService', ['$q', 'SpecialtyFactory', SpecialtyService]);
+     angular.module('cssi.services.specialty').service('SpecialtyService', ['$q', 'SpecialtyFactory', 'ValidateService', SpecialtyService]);
 
-     function SpecialtyService($q, SpecialtyFactory)
+     function SpecialtyService($q, SpecialtyFactory, ValidateService)
      {
          this.getAll = getAll;
          this.get = get;
          this.add = add;
          this.update = update;
+         this.validate = validate;
 
          function getAll()
          {
@@ -47,6 +48,21 @@
                  });
 
              return promise;
+         }
+
+         function validate(specialty)
+         {
+             var result = false;
+
+             var nameInput = document.getElementById('name');
+
+             if(ValidateService.validateNotEmpty(nameInput)
+                 && ValidateService.validateText(nameInput))
+             {
+                 result = true;
+             }
+
+             return result;
          }
          
          function add(specialtyName)
