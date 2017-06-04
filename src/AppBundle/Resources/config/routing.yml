@@ -1,5 +1,5 @@
 api_login:
-    path: /api/login_check
+    path: /api/login_check/
 
 #restapi
 api_specialty:
