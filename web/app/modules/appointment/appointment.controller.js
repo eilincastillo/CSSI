@@ -3,9 +3,9 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.appointment').controller('AppointmentCtrl', ['$stateParams', 'AppointmentService', AppointmentCtrl]);
+    angular.module('cssi.controllers.appointment').controller('AppointmentCtrl', ['$state', '$stateParams', 'AppointmentService', AppointmentCtrl]);
 
-    function AppointmentCtrl($stateParams, AppointmentService)
+    function AppointmentCtrl($state, $stateParams, AppointmentService)
     {
         var self = this;
         self.patient = {};
@@ -23,6 +23,31 @@
             }
 
         }
+
+        self.saveFirstStep = function()
+        {
+            if(AppointmentService.validate(1))
+            {
+                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 2 })');
+            }
+        }
+
+        self.saveSecondStep = function()
+        {
+            if(AppointmentService.validate(2))
+            {
+                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })');
+            }
+        }
+
+        self.saveThirdStep = function()
+        {
+            if(AppointmentService.validate(3))
+            {
+                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })');
+            }
+        }
+
 
         function isEmpty(step)
         {
@@ -52,7 +77,7 @@
 
         self.addAppointment = function (appointment)
         {
-            if(AppointmentService.validate(appointment))
+            if(AppointmentService.validate(4))
             {
                 AppointmentService.add(appointment)
                     .then(function (data)

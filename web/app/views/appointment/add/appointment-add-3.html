@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 <div class="input-field col s6" >
-                    <button class="btn waves-effect waves-light right neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })">
+                    <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveThirdStep()">
                         {{ 'Siguiente' | uppercase }}
                     </button>
                 </div>

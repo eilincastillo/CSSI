@@ -50,24 +50,43 @@
             return promise;
         }
 
-        function validate(appointment)
+        function validate(step)
         {
-            var result = false;
-
-            var nameInput = document.getElementById('name');
-            var lastnameInput = document.getElementById('lastname');
-            var selectInput = document.getElementById('specialtyList');
-
-            if(ValidateService.validateNotEmpty(nameInput)
-                && ValidateService.validateNotEmpty(lastnameInput)
-                && ValidateService.validateSelection(selectInput)
-                && ValidateService.validateText(nameInput)
-                && ValidateService.validateText(lastnameInput))
+            switch(step)
             {
-                result = true;
+                case 1:
+                    validateFirstStep();
+                    break;
+                case 2:
+                    validateSecondStep();
+                    break;
+                case 3:
+                    validateThirdStep();
+                    break;
+                case 4:
+                    validateAppoinment();
+                    break;
             }
+        }
 
-            return result;
+        function validateFirstStep()
+        {
+            //VALIDACIONES DE LA PRIMERA PANTALLA
+        }
+
+        function validateSecondStep()
+        {
+            //VALIDACIONES DE LA SEGUNDA PANTALLA
+        }
+
+        function validateThirdStep()
+        {
+            //VALIDACIONES DE LA TERCERA PANTALLA
+        }
+
+        function validateAppoinment()
+        {
+            //VALIDACIONES DEL OBJETO COMPLETO
         }
 
 

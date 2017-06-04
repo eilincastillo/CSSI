@@ -30,7 +30,7 @@
             </button>
         </div>
         <div class="input-field col s6" ng-hide="ctrl.occupationStep">
-            <button class="btn waves-effect waves-light right neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })">
+            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveSecondStep()">
                 {{ 'Siguiente' | uppercase }}
             </button>
         </div>
