@@ -1,0 +1,4 @@
+api_controller_login:
+   type: rest
+   resource: "@AppBundle/Controller/LoginController.php"
+   name_prefix:  api_login_

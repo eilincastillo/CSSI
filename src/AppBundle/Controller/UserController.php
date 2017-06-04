@@ -19,7 +19,6 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Post;
 use AppBundle\Entity\Status;
-use AppBundle\Entity\Role;
 
 
 class UserController extends FOSRestController

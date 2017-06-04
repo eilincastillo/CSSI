@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.patient.referredToBy" ng-disabled="ctrl.enabledOccupation" tabindex="1" autofocus data-field="metaReferredToBy">
+                    <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="ctrl.enabledOccupation" tabindex="1" autofocus data-field="metaReferredToBy">
                     <label for="referredToBy">Referido por</label>
                     <span id="metaReferredToBy"></span>
                 </div>
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="accompanied" name="Asiste acompañad" class="browser-default" ng-options="option.name for option in ctrl.optionList track by option.id"
+                        <select id="accompanied" name="Asiste acompañad" class="browser-default" ng-options="option.name for option in ctrl.accompaniedList track by option.id"
                                 ng-model="ctrl.appointment.accompanied" ng-change="ctrl.toggleOccupation(ctrl.appointment.accompanied)" tabindex="2" autofocus data-field="metaAccompanied">
                         </select>
                         <label for="accompanied">¿Asiste acompañado?</label>
@@ -26,7 +26,7 @@
     <div class="row">
 
         <div class="input-field col s6" ng-hide="ctrl.occupationStep">
-            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveFirstStep()">
+            <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveFirstStep(patient)">
                 {{ 'Siguiente' | uppercase }}
             </button>
         </div>

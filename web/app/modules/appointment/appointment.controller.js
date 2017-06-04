@@ -10,6 +10,7 @@
         var self = this;
         self.patient = {};
         self.appointment = {};
+        self.accompaniedList = []
         self.appointmentId;
 
         self.init = function()
@@ -24,12 +25,12 @@
 
         }
 
-        self.saveFirstStep = function()
+        self.saveFirstStep = function(patient)
         {
-            if(AppointmentService.validate(1))
-            {
+            // if(AppointmentService.validate(1))
+            // {
                 $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 2 })');
-            }
+            // }
         }
 
         self.saveSecondStep = function()
@@ -59,6 +60,7 @@
             return result;
         }
 
+        self.accompaniedList = AppointmentService.getAccompaniedOptions();
 
         self.getAppointmentList = function ()
         {
