@@ -4,26 +4,30 @@
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.firstName">
-                        <label for="icon_prefix">Primer nombre</label>
+                        <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.firstName" tabindex="1" data-field="metaFirstName">
+                        <label for="firstName">Primer nombre</label>
+                        <span id="metaFirstName"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.secondName">
-                        <label for="icon_prefix">Segundo nombre</label>
+                        <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="2" data-field="metaSecondName">
+                        <label for="secondName">Segundo nombre</label>
+                        <span id="metaSecondName"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.firstLastname">
-                        <label for="icon_prefix">Primer apellido</label>
+                        <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.firstLastname" tabindex="3" data-field="metaFirstLastname">
+                        <label for="firstLastname">Primer apellido</label>
+                        <span id="metaFirstLastname"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.secondLastname">
-                        <label for="icon_prefix">Segundo apellido</label>
+                        <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="4" data-field="metaSecondLastname">
+                        <label for="secondLastname">Segundo apellido</label>
+                        <span id="metaSecondLastname"></span>
                     </div>
                 </div>
 
@@ -32,33 +36,37 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <div class="input-field col s12">
-                            <select id="nationalityList" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
-                                    ng-model="ctrl.patient.nationality" ng-init="ctrl.getNationalities()">
+                            <select id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
+                                    ng-model="ctrl.patient.nationality" ng-init="ctrl.getNationalities()" tabindex="5" data-field="metaNationality">
                             </select>
-                            <label for="icon_prefix">Nacionalidad</label>
+                            <label for="nationalityList">Nacionalidad</label>
+                            <span id="metaNationality"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.patient.document">
-                        <label for="icon_prefix">Cédula de Identidad</label>
+                        <input id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="6" data-field="metaDocument">
+                        <label for="document">Cédula de Identidad</label>
+                        <span id="metaDocument"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <div class="input-field col s12">
-                            <select id="genderList" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id"
-                                    ng-model="ctrl.patient.gender">
+                            <select id="genderList" name="Sexo" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id"
+                                    ng-model="ctrl.patient.gender" tabindex="7" data-field="metaGender">
                             </select>
-                            <label for="icon_prefix">Sexo</label>
+                            <label for="genderList">Sexo</label>
+                            <span id="metaGender"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="date" class="validate" ng-model="ctrl.patient.birthday">
-                        <label for="icon_prefix">Fecha de nacimiento</label>
+                        <input id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="8" data-field="metaBirthday">
+                        <label for="birthday">Fecha de nacimiento</label>
+                        <span id="metaBirthday"></span>
                     </div>
                 </div>
             </div>
