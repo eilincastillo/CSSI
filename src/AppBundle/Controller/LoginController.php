@@ -46,7 +46,7 @@ class LoginController extends FOSRestController
             return $this->handleView($view);
         }
 
-        return array("role"=>$user->getRoles(),"name"=>$user->getPersonal()->getName(), "lastname"=> $user->getPersonal()->getLastname());
+        return array("role"=>$user->getRoles()[0],"name"=>$user->getPersonal()->getName(), "lastname"=> $user->getPersonal()->getLastname());
         //return $user;
     }
 
