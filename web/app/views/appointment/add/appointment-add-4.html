@@ -5,17 +5,19 @@
 
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.appointment.price">
-                    <label for="icon_prefix">Precio de consulta</label>
+                    <input id="price" name="Precio" type="text" class="validate" ng-model="ctrl.appointment.price" tabindex="1" autofocus data-field="metaPrice">
+                    <label for="price">Precio de consulta</label>
+                    <span id="metaPrice"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="employeeList" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
-                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)">
+                        <select id="percentageAid" name="Apoyo brindado" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
+                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="2" autofocus data-field="metaPercentageAid">
                         </select>
-                        <label for="icon_prefix">Apoyo brindado</label>
+                        <label for="percentageAid">Apoyo brindado</label>
+                        <span id="metaPercentageAid"></span>
                     </div>
                 </div>
             </div>
