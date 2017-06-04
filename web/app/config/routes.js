@@ -93,6 +93,11 @@ angular.module('cssi.routes').config( function ($stateProvider, $urlRouterProvid
             url: '/especialidades/actualizar/:specialtyId',
             templateUrl: '../app/views/specialty/update/specialty-update.html',
             controller: 'SpecialtyCtrl as ctrl'
+        })
+        .state('menu.unauthorized', {
+            url: '/acceso-restringido',
+            templateUrl: '../app/views/unauthorized.html',
+            controller: 'MenuCtrl as ctrl'
         });
 
     $urlRouterProvider.otherwise('/');

@@ -27,6 +27,7 @@
                 })
                 .catch(function(e)
                 {
+                    $state.go('menu.unauthorized');
                     console.log(e);
                 });
         }
