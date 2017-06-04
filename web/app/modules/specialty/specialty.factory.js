@@ -2,12 +2,12 @@
 {
     'use strict';
 
-    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', SpecialtyFactory]);
+    angular.module('cssi.factories.specialty').factory('SpecialtyFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', SpecialtyFactory]);
 
-    function SpecialtyFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function SpecialtyFactory($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.SPECIALTY + ':specialtyId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { specialtyId: '@id' },
             {
                 'save': { method: 'POST', headers: { 'Authorization' : auth }},

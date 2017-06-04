@@ -2,40 +2,60 @@
 {
     'use strict';
 
-    angular.module('cssi.services.auth').service('AuthService', ['$q', '$http', '$rootScope', 'CSSIAPI', 'RESOURCE', AuthService]);
+    angular.module('cssi.services.auth').service('AuthService', ['$state', '$q', '$rootScope', 'AUTH', AuthService]);
 
-    function AuthService($q, $http, $rootScope, CSSIAPI, RESOURCE)
+    function AuthService($state, $q, $rootScope, AUTH)
     {
-        $rootScope.token;
+        var storage = sessionStorage;
 
-        this.createToken = requestToken;
+        this.saveToken = save;
+        this.getToken = getToken;
+
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
+        {
+            console.log(toState.name);
+            console.log(event);
+            console.log(fromState.name);
+        });
 
 
-        function requestToken(user)
+        function save(token)
+        {
+            storage.setItem('token', token);
+        }
+
+        function isAuthenticated()
+        {
+            var result = false;
+
+            if(storage.getItem('token') !== undefined
+                && storage.getItem('token') !== null
+                && storage.getItem('token') !== '')
+                {
+                    result = true;
+                }
+
+            return result;
+        }
+
+        function redirectLogin()
+        {
+            $state.go('menu.login');
+        }
+
+        function getToken()
         {
 
-            var defered = $q.defer();
-            var promise = defered.promise;
-
-            $http( {
-                method: 'POST',
-                url: CSSIAPI.URL + RESOURCE.LOGIN,
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                data: {username: user.username, password: user.password}
-            } )
-            .then(function success ( response )
+            if(isAuthenticated())
             {
-                $rootScope.token = response.token;
-                defered.resolve();
-            },
-            function error ( response )
+                return AUTH.concat(storage.getItem('token'));
+            }
+            else
             {
-
-                defered.reject();
-            })
-
-            return promise;
+                redirectLogin();
+            }
         }
+
 
 
 

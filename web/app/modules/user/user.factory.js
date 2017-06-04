@@ -2,12 +2,12 @@
 {
     'use strict';
      
-    angular.module('cssi.factories.user').factory('UserFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', UserFactory]);
+    angular.module('cssi.factories.user').factory('UserFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', UserFactory]);
 
-    function UserFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function UserFactory($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.USER + ':userId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { userId: '@id' },
             {
                 'save': { method: 'POST', headers: { 'Authorization' : auth }},
@@ -62,7 +62,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }
@@ -99,7 +98,6 @@
                 {
                     defered.reject();
                 });
-            //TODO: tratar datos
 
             return promise;
         }

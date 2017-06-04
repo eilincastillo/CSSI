@@ -2,12 +2,12 @@
 {
     'use strict';
 
-    angular.module('cssi.factories.patient').factory('PatientFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', PatientFactory]);
+    angular.module('cssi.factories.patient').factory('PatientFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', PatientFactory]);
 
-    function PatientFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function PatientFactory($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.PATIENT + ':patientId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { patientId: '@id' },
             {
                 'save': {method: 'POST', headers: { 'Authorization' : auth }},

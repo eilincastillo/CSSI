@@ -3,9 +3,9 @@
 
     'use strict';
 
-    angular.module('cssi.services.login').service('LoginService', ['$q', '$rootScope', 'LoginFactory', LoginService]);
+    angular.module('cssi.services.login').service('LoginService', ['$q', 'AuthService', 'LoginFactory', LoginService]);
 
-    function LoginService($q, $rootScope, LoginFactory)
+    function LoginService($q, AuthService, LoginFactory)
     {
         this.login = login;
         
@@ -18,7 +18,7 @@
             LoginFactory.generateToken(user)
                 .then(function (token)
                 {
-                    $rootScope.token = token;
+                    AuthService.saveToken(token);
                     defered.resolve();
                 })
                 .catch(function (e)

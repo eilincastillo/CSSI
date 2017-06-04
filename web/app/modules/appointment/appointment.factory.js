@@ -2,12 +2,12 @@
 {
     'use strict';
 
-    angular.module('cssi.factories.appointment').factory('AppointmentFactory', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', AppointmentFactory]);
+    angular.module('cssi.factories.appointment').factory('AppointmentFactory', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', AppointmentFactory]);
 
-    function AppointmentFactory($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function AppointmentFactory($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.APPOINTMENT + ':appointmentId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { appointmentId: '@id' },
             {
                 'get': { method: 'GET',  headers: { 'Authorization' : auth }},
@@ -36,7 +36,7 @@
             var url = CSSIAPI.URL + RESOURCE.PATIENT + ':patientId';
             var requestAll = $resource(url, { patientId: '@id' },
                 {
-                    'query':  {method:'GET', isArray:true, headers: { 'Authorization' : auth }}
+                    'get':  {method:'GET', headers: { 'Authorization' : auth }}
                 },{
                     stripTrailingSlashes: false
                 });

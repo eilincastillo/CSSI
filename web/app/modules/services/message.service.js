@@ -6,7 +6,7 @@
 
     function MessageService()
     {
-        let messages;
+        var messages;
 
         this.addMessage = addErrorMessage;
         this.show = displayErrorMessages;
@@ -44,7 +44,7 @@
 
         function displayErrorMessages()
         {
-            let alert = document.getElementById('global-message');
+            var alert = document.getElementById('global-message');
 
 
             if(alert)
@@ -53,8 +53,8 @@
 
                 messages.forEach(function(message)
                 {
-                    let messageNode = document.createElement('p');
-                    let messageContent = document.createTextNode(message);
+                    var messageNode = document.createElement('p');
+                    var messageContent = document.createTextNode(message);
 
                     messageNode.appendChild(messageContent);
                     alert.appendChild(messageNode);
@@ -69,11 +69,11 @@
 
         function clearErrorMessages()
         {
-            let alert = document.getElementById('global-message');
+            var alert = document.getElementById('global-message');
 
             if(alert && alert.children.length > 0)
             {
-                for(let i = 0; i < alert.children.length; i++)
+                for(var i = 0; i < alert.children.length; i++)
                 {
                     alert.children[i].remove();
                 }
