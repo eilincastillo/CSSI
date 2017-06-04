@@ -22,6 +22,7 @@
         this.isValidText = isValidText;
         this.isEmpty = isEmpty;
         this.isEmptyOption = isEmptyOption;
+        this.isValidNumber = isValidNumber;
 
 
         function isEmptyOption(value)

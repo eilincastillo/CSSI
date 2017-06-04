@@ -2,9 +2,9 @@
 {
     'use strict';
 
-    angular.module('cssi.services.user').service('UserService', ['$q', 'UserFactory', UserService]);
+    angular.module('cssi.services.user').service('UserService', ['$q', 'UserFactory', 'ValidateService', UserService]);
 
-    function UserService($q, UserFactory)
+    function UserService($q, UserFactory, ValidateService)
     {
         this.getAll = getAll;
         this.get = get;
@@ -12,6 +12,7 @@
         this.getNationalites = getNationalites;
         this.add = add;
         this.update = update;
+        this.validate = validate;
 
         function getAll()
         {
@@ -71,6 +72,45 @@
             return nationalityList;
         }
 
+        function validate(user)
+        {
+            var result = false;
+
+            var selectInput = document.getElementById('nationalityList');
+            var documentInput = document.getElementById('document');
+            var nameInput = document.getElementById('name');
+            var lastnameInput = document.getElementById('lastname');
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var retypePasswordInput = document.getElementById('retypePassword');
+
+            if (usernameInput !=null)
+            {
+                if (ValidateService.validateNotEmpty(usernameInput) &&
+                    ValidateService.validateText(usernameInput))
+                {
+                    result = true;
+                }
+            }
+
+            if(ValidateService.validateNotEmpty(documentInput)
+                && ValidateService.validateNotEmpty(nameInput)
+                && ValidateService.validateNotEmpty(lastnameInput)
+                && ValidateService.validateNotEmpty(passwordInput)
+                && ValidateService.validateNotEmpty(retypePasswordInput)
+                && ValidateService.validateSelection(selectInput)
+                && ValidateService.validateText(nameInput)
+                && ValidateService.validateText(lastnameInput)
+                && ValidateService.validatePassword(passwordInput)
+                && ValidateService.validatePassword(retypePasswordInput)
+                && ValidateService.validateNumber(documentInput))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         function add(user)
         {
             var defered = $q.defer();
@@ -110,7 +150,7 @@
             var updatedUser =
                 {
                     document: user.personal.document,
-                    nationality: user.personal.nationality,
+                    nationality: user.personal.nationality.id,
                     name: user.personal.name,
                     lastname: user.personal.lastname,
                     username: user.username,

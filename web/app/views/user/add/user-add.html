@@ -7,49 +7,56 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <div class="input-field col s12">
-                            <select id="nationalityList" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
-                                    ng-model="ctrl.user.personal.nationality">
+                            <select id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
+                                    ng-model="ctrl.user.personal.nationality" tabindex="1" data-field="metaNationality">
                             </select>
-                            <label for="icon_prefix">Nacionalidad</label>
+                            <label for="nationalityList">Nacionalidad</label>
+                            <span id="metaNationality"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="number" class="validate" ng-model="ctrl.user.personal.document">
-                        <label for="icon_prefix">Cédula de identidad</label>
+                        <input id="document" name="Cédula"  type="number" class="validate" ng-model="ctrl.user.personal.document" tabindex="2" data-field="metaDocument">
+                        <label for="document">Cédula de identidad</label>
+                        <span id="metaDocument"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.name">
-                        <label for="icon_prefix">Nombre</label>
+                        <input id="name" name="Nombre" type="text" class="validate" ng-model="ctrl.user.personal.name" tabindex="3" data-field="metaName">
+                        <label for="name">Nombre</label>
+                        <span id="metaName"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.personal.lastname">
-                        <label for="icon_prefix">Apellido</label>
+                        <input id="lastname" name="Apellido" type="text" class="validate" ng-model="ctrl.user.personal.lastname" tabindex="4" data-field="metaLastname">
+                        <label for="lastname">Apellido</label>
+                        <span id="metaLastname"></span>
                     </div>
                 </div>
             </div>
             <div class="col s6">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="text" class="validate" ng-model="ctrl.user.username">
-                        <label for="icon_prefix">Nombre de usuario</label>
+                        <input id="username" name="Nombre de usuario" type="text" class="validate" ng-model="ctrl.user.username" tabindex="5" data-field="metaUsername">
+                        <label for="username">Nombre de usuario</label>
+                        <span id="metaUsername"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="password" class="validate" ng-model="ctrl.user.password">
-                        <label for="icon_prefix">Contraseña</label>
+                        <input id="password" name="Contraseña" type="password" class="validate" ng-model="ctrl.user.password" tabindex="6" data-field="metaPassword">
+                        <label for="password">Contraseña</label>
+                        <span id="metaPassword"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="icon_prefix" type="password" class="validate" ng-model="ctrl.user.retypePassword">
-                        <label for="icon_prefix">Repetir contraseña</label>
+                        <input id="retypePassword" name="Repetir Contraseña" type="password" class="validate" ng-model="ctrl.user.retypePassword" tabindex="7" data-field="metaRetypePassword">
+                        <label for="retypePassword">Repetir contraseña</label>
+                        <span id="metaRetypePassword"></span>
                     </div>
                 </div>
 
