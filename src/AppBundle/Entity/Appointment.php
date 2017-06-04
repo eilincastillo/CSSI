@@ -113,7 +113,7 @@ class Appointment
     /**
      * @var string
      *
-     * @ORM\Column(name="$referredToBy", type="string", length=255, nullable=true)
+     * @ORM\Column(name="referredToBy", type="string", length=255, nullable=true)
      */
     private $referredToBy;
 
@@ -428,7 +428,7 @@ class Appointment
      */
     public function setReferredToBy($referredToBy)
     {
-        $this->referredToBy = $referredToBy;
+        $this->referredToByreferredToBy = $referredToBy;
     }
 
 
