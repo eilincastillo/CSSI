@@ -27,16 +27,19 @@
 
         self.addUser = function (user)
         {
+            if(UserService.validate(user))
+            {
+                UserService.add(user)
+                    .then(function (data)
+                    {
+                        $state.go('menu.user');
+                    })
+                    .catch(function (e)
+                    {
 
-            UserService.add(user)
-                .then(function (data)
-                {
-                    $state.go('menu.user');
-                })
-                .catch(function (e)
-                {
+                    });
+            }
 
-                });
         }
 
         self.getParameter = function (updateView)
@@ -85,7 +88,7 @@
         {
             var urlParameter = $stateParams.userId;
 
-            if(urlParameter)
+            if(urlParameter && UserService.validate(user))
             {
                 UserService.update(user)
                     .then(function ()
@@ -96,10 +99,6 @@
                     {
 
                     });
-            }
-            else
-            {
-                $state.go('menu.user');
             }
         }
     }
