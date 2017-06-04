@@ -7,6 +7,8 @@
 
     function LoginService($q, $rootScope, LoginFactory)
     {
+        var storage = sessionStorage;
+
         this.login = login;
         
         function login(user)
@@ -15,12 +17,12 @@
             var defered = $q.defer();
             var promise = defered.promise;
 
-            $rootScope.storage.setItem('username', user.username);
+            storage.setItem('username', user.username);
 
             LoginFactory.generateToken(user)
                 .then(function ()
                 {
-                    var username = $rootScope.storage.getItem('username')
+                    var username = storage.getItem('username')
                     promise = getUser(username);
                 })
                 .catch(function (e)
