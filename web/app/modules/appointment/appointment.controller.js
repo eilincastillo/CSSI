@@ -29,7 +29,7 @@
         {
             // if(AppointmentService.validate(1))
             // {
-                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 2 })');
+                    $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
             // }
         }
 
