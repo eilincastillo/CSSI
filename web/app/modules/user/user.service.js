@@ -55,8 +55,8 @@
         {
             var roleList = [];
 
-            roleList.push({ id: 1, name: 'ROLE_PERSONAL'});
-            roleList.push({ id: 2, name: 'ROLE_ADMIN'});
+            roleList.push({ id: 'ROLE_PERSONAL', name: 'Usuario'});
+            roleList.push({ id: 'ROLE_ADMIN', name: 'Administrador'});
 
             return roleList;
         }

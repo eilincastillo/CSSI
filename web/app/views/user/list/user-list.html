@@ -34,7 +34,7 @@
                     </td>
 
                     <td>
-                        {{ user.roles }}
+                        {{ user.roles == 'ROLE_ADMIN' ? 'Administrador' : 'Usuario' }}
                     </td>
                     <td>
                         {{ user.status.name }}
