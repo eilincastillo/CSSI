@@ -2,13 +2,14 @@
 
     'use strict';
 
-    angular.module('cssi.services.appointment').service('AppointmentService', ['$q', 'AppointmentFactory', AppointmentService]);
+    angular.module('cssi.services.appointment').service('AppointmentService', ['$q', 'AppointmentFactory', 'ValidateService', AppointmentService]);
 
-    function AppointmentService($q, AppointmentFactory)
+    function AppointmentService($q, AppointmentFactory, ValidateService)
     {
         this.getAll = getAll;
         this.get = get;
         this.add = add;
+        this.validate = validate;
 
 
         function getAll(patientId)
@@ -48,6 +49,27 @@
 
             return promise;
         }
+
+        function validate(appointment)
+        {
+            var result = false;
+
+            var nameInput = document.getElementById('name');
+            var lastnameInput = document.getElementById('lastname');
+            var selectInput = document.getElementById('specialtyList');
+
+            if(ValidateService.validateNotEmpty(nameInput)
+                && ValidateService.validateNotEmpty(lastnameInput)
+                && ValidateService.validateSelection(selectInput)
+                && ValidateService.validateText(nameInput)
+                && ValidateService.validateText(lastnameInput))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
 
         function add(appointment)
         {

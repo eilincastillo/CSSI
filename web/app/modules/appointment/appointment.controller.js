@@ -52,15 +52,19 @@
 
         self.addAppointment = function (appointment)
         {
-            AppointmentService.add(appointment)
-                .then(function (data)
-                {
-                    $state.go('menu.appointment');
-                })
-                .catch(function (e)
-                {
+            if(AppointmentService.validate(appointment))
+            {
+                AppointmentService.add(appointment)
+                    .then(function (data)
+                    {
+                        $state.go('menu.appointment');
+                    })
+                    .catch(function (e)
+                    {
 
-                });
+                    });
+            }
+
         }
 
         self.getParameter = function ()
@@ -81,10 +85,6 @@
 
                     });
 
-            }
-            else
-            {
-                $state.go('menu.appointment');
             }
         }
 
