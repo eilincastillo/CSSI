@@ -5,12 +5,12 @@
 {
     'use strict';
 
-    angular.module('cssi.services.status').service('StatusService', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', StatusService]);
+    angular.module('cssi.services.status').service('StatusService', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', StatusService]);
 
-    function StatusService($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function StatusService($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.STATUS + ':statusId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { statusId: '@id'},
             {
                 'get': { method: 'GET', headers: { 'Authorization' : auth }},

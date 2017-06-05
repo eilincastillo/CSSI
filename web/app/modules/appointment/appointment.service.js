@@ -76,6 +76,8 @@
             AppointmentFactory.get(appointmentId)
                 .then(function (data)
                 {
+                    data.doctor = 'Dr(a) '.concat(data.doctor.lastnameDoctor).concat(', ').concat(data.doctor.nameDoctor).concat(' - ').concat(data.doctor.specialtyDoctor);
+                    data.date = new Date(data.date).toISOString().split('T')[0];
                     defered.resolve(data);
                 })
                 .catch(function(e)

@@ -1,27 +1,160 @@
-<h1>Detalle de consulta</h1>
-
-<div class="row" ng-init="ctrl.getParameter()">
+ <form ng-init="ctrl.getParameter()">
+        <h1>Información detallada de la consulta</h1>
         <div class="row">
-            {{ ctrl.appointment.reasonAppointment }}
+            <div class="col s12">
+                <div class="col s4">
+                    <p>Cédula: {{ ctrl.appointment.patient.document }}</p>
+                </div>
+                <div class="col s4">
+                    <p>Nombre completo: {{ ctrl.appointment.name }}</p>
+                </div>
+                <div class="col s4">
+                    <p>Fecha consulta: {{ ctrl.appointment.date }}</p>
+                </div>
+            </div>
         </div>
         <div class="row">
-            {{ ctrl.appointment.homeVisit }}
+            <h2><span>1</span> {{ 'entrevista social' | uppercase }}</h2>
+            <div class="col s12">
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="referredToBy" class="active">Número de historia</label>
+                            <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="referredToBy" class="active">Administrador de entrevista</label>
+                            <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="referredToBy" class="active">Referido por</label>
+                            <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="true">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <div class="input-field col s12">
+                                <label for="accompanied" class="active">¿Asistió acompañado?</label>
+                                <select id="accompanied" name="Asiste acompañad" class="browser-default" ng-disabled="true">
+                                        <option value="{{ ctrl.appointment.accompanied}}"> {{ ctrl.appointment.accompanied }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+
+        <div class="row">
+            <h2><span>2</span> {{ 'motivo de la consulta' | uppercase }}</h2>
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="reasonAppointment" class="active">Explique brevemente el motivo por el que asiste a CSSI - CAP</label>
+                            <textarea id="reasonAppointment" name="Razon de visita" class="materialize-textarea" ng-model="ctrl.appointment.reasonAppointment" ng-disabled="true"></textarea>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="expectationsPatient" class="active">¿Qué espera del CSSI - Atención al paciente?</label>
+                            <textarea id="expectationsPatient" name="Expectativa" class="materialize-textarea" ng-model="ctrl.appointment.expectationsPatient" ng-disabled="true"></textarea>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            {{ ctrl.appointment.accompanied }}
+            <h2><span>3</span> {{ 'resultado de la entrevista' | uppercase }}</h2>
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="result" class="active">Resultados</label>
+                            <textarea id="result" name="Resultado" class="materialize-textarea" ng-model="ctrl.appointment.result" ng-disabled="true"></textarea>
+               
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="homeVisitList" class="active">Necesidad de visita domiciliaria</label>
+                            <select id="homeVisitList" name="Visita domiciliaria" class="browser-default" ng-disabled="true">
+                                <option value="{{ ctrl.appointment.homeVisit}}"> {{ ctrl.appointment.homeVisit }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="doctorList" class="active">Médico asignado</label>
+                            <select id="doctorList" name="Médico asignado" class="browser-default" ng-disabled="true">
+                                    <option value="{{ ctrl.appointment.doctor}}"> {{ ctrl.appointment.doctor }}</option>
 
+                            </select>
+               
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <div class="input-field col s12">
+                            <label for="observations" class="active">Especifique/ Observaciones</label>
+                            <textarea id="observations" name="Observaciones" class="materialize-textarea" ng-model="ctrl.appointment.observations" ng-disabled="true"></textarea>
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            {{ ctrl.appointment.observations }}
+            <h2><span>4</span> {{ 'apoyo económico' | uppercase }}</h2>
+            <div class="col s12">
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="price" class="active">Precio de consulta</label>
+                            <input id="price" name="Precio" type="text" class="validate" ng-model="ctrl.appointment.price" ng-disabled="true">
+            
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <div class="input-field col s12">
+                                <label for="percentageAidList" class="active">Apoyo brindado</label>
+                                <select id="percentageAidList" name="Apoyo brindado" class="browser-default" ng-disabled="true">
+                                    <option value="{{ ctrl.appointment.percentageAid}}"> {{ ctrl.appointment.percentageAid + '%' }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
         </div>
-        <div class="row">
-            {{ ctrl.appointment.price }}
 
-        </div>
-        <div class="row">
-            {{ ctrl.appointment.percentageAid }}
+    <div class="row">
 
+        <div class="input-field col s6" >
+            <button class="btn waves-effect waves-light right neutral-green" ui-sref="menu.appointment({ patientId: 1 })">
+                {{ 'Regresar' | uppercase }}
+            </button>
         </div>
-</div>
+    </div>
+
+ </form>
