@@ -6,10 +6,10 @@
             </figure>
         </a>
         <ul class="right hide-on-med-and-down">
-            <li><a ui-sref="menu.doctor" ui-sref-active="active">MEDICOS</a></li>
-            <li><a ui-sref="menu.specialty" ui-sref-active="active">ESPECIALIDADES</a></li>
+            <li><a ng-show="ctrl.administrator" ui-sref="menu.doctor" ui-sref-active="active">MEDICOS</a></li>
+            <li><a ng-show="ctrl.administrator" ui-sref="menu.specialty" ui-sref-active="active">ESPECIALIDADES</a></li>
             <li><a ui-sref="menu.patient" ui-sref-active="active">PACIENTES</a></li>
-            <li><a ui-sref="menu.user" ui-sref-active="active">USUARIOS</a></li>
+            <li><a ng-show="ctrl.administrator" ui-sref="menu.user" ui-sref-active="active">USUARIOS</a></li>
             <li><a ui-sref="menu.report" ui-sref-active="active">REPORTES</a></li>
         </ul>
     </div>

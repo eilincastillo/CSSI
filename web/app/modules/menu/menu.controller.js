@@ -2,11 +2,12 @@
 {
     'use strict';
 
-    angular.module('cssi.controllers.menu').controller('MenuCtrl', ['$state', MenuCtrl]);
+    angular.module('cssi.controllers.menu').controller('MenuCtrl', ['$state', 'AuthService', MenuCtrl]);
 
-    function MenuCtrl($state)
+    function MenuCtrl($state, AuthService)
     {
         var self = this;
+        self.administrator = AuthService.isAdmin();
 
         self.toDoctor = function ()
         {

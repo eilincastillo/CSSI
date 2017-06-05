@@ -10,6 +10,7 @@
 
         this.saveToken = save;
         this.getToken = getToken;
+        this.isAdmin = isAdminUser;
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
         {
@@ -24,7 +25,8 @@
                     && toState.name !== 'menu.appointment'
                     && toState.name !== 'menu.appointment-add'
                     && toState.name !== 'menu.appointment-detail'
-                    && toState.name !== 'menu.report')
+                    && toState.name !== 'menu.report'
+                    && toState.name != 'menu.login')
                     {
     
                         redirectUnauthorized();
