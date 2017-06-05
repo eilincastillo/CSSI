@@ -12,6 +12,8 @@
         self.occupationStep;
         self.contactStep;
         self.personalStep = true;
+        self.nationalityList = [];
+        self.genderList = [];
 
 
         self.init = function()
@@ -24,6 +26,30 @@
                 self.includePage = currentView;
             }
 
+        }
+
+        self.saveFirstStep = function(patient)
+        {
+            // if(AppointmentService.validate(1))
+            // {
+            $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
+            // }
+        }
+
+        self.saveSecondStep = function()
+        {
+            if(AppointmentService.validate(2))
+            {
+                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })');
+            }
+        }
+
+        self.saveThirdStep = function()
+        {
+            if(AppointmentService.validate(3))
+            {
+                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })');
+            }
         }
 
         function isEmpty(step)
@@ -50,17 +76,23 @@
                 });
         }
 
+        self.nationalityList = PatientService.getNationalites();
+        self.genderList = PatientService.getGenders();
+
         self.addPatient = function (patient)
         {
-            PatientService.add(patient)
-                .then(function (data)
-                {
-                    $state.go('menu.patient');
-                })
-                .catch(function (e)
-                {
+            if(PatientService.validate(4))
+            {
+                PatientService.add(patient)
+                    .then(function (data)
+                    {
+                        $state.go('menu.patient');
+                    })
+                    .catch(function (e)
+                    {
 
-                });
+                    });
+            }
         }
 
         self.backStep = function ()

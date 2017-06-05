@@ -13,10 +13,10 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="percentageAid" name="Apoyo brindado" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id"
+                        <select id="percentageAidList" name="Apoyo brindado" class="browser-default" ng-options="option.name for option in ctrl.percentageAidList track by option.id"
                                 ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="2" autofocus data-field="metaPercentageAid">
                         </select>
-                        <label for="percentageAid">Apoyo brindado</label>
+                        <label for="percentageAidList">Apoyo brindado</label>
                         <span id="metaPercentageAid"></span>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     </button>
                 </div>
                 <div class="input-field col s6">
-                    <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addAppointment()">
+                    <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addAppointment(ctrl.appointment)">
                         {{ 'Agregar' | uppercase }}
                     </button>
                 </div>
