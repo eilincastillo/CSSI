@@ -107,6 +107,8 @@
                 result = true;
             }
 
+            $rootScope.administrator = result;
+
             return result;
         }
 
