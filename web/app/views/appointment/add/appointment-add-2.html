@@ -5,18 +5,18 @@
              <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <textarea id="reasonAppointment" name="Razon de visita" class="materialize-textarea" ng-model="ctrl.appointment.reasonAppointment" tabindex="1" data-field="metaReasonAppointment"></textarea>
                         <label for="reasonAppointment">Explique brevemente el motivo por el que asiste a CSSI - CAP</label>
-                        <span id="metaReasonAppointment"></span>
+                        <textarea id="reasonAppointment" name="Razon de visita" class="materialize-textarea" ng-model="ctrl.appointment.reasonAppointment" tabindex="1" data-field="metaReasonAppointment"></textarea>
+                        <span id="metaReasonAppointment" class="error"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <textarea id="expectationsPatient" name="Expectativa" class="materialize-textarea" ng-model="ctrl.appointment.expectationsPatient" tabindex="3" data-field="metaExpectationsPatient"></textarea>
                         <label for="expectationsPatient">¿Qué espera del CSSI - Atención al paciente?</label>
-                        <span id="metaExpectationsPatient"></span>
+                        <textarea id="expectationsPatient" name="Expectativa" class="materialize-textarea" ng-model="ctrl.appointment.expectationsPatient" tabindex="3" data-field="metaExpectationsPatient"></textarea>
+                        <span id="metaExpectationsPatient" class="error"></span>
                     </div>
                 </div>
             </div>

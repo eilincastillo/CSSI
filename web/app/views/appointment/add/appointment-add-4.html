@@ -7,7 +7,7 @@
                 <div class="input-field col s6">
                     <input id="price" name="Precio" type="text" class="validate" ng-model="ctrl.appointment.price" tabindex="1" autofocus data-field="metaPrice">
                     <label for="price">Precio de consulta</label>
-                    <span id="metaPrice"></span>
+                    <span id="metaPrice" class="error"></span>
                 </div>
             </div>
             <div class="row">
@@ -16,8 +16,8 @@
                         <select id="percentageAidList" name="Apoyo brindado" class="browser-default" ng-options="option.name for option in ctrl.percentageAidList track by option.id"
                                 ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="2" autofocus data-field="metaPercentageAid">
                         </select>
-                        <label for="percentageAidList">Apoyo brindado</label>
-                        <span id="metaPercentageAid"></span>
+                        <label for="percentageAidList" class="active">Apoyo brindado</label>
+                        <span id="metaPercentageAid" class="error"></span>
                     </div>
                 </div>
             </div>

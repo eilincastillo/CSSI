@@ -7,10 +7,12 @@
     function DoctorService($q, DoctorFactory, ValidateService)
     {
         this.getAll = getAll;
+        this.getFullName = getFullName;
         this.get = get;
         this.add = add;
         this.update = update;
         this.validate = validate;
+
 
         
         function getAll()
@@ -30,6 +32,38 @@
                 });
 
             return promise;
+        }
+
+        function getFullName()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+
+            DoctorFactory.getAll()
+                .then(function (data)
+                {
+                    var list = getDoctorsFullName(data);
+                    defered.resolve(list);
+                })
+                .catch(function(e)
+                {
+                    defered.reject(e);
+                });
+
+            return promise;   
+        }
+
+        function getDoctorsFullName(data)
+        {
+            var doctorList = [];
+
+            for(var i = 0; i < data.length; i++)
+            {
+                doctorList[i] = { id: data[i].id, name: data[i].lastname.concat(', ').concat(data[i].name).concat(' - ').concat(data[i].specialty.name) };
+            }
+
+            return doctorList;
         }
 
         function get(doctorId)

@@ -5,19 +5,19 @@
 
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="ctrl.enabledOccupation" tabindex="1" autofocus data-field="metaReferredToBy">
                     <label for="referredToBy">Referido por</label>
-                    <span id="metaReferredToBy"></span>
+                    <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="ctrl.enabledOccupation" tabindex="1" autofocus data-field="metaReferredToBy">
+                    <span id="metaReferredToBy" class="error"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
+                        <label for="accompanied" class="active">¿Asiste acompañado?</label>
                         <select id="accompanied" name="Asiste acompañad" class="browser-default" ng-options="option.name for option in ctrl.accompaniedList track by option.id"
                                 ng-model="ctrl.appointment.accompanied" ng-change="ctrl.toggleOccupation(ctrl.appointment.accompanied)" tabindex="2" autofocus data-field="metaAccompanied">
                         </select>
-                        <label for="accompanied">¿Asiste acompañado?</label>
-                        <span id="metaAccompanied"></span>
+                        <span id="metaAccompanied" class="error"></span>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@
 
         }
 
-        DoctorService.getAll()
+        DoctorService.getFullName()
             .then(function (data)
             {
                 self.doctorList = data;
@@ -94,14 +94,16 @@
                 });
         }
 
-        self.addAppointment = function (appointment)
+        self.addAppointment = function ()
         {
+            var urlParameter = $stateParams.patientId;
+
             if(AppointmentService.validate(4))
             {
-                AppointmentService.add(appointment)
+                AppointmentService.add(urlParameter)
                     .then(function (data)
                     {
-                        $state.go('menu.appointment');
+                        $state.go('menu.appointment', { patientId: urlParameter });
                     })
                     .catch(function (e)
                     {

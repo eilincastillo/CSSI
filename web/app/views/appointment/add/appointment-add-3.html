@@ -5,40 +5,40 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <textarea id="result" name="Resultado" class="materialize-textarea" ng-model="ctrl.appointment.result" tabindex="1" data-field="metaResult"></textarea>
                         <label for="result">Resultados</label>
-                        <span id="metaResult"></span>
+                        <textarea id="result" name="Resultado" class="materialize-textarea" ng-model="ctrl.appointment.result" tabindex="1" data-field="metaResult"></textarea>
+                        <span id="metaResult" class="error"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
+                        <label for="homeVisitList" class="active">Necesidad de visita domiciliaria</label>
                         <select id="homeVisitList" name="Visita domiciliaria" class="browser-default" ng-options="option.name for option in ctrl.homeVisitList track by option.id"
                                 ng-model="ctrl.appointment.homeVisit" ng-change="ctrl.toggleOccupation(ctrl.appointment.homeVisit)" tabindex="2" data-field="metaHomeVisit">
                         </select>
-                        <label for="homeVisitList">Necesidad de visita domiciliaria</label>
-                        <span id="metaHomeVisit"></span>
+                        <span id="metaHomeVisit" class="error"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
+                        <label for="doctorList" class="active">Médico asignado</label>
                         <select id="doctorList" name="Médico asignado" class="browser-default" ng-options="doctor.name for doctor in ctrl.doctorList track by doctor.id"
                                 ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.doctor)" tabindex="3" data-field="metaDoctor">
                         </select>
-                        <label for="doctorList">Médico asignado</label>
-                        <span id="metaDoctor"></span>
+                        <span id="metaDoctor" class="error"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <textarea id="observations" name="Observaciones" class="materialize-textarea" ng-model="ctrl.appointment.observations" tabindex="4" data-field="metaObservations"></textarea>
                         <label for="observations">Especifique/ Observaciones</label>
-                        <span id="metaObservations"></span>
+                        <textarea id="observations" name="Observaciones" class="materialize-textarea" ng-model="ctrl.appointment.observations" tabindex="4" data-field="metaObservations"></textarea>
+                        <span id="metaObservations" class="error"></span>
                     </div>
                 </div>
             </div>
