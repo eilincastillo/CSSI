@@ -5,10 +5,11 @@
             <div class="row">
                 <div class="input-field col s10">
                     <div class="input-field col s12">
-                        <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
-                                ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)">
+                        <select id="stateList" name="Estado" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
+                                ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)" tabindex="1" data-field="metaState">
                         </select>
-                        <label for="icon_prefix">Estado</label>
+                        <label for="stateList">Estado</label>
+                        <span id="metaState"></span>
                     </div>
                 </div>
             </div>
@@ -16,9 +17,10 @@
                 <div class="input-field col s10">
                     <div class="input-field col s12">
                         <select id="districtList" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id"
-                                ng-model="ctrl.patient.address.district">
+                                ng-model="ctrl.patient.address.district" tabindex="2" data-field="metaDistrict">
                         </select>
-                        <label for="icon_prefix">Parroquia</label>
+                        <label for="districtList">Parroquia</label>
+                        <span id="metaDistrict"></span>
                     </div>
                 </div>
             </div>
@@ -26,14 +28,16 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s10">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.detail"></textarea>
-                    <label for="textarea1">Detalle de dirección</label>
+                    <textarea id="addressDetail" name="Detalle de dirección" class="materialize-textarea" ng-model="ctrl.patient.address.detail" tabindex="3" data-field="metaAddressDetail"></textarea>
+                    <label for="addressDetail">Detalle de dirección</label>
+                    <span id="metaAddressDetail"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s10">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
-                    <label for="textarea1">Teléfono de contacto</label>
+                    <textarea id="phonenumber" class="materialize-textarea" ng-model="ctrl.patient.phonenumber" tabindex="4" data-field="metaPhonenumber"></textarea>
+                    <label for="phonenumber">Teléfono de contacto</label>
+                    <span id="metaPhonenumber"></span>
                 </div>
             </div>
         </div>

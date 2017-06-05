@@ -11,6 +11,8 @@
         this.add = add;
         this.validate = validate;
         this.getAccompaniedOptions = getAccompaniedOptions;
+        this.getHomeVisitOptions = getHomeVisitOptions;
+        this.getPercentageAidOptions = getPercentageAidOptions;
 
 
         function getAll(patientId)
@@ -42,6 +44,27 @@
             return accompaniedList;
         }
 
+        function getHomeVisitOptions()
+        {
+            var homeVisitList = [];
+
+            homeVisitList.push({ id: 'true', name: 'Si'});
+            homeVisitList.push({ id: 'false', name:'No'});
+
+            return homeVisitList;
+        }
+
+        function getPercentageAidOptions()
+        {
+            var percentageAidList = [];
+            var i;
+            for (i = 1; i <=100; i++) {
+                percentageAidList.push({ id: i, name: i});
+            }
+
+            return percentageAidList;
+        }
+
         function get(appointmentId)
         {
             var defered = $q.defer();
@@ -63,21 +86,24 @@
 
         function validate(step)
         {
+            var result = false;
             switch(step)
             {
                 case 1:
-                    validateFirstStep();
+                    result = validateFirstStep();
                     break;
                 case 2:
-                    validateSecondStep();
+                    result = validateSecondStep();
                     break;
                 case 3:
-                    validateThirdStep();
+                    result = validateThirdStep();
                     break;
                 case 4:
-                    validateAppoinment();
+                    result = validateAppoinment();
                     break;
             }
+
+            return result;
         }
 
         function validateFirstStep()
@@ -119,15 +145,15 @@
             var result = false;
 
             var resultInput = document.getElementById('result');
-            var homeVisitSelectInput = document.getElementById('homeVisit');
-            var percentageAidSelectInput = document.getElementById('percentageAid');
+            var homeVisitSelectInput = document.getElementById('homeVisitList');
+            var doctorSelectInput = document.getElementById('doctorList');
             var observationsInput = document.getElementById('observations');
 
             if(ValidateService.validateNotEmpty(resultInput)
                 && ValidateService.validateNotEmpty(observationsInput)
                 && ValidateService.validateText(resultInput)
                 && ValidateService.validateSelection(homeVisitSelectInput)
-                && ValidateService.validateSelection(percentageAidSelectInput)
+                && ValidateService.validateSelection(doctorSelectInput)
                 && ValidateService.validateText(observationsInput))
             {
                 result = true;
@@ -140,11 +166,11 @@
             var result = false;
 
             var priceInput = document.getElementById('price');
-            var doctorSelectInput = document.getElementById('doctor');
+            var percentageAidSelectInput = document.getElementById('percentageAidList');
 
             if(ValidateService.validateNotEmpty(priceInput)
-                && ValidateService.validateText(priceInput)
-                && ValidateService.validateSelection(doctorSelectInput))
+                && ValidateService.validateNumber(priceInput)
+                && ValidateService.validateSelection(percentageAidSelectInput))
             {
                 result = true;
             }
@@ -159,9 +185,18 @@
 
             var addedAppointment =
                 {
-                    name: appointment.name,
-                    lastname: appointment.lastname,
-                    idSpecialty: appointment.specialty.id
+                    referredToBy: appointment.referredToBy,
+                    accompanied: appointment.accompanied,
+                    reasonAppointment: appointment.reasonAppointment,
+                    expectationsPatient: appointment.expectationsPatient,
+                    result: appointment.result,
+                    homeVisit: appointment.homeVisit.id,
+                    doctor: appointment.doctor.id,
+                    percentageAid: appointment.percentageAid.id,
+                    observations: appointment.observations,
+                    observations: appointment.observations,
+                    observations: appointment.observations,
+                    price: appointment.price
                 };
 
             AppointmentFactory.add(addedAppointment)

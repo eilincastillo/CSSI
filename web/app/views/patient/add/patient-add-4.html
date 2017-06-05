@@ -4,23 +4,26 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s6">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
-                    <label for="textarea1">Ingreso estimado</label>
+                    <textarea id="income" name="Ingresos" class="materialize-textarea" ng-model="ctrl.patient.income" tabindex="1" data-field="metaIncome"></textarea>
+                    <label for="income">Ingreso estimado</label>
+                    <span id="metaIncome"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.phonenumber"></textarea>
-                    <label for="textarea1">Egreso estimado</label>
+                    <textarea id="expenses" name="Egresos" class="materialize-textarea" ng-model="ctrl.patient.expenses" tabindex="2" data-field="metaExpenses"></textarea>
+                    <label for="expenses">Egreso estimado</label>
+                    <span id="metaExpenses"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="stateList" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id"
-                                ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)">
+                        <select id="savingCapacityList" name="Capacidad de ahorro" class="browser-default" ng-options="state.name for state in ctrl.savingCapacityList track by state.id"
+                                ng-model="ctrl.patient.savingCapacity" tabindex="3" data-field="metaSavingCapacity">
                         </select>
-                        <label for="icon_prefix">Tiene usted capacidad de ahorro</label>
+                        <label for="savingCapacityList">Tiene usted capacidad de ahorro</label>
+                        <span id="metaSavingCapacity"></span>
                     </div>
                 </div>
             </div>        
@@ -28,8 +31,9 @@
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s6">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.detail"></textarea>
-                    <label for="textarea1">Dinámica familiar</label>
+                    <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="4" data-field="metaFamilyDynamics"></textarea>
+                    <label for="familyDynamics">Dinámica familiar</label>
+                    <span id="metaFamilyDynamics"></span>
                 </div>
             </div>
         </div>

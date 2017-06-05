@@ -3,14 +3,13 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.appointment').controller('AppointmentCtrl', ['$state', '$stateParams', 'AppointmentService', AppointmentCtrl]);
+    angular.module('cssi.controllers.appointment').controller('AppointmentCtrl', ['$state', '$stateParams', 'AppointmentService', 'DoctorService', AppointmentCtrl]);
 
-    function AppointmentCtrl($state, $stateParams, AppointmentService)
+    function AppointmentCtrl($state, $stateParams, AppointmentService, DoctorService)
     {
         var self = this;
         self.patient = {};
-        self.appointment = {};
-        self.accompaniedList = []
+        self.appointment = self.accompaniedList = self.homeVisitList = self.percentageAidList = self.doctorList ={};
         self.appointmentId;
 
         self.init = function()
@@ -25,28 +24,43 @@
 
         }
 
-        self.saveFirstStep = function(patient)
+        DoctorService.getAll()
+            .then(function (data)
+            {
+                self.doctorList = data;
+            })
+            .catch(function (e)
+            {
+
+            });
+
+        self.saveFirstStep = function()
         {
-            // if(AppointmentService.validate(1))
-            // {
-                    $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
-            // }
+            var id =  $stateParams.patientId;
+            if(AppointmentService.validate(1))
+            {
+
+                $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
+             }
         }
 
         self.saveSecondStep = function()
         {
-            if(AppointmentService.validate(2))
-            {
-                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })');
-            }
+            var id =  $stateParams.patientId;
+
+            // if(AppointmentService.validate(2))
+            // {
+                $state.go('menu.appointment-add', { patientId: id, appointmentStep: 3 });
+            // }
         }
 
         self.saveThirdStep = function()
         {
-            if(AppointmentService.validate(3))
-            {
-                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })');
-            }
+            var id =  $stateParams.patientId;
+            // if(AppointmentService.validate(3))
+            // {
+                $state.go('menu.appointment-add', { patientId: id, appointmentStep: 4 });
+            // }
         }
 
 
@@ -61,6 +75,9 @@
         }
 
         self.accompaniedList = AppointmentService.getAccompaniedOptions();
+        self.homeVisitList = AppointmentService.getHomeVisitOptions();
+        self.percentageAidList = AppointmentService.getPercentageAidOptions();
+
 
         self.getAppointmentList = function ()
         {

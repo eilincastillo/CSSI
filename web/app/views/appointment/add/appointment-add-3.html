@@ -14,10 +14,10 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="homeVisit" name="Visita domiciliaria" class="browser-default" ng-options="option.name for option in ctrl.optionList track by option.id"
+                        <select id="homeVisitList" name="Visita domiciliaria" class="browser-default" ng-options="option.name for option in ctrl.homeVisitList track by option.id"
                                 ng-model="ctrl.appointment.homeVisit" ng-change="ctrl.toggleOccupation(ctrl.appointment.homeVisit)" tabindex="2" data-field="metaHomeVisit">
                         </select>
-                        <label for="homeVisit">Necesidad de visita domiciliaria</label>
+                        <label for="homeVisitList">Necesidad de visita domiciliaria</label>
                         <span id="metaHomeVisit"></span>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
             <div class="row">
                 <div class="input-field col s6">
                     <div class="input-field col s12">
-                        <select id="doctor" name="Porcentaje" class="browser-default" ng-options="doctor.name for doctor in ctrl.doctorList track by doctor.id"
-                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.percentageAid)" tabindex="3" data-field="metaDoctor">
+                        <select id="doctorList" name="Médico asignado" class="browser-default" ng-options="doctor.name for doctor in ctrl.doctorList track by doctor.id"
+                                ng-model="ctrl.appointment.percentageAid" ng-change="ctrl.toggleOccupation(ctrl.appointment.doctor)" tabindex="3" data-field="metaDoctor">
                         </select>
-                        <label for="doctor">Médico asignado</label>
+                        <label for="doctorList">Médico asignado</label>
                         <span id="metaDoctor"></span>
                     </div>
                 </div>

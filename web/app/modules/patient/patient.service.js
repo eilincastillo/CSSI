@@ -16,6 +16,9 @@
         this.getNationalities = getNationalities;
         this.add = add;
         this.update = update;
+        this.validate = validate;
+        this.getNationalites = getNationalites;
+        this.getGenders = getGenders;
 
         function getAll()
         {
@@ -34,6 +37,104 @@
                 });
 
             return promise;
+        }
+
+        function getGenders()
+        {
+            var genderList = [];
+
+            genderList.push({ id: 'F', name: 'Femenino'});
+            genderList.push({ id: 'M', name:'Masculino'});
+
+            return genderList;
+        }
+
+        function getNationalites()
+        {
+            var nationalityList = [];
+
+            nationalityList.push({ id: 'V', name: 'Venezolano'});
+            nationalityList.push({ id: 'E', name:'Extranjero'});
+
+            return nationalityList;
+        }
+
+        function validate(step)
+        {
+            switch(step)
+            {
+                case 1:
+                    validateFirstStep();
+                    break;
+                case 2:
+                    validateSecondStep();
+                    break;
+                case 3:
+                    validateThirdStep();
+                    break;
+                case 4:
+                    validateAppoinment();
+                    break;
+            }
+        }
+
+        function validateFirstStep()
+        {
+            var result = false;
+
+            var firstNameInput = document.getElementById('firstName');
+            var secondNameInput = document.getElementById('secondName');
+            var firstLastnameInput = document.getElementById('firstLastname');
+            var secondLastnameInput = document.getElementById('secondLastname');
+            var documentInput = document.getElementById('document');
+            var nationalitySelectInput = document.getElementById('nationalityList');
+
+            if(ValidateService.validateNotEmpty(referredToByInput)
+                && ValidateService.validateSelection(selectInput)
+                && ValidateService.validateText(referredToByInput))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        function validateSecondStep()
+        {
+            var result = false;
+
+            var reasonAppointmentInput = document.getElementById('reasonAppointment');
+            var expectationsPatientInput = document.getElementById('expectationsPatient');
+
+            if(ValidateService.validateNotEmpty(reasonAppointmentInput)
+                && ValidateService.validateNotEmpty(expectationsPatientInput)
+                && ValidateService.validateText(reasonAppointmentInput)
+                && ValidateService.validateText(expectationsPatientInput))
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        function validateThirdStep()
+        {
+            var result = false;
+
+            var resultInput = document.getElementById('result');
+            var homeVisitSelectInput = document.getElementById('homeVisit');
+            var percentageAidSelectInput = document.getElementById('percentageAid');
+            var observationsInput = document.getElementById('observations');
+
+            if(ValidateService.validateNotEmpty(resultInput)
+                && ValidateService.validateNotEmpty(observationsInput)
+                && ValidateService.validateText(resultInput)
+                && ValidateService.validateSelection(homeVisitSelectInput)
+                && ValidateService.validateSelection(percentageAidSelectInput)
+                && ValidateService.validateText(observationsInput))
+            {
+                result = true;
+            }
+            return result;
         }
 
         function get(patientId)
