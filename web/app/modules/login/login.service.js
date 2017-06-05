@@ -22,8 +22,16 @@
             LoginFactory.generateToken(user)
                 .then(function ()
                 {
-                    var username = storage.getItem('username')
-                    promise = getUser(username);
+                    var username = storage.getItem('username');
+                    promise = getUser(username)
+                        .then(function()
+                        {
+                            defered.resolve();
+                        })
+                        .catch(function()
+                        {
+                            defered.reject();
+                        });
                 })
                 .catch(function (e)
                 {
@@ -42,6 +50,10 @@
             LoginFactory.getUser(username)
                 .then(function (data)
                 {
+                    storage.setItem('name', data.name);
+                    storage.setItem('lastname', data.lastname);
+                    storage.setItem('role', data.role);
+
                     defered.resolve();
                 })
                 .catch(function (e)
