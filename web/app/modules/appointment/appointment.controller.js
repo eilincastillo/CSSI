@@ -48,19 +48,19 @@
         {
             var id =  $stateParams.patientId;
 
-            // if(AppointmentService.validate(2))
-            // {
+            if(AppointmentService.validate(2))
+            {
                 $state.go('menu.appointment-add', { patientId: id, appointmentStep: 3 });
-            // }
+            }
         }
 
         self.saveThirdStep = function()
         {
             var id =  $stateParams.patientId;
-            // if(AppointmentService.validate(3))
-            // {
+            if(AppointmentService.validate(3))
+            {
                 $state.go('menu.appointment-add', { patientId: id, appointmentStep: 4 });
-            // }
+            }
         }
 
 
