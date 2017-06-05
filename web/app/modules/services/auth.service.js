@@ -13,24 +13,46 @@
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
         {
-            console.log(toState.name);
-            console.log(event);
-            console.log(fromState.name);
-        });
 
+            if(isAuthenticated())
+            {
+                if(!isAdminUser() 
+                    && toState.name !== 'menu.unauthorized'
+                    && toState.name !== 'menu.patient'
+                    && toState.name !== 'menu.patient-add'
+                    && toState.name !== 'menu.patient-update'
+                    && toState.name !== 'menu.appointment'
+                    && toState.name !== 'menu.appointment-add'
+                    && toState.name !== 'menu.appointment-detail'
+                    && toState.name !== 'menu.report')
+                    {
+    
+                        redirectUnauthorized();
+                        event.preventDefault();                    
+    
+                    }
+            }
+            else if(toState.name !== 'menu.login')
+            {
+                redirectLogin();
+                event.preventDefault();
+            }
+            
+            
+        });
 
         function save(token)
         {
             storage.setItem('token', token);
         }
 
-        function isAuthenticated()
+        function exists(element)
         {
             var result = false;
 
-            if(storage.getItem('token') !== undefined
-                && storage.getItem('token') !== null
-                && storage.getItem('token') !== '')
+            if(storage.getItem(element) !== undefined
+                && storage.getItem(element) !== null
+                && storage.getItem(element) !== '')
                 {
                     result = true;
                 }
@@ -43,6 +65,11 @@
             $state.go('menu.login');
         }
 
+        function redirectUnauthorized()
+        {
+            $state.go('menu.unauthorized');
+        }
+
         function getToken()
         {
 
@@ -50,11 +77,36 @@
             {
                 return AUTH.concat(storage.getItem('token'));
             }
-            else
-            {
-                redirectLogin();
-            }
         }
+
+        function isAuthenticated()
+        {
+            var result = false;
+
+            if(exists('token') 
+                && exists('name')
+                && exists('lastname')
+                && exists('role'))
+                {
+                    result = true;
+                }
+
+
+            return result;
+        }
+
+        function isAdminUser()
+        {
+            var result = false;
+
+            if(storage.getItem('role') === 'ROLE_ADMIN')
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
 
 
 

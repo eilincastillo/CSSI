@@ -26,5 +26,13 @@
                 })
         }
 
+        self.logout = function()
+        {
+            if(LoginService.logout())
+            {
+                $('menu.login');
+            }
+        }
+
     }
 })();

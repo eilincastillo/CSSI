@@ -3,13 +3,14 @@
 
     'use strict';
 
-    angular.module('cssi.services.login').service('LoginService', ['$q', '$rootScope', 'LoginFactory', LoginService]);
+    angular.module('cssi.services.login').service('LoginService', ['$q', '$rootScope', 'AuthService', 'LoginFactory', LoginService]);
 
-    function LoginService($q, $rootScope, LoginFactory)
+    function LoginService($q, $rootScope, AuthService, LoginFactory)
     {
         var storage = sessionStorage;
 
         this.login = login;
+        this.logout = logout;
         
         function login(user)
         {
@@ -62,6 +63,24 @@
                 });
 
             return promise;
+        }
+
+        function logout()
+        {
+            var result = false;
+
+            if(AuthService.isAuthenticated())
+            {
+                storage.removeItem('name');
+                storage.removeItem('lastname');
+                storage.removeItem('role');
+                storage.removeItem('token');
+
+                result = true;
+            }
+
+            return result;
+
         }
     }
 
