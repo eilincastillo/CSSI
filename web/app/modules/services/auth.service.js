@@ -11,6 +11,7 @@
         this.saveToken = save;
         this.getToken = getToken;
         this.isAdmin = isAdminUser;
+        this.isAuthenticated = isAuthenticated;
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
         {
