@@ -28,17 +28,19 @@
 
         }
 
-        self.saveFirstStep = function(patient)
+        self.saveFirstStep = function()
         {
-            // if(AppointmentService.validate(1))
-            // {
+            var id =  $stateParams.patientId;
+            if(PatientService.validate(1))
+            {
             $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
-            // }
+            }
         }
 
         self.saveSecondStep = function()
         {
-            if(AppointmentService.validate(2))
+            var id =  $stateParams.patientId;
+            if(PatientService.validate(2))
             {
                 $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })');
             }
@@ -46,7 +48,8 @@
 
         self.saveThirdStep = function()
         {
-            if(AppointmentService.validate(3))
+            var id =  $stateParams.patientId;
+            if(PatientService.validate(3))
             {
                 $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })');
             }

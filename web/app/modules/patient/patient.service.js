@@ -2,9 +2,9 @@
 {
     'use strict';
 
-    angular.module('cssi.services.patient').service('PatientService', ['$q', 'PlaceService', 'PatientFactory', PatientService]);
+    angular.module('cssi.services.patient').service('PatientService', ['$q', 'PlaceService','PatientFactory', 'ValidateService',  PatientService]);
 
-    function PatientService($q, PlaceService, PatientFactory)
+    function PatientService($q, PlaceService, PatientFactory, ValidateService)
     {
         this.getAll = getAll;
         this.get = get;
@@ -61,21 +61,24 @@
 
         function validate(step)
         {
+            var result = false;
             switch(step)
             {
                 case 1:
-                    validateFirstStep();
+                    result = validateFirstStep();
                     break;
                 case 2:
-                    validateSecondStep();
+                    result = validateSecondStep();
                     break;
                 case 3:
-                    validateThirdStep();
+                    result = validateThirdStep();
                     break;
                 case 4:
-                    validateAppoinment();
+                    result = validatePatient();
                     break;
             }
+
+            return result;
         }
 
         function validateFirstStep()
@@ -87,14 +90,35 @@
             var firstLastnameInput = document.getElementById('firstLastname');
             var secondLastnameInput = document.getElementById('secondLastname');
             var documentInput = document.getElementById('document');
+            var birthdayInput = document.getElementById('birthday');
             var nationalitySelectInput = document.getElementById('nationalityList');
+            var genderSelectInput = document.getElementById('genderList');
 
-            if(ValidateService.validateNotEmpty(referredToByInput)
-                && ValidateService.validateSelection(selectInput)
-                && ValidateService.validateText(referredToByInput))
+
+            if(ValidateService.validateNotEmpty(firstNameInput)
+                && ValidateService.validateNotEmpty(firstLastnameInput)
+                && ValidateService.validateNotEmpty(documentInput)
+                && ValidateService.validateNotEmpty(birthdayInput)
+                && ValidateService.validateSelection(nationalitySelectInput)
+                && ValidateService.validateSelection(genderSelectInput)
+                && ValidateService.validateText(firstNameInput)
+                && ValidateService.validateText(secondNameInput)
+                && ValidateService.validateText(firstLastnameInput)
+                && ValidateService.validateText(secondLastnameInput)
+                && ValidateService.validateNumber(documentInput))
             {
                 result = true;
             }
+
+                if (!ValidateService.validateText(secondNameInput))
+                {
+                    result=false;
+                }
+
+                if (!ValidateService.validateText(secondLastnameInput))
+                {
+                    result=false;
+                }
 
             return result;
         }
@@ -103,13 +127,19 @@
         {
             var result = false;
 
-            var reasonAppointmentInput = document.getElementById('reasonAppointment');
-            var expectationsPatientInput = document.getElementById('expectationsPatient');
+            var addressDetailInput = document.getElementById('addressDetail');
+            var phonenumberInput = document.getElementById('phonenumber');
+            var stateSelectInput = document.getElementById('stateList');
+            var districtSelectInput = document.getElementById('districtList');
 
-            if(ValidateService.validateNotEmpty(reasonAppointmentInput)
-                && ValidateService.validateNotEmpty(expectationsPatientInput)
-                && ValidateService.validateText(reasonAppointmentInput)
-                && ValidateService.validateText(expectationsPatientInput))
+
+            if(ValidateService.validateNotEmpty(addressDetailInput)
+                && ValidateService.validateNotEmpty(phonenumberInput)
+                && ValidateService.validateText(addressDetailInput)
+                && ValidateService.validateNumber(phonenumberInput)
+                && ValidateService.validateNumber(phonenumberInput)
+                && ValidateService.validateSelection(stateSelectInput)
+                && ValidateService.validateSelection(districtSelectInput))
             {
                 result = true;
             }
@@ -120,23 +150,45 @@
         {
             var result = false;
 
-            var resultInput = document.getElementById('result');
-            var homeVisitSelectInput = document.getElementById('homeVisit');
-            var percentageAidSelectInput = document.getElementById('percentageAid');
-            var observationsInput = document.getElementById('observations');
+            var scholarshipSpecialtyInput = document.getElementById('scholarshipSpecialty');
+            var scholarshipSelectInput = document.getElementById('scholarshipList');
+            var employeeSelectInput = document.getElementById('employeeList');
+            var enabledOccupationInput = document.getElementById('enabledOccupation');
+            var institutionInput = document.getElementById('institution');
 
-            if(ValidateService.validateNotEmpty(resultInput)
-                && ValidateService.validateNotEmpty(observationsInput)
-                && ValidateService.validateText(resultInput)
-                && ValidateService.validateSelection(homeVisitSelectInput)
-                && ValidateService.validateSelection(percentageAidSelectInput)
-                && ValidateService.validateText(observationsInput))
+            if( ValidateService.validateSelection(scholarshipSelectInput)
+                && ValidateService.validateSelection(employeeSelectInput)
+                && ValidateService.validateText(scholarshipSpecialtyInput)
+                && ValidateService.validateText(enabledOccupationInput)
+                && ValidateService.validateText(institutionInput)
+                && ValidateService.validateText(institutionInput))
             {
                 result = true;
             }
             return result;
         }
 
+        function validatePatient()
+        {
+            var result = false;
+
+            var incomeInput = document.getElementById('income');
+            var expensesInput = document.getElementById('expenses');
+            var savingCapacityListSelectInput = document.getElementById('savingCapacityList');
+            var familyDynamicsInput = document.getElementById('familyDynamics');
+
+            if(ValidateService.validateNotEmpty(incomeInput)
+                && ValidateService.validateNotEmpty(expensesInput)
+                && ValidateService.validateNotEmpty(familyDynamicsInput)
+                && ValidateService.validateNumber(incomeInput)
+                && ValidateService.validateNumber(expensesInput)
+                && ValidateService.validateSelection(savingCapacityListSelectInput)
+            && ValidateService.validateText(familyDynamicsInput))
+            {
+                result = true;
+            }
+            return result;
+        }
         function get(patientId)
         {
             var defered = $q.defer();
