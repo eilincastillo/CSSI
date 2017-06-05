@@ -8,7 +8,7 @@
     {
         var url = CSSIAPI.URL + RESOURCE.LOGIN + ':username';
         var auth = AuthService.getToken();
-        var request = $resource(url, { username: '@username' },
+        var request = $resource(url, { username: '@user' },
             {
                 'get': { method: 'GET', headers: { 'Authorization' : auth }}
             },{

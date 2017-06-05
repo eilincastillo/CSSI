@@ -40,7 +40,7 @@
             var promise = defered.promise;
 
             LoginFactory.getUser(username)
-                .then(function ()
+                .then(function (data)
                 {
                     defered.resolve();
                 })
