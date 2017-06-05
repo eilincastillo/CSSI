@@ -97,6 +97,13 @@
                             <textarea id="textarea1" class="materialize-textarea" ng-model="ctrl.patient.address.detail"></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input id="phonenumber" class="validate" ng-model="ctrl.patient.phonenumber" tabindex="4" data-field="metaPhonenumber" >
+                            <label for="phonenumber">Teléfono de contacto</label>
+                            <span id="metaPhonenumber"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -148,7 +155,45 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row" >
+                <h2><span>4</span> {{ 'dinámica familiar' | uppercase }}</h2>
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <textarea id="income" name="Ingresos" class="materialize-textarea" ng-model="ctrl.patient.income" tabindex="1" data-field="metaIncome"></textarea>
+                            <label for="income">Ingreso estimado</label>
+                            <span id="metaIncome"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <textarea id="expenses" name="Egresos" class="materialize-textarea" ng-model="ctrl.patient.expenses" tabindex="2" data-field="metaExpenses"></textarea>
+                            <label for="expenses">Egreso estimado</label>
+                            <span id="metaExpenses"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <div class="input-field col s12">
+                                <select id="savingCapacityList" name="Capacidad de ahorro" class="browser-default" ng-options="state.name for state in ctrl.savingCapacityList track by state.id"
+                                        ng-model="ctrl.patient.savingCapacity" tabindex="3" data-field="metaSavingCapacity">
+                                </select>
+                                <label for="savingCapacityList">Tiene usted capacidad de ahorro</label>
+                                <span id="metaSavingCapacity"></span>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+                <div class="col s6">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="4" data-field="metaFamilyDynamics"></textarea>
+                            <label for="familyDynamics">Dinámica familiar</label>
+                            <span id="metaFamilyDynamics"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="input-field col s6" ng-show="ctrl.occupationStep">
                 <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updatePatient(ctrl.patient)">
