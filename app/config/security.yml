@@ -24,26 +24,26 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-#        api:
-#            pattern:   ^/api
-#            stateless: true
-#            provider: user
-#            lexik_jwt:
-#                authorization_header:
-#                    enabled: true
-#                    prefix:  Bearer
-#                query_parameter:
-#                    enabled: true
-#                    name:    bearer
+        api:
+            pattern:   ^/api
+            stateless: true
+            provider: user
+            lexik_jwt:
+                authorization_header:
+                    enabled: true
+                    prefix:  Bearer
+                query_parameter:
+                    enabled: true
+                    name:    bearer
 
 
     access_control:
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api/specialty, roles: ['ROLE_ADMIN'] }
-#        - { path: ^/api/status, roles: ['ROLE_ADMIN'] }
-#        - { path: ^/api/doctor, roles: ['ROLE_ADMIN'] }
-#        - { path: ^/api/appointment, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
-#        - { path: ^/api/patient, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
-#        - { path: ^/api/user, roles: ['ROLE_ADMIN'] }
-#        - { path: ^/api/place, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
-#        - { path: ^/api/report, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
+        - { path: ^/api/specialty, roles: ['ROLE_ADMIN'] }
+        - { path: ^/api/status, roles: ['ROLE_ADMIN'] }
+        - { path: ^/api/doctor, roles: ['ROLE_ADMIN'] }
+        - { path: ^/api/appointment, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
+        - { path: ^/api/patient, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
+        - { path: ^/api/user, roles: ['ROLE_ADMIN'] }
+        - { path: ^/api/place, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
+        - { path: ^/api/report, roles: ['ROLE_ADMIN', 'ROLE_PERSONAL'] }
