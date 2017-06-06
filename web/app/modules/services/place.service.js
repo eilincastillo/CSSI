@@ -5,12 +5,12 @@
 {
     'use strict';
 
-    angular.module('cssi.services.place').service('PlaceService', ['$q', '$rootScope', '$resource', 'CSSIAPI', 'RESOURCE', 'AUTH', PlaceService]);
+    angular.module('cssi.services.place').service('PlaceService', ['$q', '$resource', 'CSSIAPI', 'RESOURCE', 'AuthService', PlaceService]);
 
-    function PlaceService($q, $rootScope, $resource, CSSIAPI, RESOURCE, AUTH)
+    function PlaceService($q, $resource, CSSIAPI, RESOURCE, AuthService)
     {
         var url = CSSIAPI.URL + RESOURCE.PLACE + ':placeId';
-        var auth = AUTH.concat($rootScope.token);
+        var auth = AuthService.getToken();
         var request = $resource(url, { placeId: '@id'},
             {
                 'query': { method: 'GET', isArray: true, headers: { 'Authorization' : auth }},
