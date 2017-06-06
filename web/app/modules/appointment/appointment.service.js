@@ -36,36 +36,6 @@
             return promise;
         }
 
-        function getAccompaniedOptions()
-        {
-            var accompaniedList = [];
-
-            accompaniedList.push({ id: 'true', name: 'Si'});
-            accompaniedList.push({ id: 'false', name:'No'});
-
-            return accompaniedList;
-        }
-
-        function getHomeVisitOptions()
-        {
-            var homeVisitList = [];
-
-            homeVisitList.push({ id: 'true', name: 'Si'});
-            homeVisitList.push({ id: 'false', name:'No'});
-
-            return homeVisitList;
-        }
-
-        function getPercentageAidOptions()
-        {
-            var percentageAidList = [];
-            var i;
-            for (i = 1; i <=100; i++) {
-                percentageAidList.push({ id: i, name: i});
-            }
-
-            return percentageAidList;
-        }
 
         function get(appointmentId)
         {
@@ -255,6 +225,21 @@
                 });
 
             return promise;
+        }
+
+        function getAccompaniedOptions()
+        {
+            return AppointmentFactory.getAccompanied();
+        }
+
+        function getHomeVisitOptions()
+        {
+            return AppointmentFactory.getHomeVisit();
+        }
+
+        function getPercentageAidOptions()
+        {
+            return AppointmentFactory.getPercentageAid();
         }
 
     }

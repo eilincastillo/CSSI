@@ -4,7 +4,7 @@
             <h1>Consultas de {{ ctrl.patient.lastname + ', ' + ctrl.patient.name }}</h1>
         </div>
         <div class="col s1">
-            <button ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 1 })">Agregar</button>
+            <button class="btn-floating btn-large waves-effect waves-light green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 1 })"><i class="material-icons">add</i></button>
         </div>
     </div>
     <div class="row">

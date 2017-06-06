@@ -23,7 +23,10 @@
             {
                 getAll: getAllAppointments,
                 get: getAppointment,
-                add: addAppointment
+                add: addAppointment,
+                getAccompanied: getAccompanied,
+                getHomeVisit: getHomeVisit,
+                getPercentageAid: getPercentageAid
             };
 
         return factory;
@@ -53,6 +56,37 @@
                 });
 
             return promise;
+        }
+
+        function getAccompanied()
+        {
+            var accompaniedList = [];
+
+            accompaniedList.push({ id: 'true', name: 'Si'});
+            accompaniedList.push({ id: 'false', name:'No'});
+
+            return accompaniedList;
+        }
+
+        function getHomeVisit()
+        {
+            var homeVisitList = [];
+
+            homeVisitList.push({ id: 'true', name: 'Si'});
+            homeVisitList.push({ id: 'false', name:'No'});
+
+            return homeVisitList;
+        }
+
+        function getPercentageAid()
+        {
+            var percentageAidList = [];
+            var i;
+            for (i = 1; i <=100; i++) {
+                percentageAidList.push({ id: i, name: i});
+            }
+
+            return percentageAidList;
         }
 
         function getAppointment(appointmentId)
