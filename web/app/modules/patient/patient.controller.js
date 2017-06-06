@@ -7,18 +7,8 @@
     function PatientCtrl($state, $stateParams, PatientService, StatusService)
     {
         var self = this;
-        self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = self.nationalityList = [];
+        self.patientList = self.genderList = self.employeeList = self.scholarshipList = self.stateList = self.districtList = self.nationalityList = self.savingCapacityList = [];
         self.enabledOccupation = self.enabledScholarship = true;
-        self.occupationStep;
-        self.contactStep;
-        self.personalStep = true;
-        self.nationalityList = [];
-        self.genderList = [];
-        self.nationalityList = PatientService.getNationalites();
-        self.stateList = PatientService.getState();
-        self.districtList = PatientService.getDistricts();
-        self.genderList = PatientService.getGenders();
-        self.scholarshipList = PatientService.getScholarship();
 
 
         self.init = function()
@@ -153,12 +143,6 @@
 
             }
 
-
-
-            self.genderList = PatientService.getGender();
-            self.employeeList = PatientService.getEmployee();
-            self.scholarshipList = PatientService.getScholarship();
-
         }
 
         self.updatePatient = function (patient)
@@ -183,13 +167,30 @@
             }
         }
 
-        self.getNationalities = function()
+        self.loadEmployeeOptions = function()
         {
-            var nationalities = PatientService.getNationalities();
-
-            self.nationalityList = nationalities;
+            self.employeeList = PatientService.getEmployee();
         }
 
+        self.loadGenderOptions = function()
+        {
+            self.genderList = PatientService.getGender();
+        }
+
+        self.loadScholarshipOptions = function()
+        {
+            self.scholarshipList = PatientService.getScholarship();
+        }
+
+        self.loadNationalities = function()
+        {
+            self.nationalityList = PatientService.getNationalities();
+        }
+
+        self.loadsavingCapacityOptions = function()
+        {
+            self.savingCapacityList = PatientService.getsavingCapacityOptions();
+        }
 
         self.loadDistricts = function (place)
         {

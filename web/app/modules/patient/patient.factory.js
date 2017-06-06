@@ -23,7 +23,12 @@
                 getAll: getAllPatients,
                 get: getPatient,
                 update: updatePatient,
-                add: addPatient
+                add: addPatient,
+                getNationalities: getNationalities,
+                getScholarship: getScholarship,
+                getGender: getGender,
+                getEmployeeState: getEmployeeState,
+                getsavingCapacityOptions: getsavingCapacityOptions
             };
 
         return factory;
@@ -65,6 +70,63 @@
             return promise;
         }
 
+        function getNationalities()
+        {
+            var nationalityList = [];
+
+            nationalityList.push({ id: 'V', name: 'Venezolano'});
+            nationalityList.push({ id: 'E', name:'Extranjero'});
+
+            return nationalityList;
+        }
+
+
+
+        function getScholarship()
+        {
+            var scholarshipList = [];
+
+            scholarshipList.push({ id: 1, name: 'Ninguno'});
+            scholarshipList.push({ id: 2, name: 'Primaria'});
+            scholarshipList.push({ id: 3, name: 'Bachillerato'});
+            scholarshipList.push({ id: 4, name: 'Técnico'});
+            scholarshipList.push({ id: 5, name: 'Universitario'});
+
+
+            return scholarshipList;
+        }
+
+
+        function getGender()
+        {
+            var genderList = [];
+
+            genderList.push({ id: 1, name: 'Femenino'});
+            genderList.push({ id: 2, name: 'Masculino'});
+
+            return genderList;
+        }
+
+        function getEmployeeState()
+        {
+            var employeeStateList = [];
+
+            employeeStateList.push({ id: 1, name: 'Empleado'});
+            employeeStateList.push({ id: 2, name: 'Desempleado'});
+
+            return employeeStateList;
+        }
+
+        function getsavingCapacityOptions()
+        {
+            var savingCapacityList = [];
+
+            savingCapacityList.push({ id: true, name: 'Sí'});
+            savingCapacityList.push({ id: false, name: 'No'});
+
+            return savingCapacityList;
+        }
+
         function updatePatient(patient)
         {
             var defered = $q.defer();
@@ -100,6 +162,10 @@
 
             return promise;
         }
+
+
+
+
     }
 
 })();

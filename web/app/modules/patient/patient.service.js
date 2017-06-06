@@ -14,13 +14,10 @@
         this.getState = getState;
         this.getDistricts = getDistricts;
         this.getNationalities = getNationalities;
+        this.getsavingCapacityOptions = getsavingCapacityOptions;
         this.add = add;
         this.update = update;
         this.validate = validate;
-        this.getNationalites = getNationalites;
-        this.getGenders = getGenders;
-        this.getScholarship = getScholarshipOptions;
-        this.getEmployee = getEmployeeOptions;
 
         function getAll()
         {
@@ -39,49 +36,6 @@
                 });
 
             return promise;
-        }
-
-        function getGenders()
-        {
-            var genderList = [];
-
-            genderList.push({ id: 'F', name: 'Femenino'});
-            genderList.push({ id: 'M', name:'Masculino'});
-
-            return genderList;
-        }
-
-        function getNationalites()
-        {
-            var nationalityList = [];
-
-            nationalityList.push({ id: 'V', name: 'Venezolano'});
-            nationalityList.push({ id: 'E', name:'Extranjero'});
-
-            return nationalityList;
-        }
-
-        function getEmployeeOptions()
-        {
-            var nationalityList = [];
-
-            nationalityList.push({ id: 'true', name: 'Si'});
-            nationalityList.push({ id: 'false', name:'No'});
-
-            return nationalityList;
-        }
-
-        function getScholarshipOptions()
-        {
-            var scholarshipList = [];
-
-            scholarshipList.push({ id: 'Ninguna', name: 'Ninguna'});
-            scholarshipList.push({ id: 'Primaria', name:'Primaria'});
-            scholarshipList.push({ id: 'Secundaria', name:'Secundaria'});
-            scholarshipList.push({ id: 'Tecnico', name:'Ténico'});
-            scholarshipList.push({ id: 'Superior', name:'Superior'});
-
-            return scholarshipList;
         }
 
         function validate(step)
@@ -214,6 +168,7 @@
             }
             return result;
         }
+
         function get(patientId)
         {
             var defered = $q.defer();
@@ -231,88 +186,6 @@
                 });
 
             return promise;
-        }
-
-        function getGender()
-        {
-            var genderList = [];
-
-            genderList.push({ id: 1, name: 'Femenino'});
-            genderList.push({ id: 2, name: 'Masculino'});
-
-            return genderList;
-        }
-
-        function getEmployeeState()
-        {
-            var employeeStateList = [];
-
-            employeeStateList.push({ id: 1, name: 'Empleado'});
-            employeeStateList.push({ id: 2, name: 'Desempleado'});
-
-            return employeeStateList;
-        }
-
-        function getState()
-        {
-            var defered = $q.defer();
-            var promise = defered.promise;
-
-            PlaceService.getStates()
-                .then(function (data)
-                {
-                    defered.resolve(data);
-                })
-                .catch(function (error)
-                {
-                    defered.reject();
-                });
-
-            return promise;
-        }
-
-        function getDistricts(placeId)
-        {
-            var defered = $q.defer();
-            var promise = defered.promise;
-
-            PlaceService.getDistricts(placeId)
-                .then(function (data)
-                {
-                    defered.resolve(data);
-                })
-                .catch(function (error)
-                {
-                    defered.reject();
-                });
-
-            return promise;
-        }
-
-        function getNationalities()
-        {
-            var nationalityList = [];
-
-            nationalityList.push({ id: 'V', name: 'Venezolano'});
-            nationalityList.push({ id: 'E', name:'Extranjero'});
-
-            return nationalityList;
-        }
-
-
-
-        function getScholarship()
-        {
-            var scholarshipList = [];
-
-            scholarshipList.push({ id: 1, name: 'Ninguno'});
-            scholarshipList.push({ id: 2, name: 'Primaria'});
-            scholarshipList.push({ id: 3, name: 'Bachillerato'});
-            scholarshipList.push({ id: 4, name: 'Técnico'});
-            scholarshipList.push({ id: 5, name: 'Universitario'});
-
-
-            return scholarshipList;
         }
 
         function add(patient)
@@ -391,5 +264,67 @@
 
             return promise;
         }
+
+        function getState()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            PlaceService.getStates()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (error)
+                {
+                    defered.reject();
+                });
+
+            return promise;
+        }
+
+        function getDistricts(placeId)
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            PlaceService.getDistricts(placeId)
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (error)
+                {
+                    defered.reject();
+                });
+
+            return promise;
+        }
+
+        function getEmployeeState()
+        {
+            return PatientFactory.getEmployeeState();
+        }
+
+        function getGender()
+        {
+            return PatientFactory.getGender();
+        }
+
+        function getNationalities()
+        {
+            return PatientFactory.getNationalities()
+        }
+
+        function getScholarship()
+        {
+            return PatientFactory.getScholarship();
+        }
+
+        function getsavingCapacityOptions()
+        {
+            return PatientFactory.getsavingCapacityOptions();
+        }
+
     }
 })();

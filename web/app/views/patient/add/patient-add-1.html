@@ -6,28 +6,28 @@
                     <div class="input-field col s6">
                         <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.firstName" tabindex="1" data-field="metaFirstName">
                         <label for="firstName">Primer nombre</label>
-                        <span id="metaFirstName"></span>
+                        <span id="metaFirstName" class="error"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="2" data-field="metaSecondName">
                         <label for="secondName">Segundo nombre</label>
-                        <span id="metaSecondName"></span>
+                        <span id="metaSecondName" class="error"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.firstLastname" tabindex="3" data-field="metaFirstLastname">
                         <label for="firstLastname">Primer apellido</label>
-                        <span id="metaFirstLastname"></span>
+                        <span id="metaFirstLastname" class="error"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="4" data-field="metaSecondLastname">
                         <label for="secondLastname">Segundo apellido</label>
-                        <span id="metaSecondLastname"></span>
+                        <span id="metaSecondLastname" class="error"></span>
                     </div>
                 </div>
 
@@ -36,11 +36,11 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <div class="input-field col s12">
+                            <label for="nationalityList" class="active">Nacionalidad</label>
                             <select id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
-                                    ng-model="ctrl.patient.nationality" tabindex="5" data-field="metaNationality">
+                                    ng-init="ctrl.loadNationalities()" ng-model="ctrl.patient.nationality" tabindex="5" data-field="metaNationality">
                             </select>
-                            <label for="nationalityList">Nacionalidad</label>
-                            <span id="metaNationality"></span>
+                            <span id="metaNationality" class="error"></span>
                         </div>
                     </div>
                 </div>
@@ -48,25 +48,25 @@
                     <div class="input-field col s6">
                         <input id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="6" data-field="metaDocument">
                         <label for="document">Cédula de Identidad</label>
-                        <span id="metaDocument"></span>
+                        <span id="metaDocument" class="error"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <div class="input-field col s12">
+                            <label for="genderList" class="active">Sexo</label>
                             <select id="genderList" name="Sexo" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id"
-                                    ng-model="ctrl.patient.gender" tabindex="7" data-field="metaGender">
+                                    ng-init="ctrl.loadGenderOptions()" ng-model="ctrl.patient.gender" tabindex="7" data-field="metaGender">
                             </select>
-                            <label for="genderList">Sexo</label>
-                            <span id="metaGender"></span>
+                            <span id="metaGender" class="error"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
+                        <label for="birthday" class="active">Fecha de nacimiento</label>
                         <input id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="8" data-field="metaBirthday">
-                        <label for="birthday">Fecha de nacimiento</label>
-                        <span id="metaBirthday"></span>
+                        <span id="metaBirthday" class="error"></span>
                     </div>
                 </div>
             </div>
