@@ -153,10 +153,29 @@ class AppointmentController extends FOSRestController
             "observations"=>$appointment->getObservations(),"reasonAppointment"=>$appointment->getReasonAppointment(),
             "result"=>$appointment->getResult(),"expectationsPatient"=>$appointment->getExpectationsPatient(),
             "referredToBy"=>$appointment->getReferredToBy(),
+            "user"=>array(
+                "firstName"=>$appointment->getUser()->getPersonal()->getName(),
+                "firstLastname"=>$appointment->getUser()->getPersonal()->getLastname(),
+                "secondName"=>$appointment->getUser()->getPersonal()->getSecondName(),
+                "secondLastname"=>$appointment->getUser()->getPersonal()->getSecondLastname()
+            )
+            ,
+            "personal"=> array(
+                "document"=>$appointment->getPatient()->getPersonal()->getDocument(),
+                "firstName"=>$appointment->getPatient()->getPersonal()->getName(),
+                "firstLastname"=>$appointment->getPatient()->getPersonal()->getLastname(),
+                "secondName"=>$appointment->getPatient()->getPersonal()->getSecondName(),
+                "secondLastname"=>$appointment->getPatient()->getPersonal()->getSecondLastname(),
+
+            ),
+            "patient"=>array(
+                "historyNumber"=>$appointment->getPatient()->getHistoryNumber(),
+            ),
             "doctor"=>array("idDoctor"=>$appointment->getDoctor()->getId(),
                 "nameDoctor"=>$appointment->getDoctor()->getName(),
                 "lastnameDoctor"=>$appointment->getDoctor()->getLastName(),
-                "specialtyDoctor"=>$appointment->getDoctor()->getSpecialty()->getName())
+                "specialtyDoctor"=>$appointment->getDoctor()->getSpecialty()->getName()
+            )
         );
     }
 
