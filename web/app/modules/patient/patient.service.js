@@ -20,6 +20,7 @@
         this.getNationalites = getNationalites;
         this.getGenders = getGenders;
         this.getScholarship = getScholarshipOptions;
+        this.getEmployee = getEmployeeOptions;
 
         function getAll()
         {
@@ -56,6 +57,16 @@
 
             nationalityList.push({ id: 'V', name: 'Venezolano'});
             nationalityList.push({ id: 'E', name:'Extranjero'});
+
+            return nationalityList;
+        }
+
+        function getEmployeeOptions()
+        {
+            var nationalityList = [];
+
+            nationalityList.push({ id: 'true', name: 'Si'});
+            nationalityList.push({ id: 'false', name:'No'});
 
             return nationalityList;
         }

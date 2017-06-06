@@ -49,10 +49,10 @@
         self.saveThirdStep = function()
         {
             var id =  $stateParams.patientId;
-            if(PatientService.validate(3))
-            {
+            // if(PatientService.validate(3))
+            // {
                 $state.go('menu.patient-add', { patientId: id, patientStep: 4 })
-            }
+            // }
         }
 
         function isEmpty(step)
@@ -84,6 +84,7 @@
         self.districtList = PatientService.getDistricts();
         self.genderList = PatientService.getGenders();
         self.scholarshipList = PatientService.getScholarship();
+        self.savingCapacityList = PatientService.getEmployee();
 
         self.addPatient = function (patient)
         {
