@@ -5,29 +5,36 @@
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
+                            <input id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.patient.historyNumber" tabindex="1" data-field="metaHistoryNumber">
+                            <label for="historyNumber">Número de historia</label>
+                            <span id="metaHistoryNumber" class="error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
                             <label for="firstName" class="active">Primer nombre</label>
-                            <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.name" tabindex="1" data-field="metaFirstName">
+                            <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.name" tabindex="2" data-field="metaFirstName">
                             <span id="metaFirstName"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="secondName" class="active">Segundo nombre</label>
-                            <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="2" data-field="metaSecondName">
+                            <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="3" data-field="metaSecondName">
                             <span id="metaSecondName"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="firstLastname"  class="active">Primer apellido</label>
-                            <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.lastname" tabindex="3" data-field="metaFirstLastname">
+                            <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.lastname" tabindex="4" data-field="metaFirstLastname">
                             <span id="metaFirstLastname"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="secondLastname" class="active">Segundo apellido</label>
-                            <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="4" data-field="metaSecondLastname">
+                            <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="5" data-field="metaSecondLastname">
                             <span id="metaSecondLastname"></span>
                         </div>
                     </div>
@@ -39,7 +46,7 @@
                             <div class="input-field col s12">
                                 <label for="nationalityList" class="active">Nacionalidad</label>
                                 <select id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
-                                        ng-model="ctrl.patient.nationality" ng-init="ctrl.loadNationalities()" tabindex="5" data-field="metaNationality">
+                                        ng-model="ctrl.patient.nationality" ng-init="ctrl.loadNationalities()" tabindex="6" data-field="metaNationality">
                                 </select>
                                 <span id="metaNationality"></span>
                             </div>
@@ -48,7 +55,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="document" class="active">Cédula de Identidad</label>
-                            <input id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="6" data-field="metaDocument">
+                            <input id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="7" data-field="metaDocument">
                             <span id="metaDocument"></span>
                         </div>
                     </div>
@@ -57,7 +64,7 @@
                             <div class="input-field col s12">
                                 <label for="genderList" class="active">Sexo</label>
                                 <select id="genderList" name="Sexo" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id" ng-init="ctrl.loadGenderOptions()"
-                                        ng-model="ctrl.patient.gender" tabindex="7" data-field="metaGender">
+                                        ng-model="ctrl.patient.gender" tabindex="8" data-field="metaGender">
                                 </select>
                                 <span id="metaGender"></span>
                             </div>
@@ -66,7 +73,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="birthday" class="active">Fecha de nacimiento</label>
-                            <input id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="8" data-field="metaBirthday">
+                            <input id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="9" data-field="metaBirthday">
                             <span id="metaBirthday"></span>
                         </div>
                     </div>
@@ -82,7 +89,7 @@
                             <div class="input-field col s12">
                                 <label for="stateList" class="active">Estado</label>
                                 <select id="stateList" name="Estado" class="browser-default" ng-options="state.name for state in ctrl.stateList track by state.id" ng-init="ctrl.loadStates()"
-                                        ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)" tabindex="9" data-field="metaState">
+                                        ng-model="ctrl.patient.address.state" ng-change="ctrl.loadDistricts(ctrl.patient.address.state)" tabindex="10" data-field="metaState">
                                 </select>
                                 <span id="metaState"></span>
                             </div>
@@ -93,7 +100,7 @@
                             <div class="input-field col s12">
                                 <label for="districtList" class="active">Parroquia</label>
                                 <select id="districtList" name="Parroquia" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id" ng-init="ctrl.loadDistricts()"
-                                        ng-model="ctrl.patient.address.district" tabindex="10" data-field="metaDistrict">
+                                        ng-model="ctrl.patient.address.district" tabindex="11" data-field="metaDistrict">
                                 </select>
                                 <span id="metaDistrict"></span>
                             </div>
@@ -104,14 +111,14 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="addressDetail" class="active">Detalle de dirección</label>
-                            <textarea id="addressDetail" name="Detalle de dirección" class="materialize-textarea" ng-model="ctrl.patient.placeDetail" tabindex="11" data-field="metaAddressDetail"></textarea>
+                            <textarea id="addressDetail" name="Detalle de dirección" class="materialize-textarea" ng-model="ctrl.patient.placeDetail" tabindex="12" data-field="metaAddressDetail"></textarea>
                             <span id="metaAddressDetail"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s10">
                             <label for="phonenumber" class="active">Teléfono de contacto</label>
-                            <input id="phonenumber" name="Telefono" class="validate" ng-model="ctrl.patient.phoneNumber" tabindex="12" data-field="metaPhonenumber" >
+                            <input id="phonenumber" name="Telefono" class="validate" ng-model="ctrl.patient.phoneNumber" tabindex="13" data-field="metaPhonenumber" >
                             <span id="metaPhonenumber"></span>
                         </div>
                     </div>
@@ -127,7 +134,7 @@
                                 <div class="input-field col s12">
                                     <label for="scholarshipList" class="active">Escolaridad</label>
                                     <select id="scholarshipList" name="Escolaridad" class="browser-default" ng-options="scholarship.name for scholarship in ctrl.scholarshipList track by scholarship.id" ng-init="ctrl.loadScholarshipOptions()"
-                                            ng-model="ctrl.patient.scholarship" ng-change="ctrl.toggleScholarship(ctrl.patient.scholarship)" tabindex="13" data-field="metaScholarship">
+                                            ng-model="ctrl.patient.scholarship" ng-change="ctrl.toggleScholarship(ctrl.patient.scholarship)" tabindex="14" data-field="metaScholarship">
                                         <span id="metaScholarship"></span>
                                     </select>
                                 </div>
@@ -136,7 +143,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="scholarshipSpecialty" class="active">Título</label>
-                                <input id="scholarshipSpecialty" name="Título" type="text" class="validate" ng-model="ctrl.patient.scholarshipDetail" tabindex="14" data-field="metaScholarshipSpecialty">
+                                <input id="scholarshipSpecialty" name="Título" type="text" class="validate" ng-model="ctrl.patient.scholarshipDetail" tabindex="15" data-field="metaScholarshipSpecialty">
                                 <span id="metaScholarshipSpecialty"></span>
                             </div>
                         </div>
@@ -148,7 +155,7 @@
                                 <div class="input-field col s12">
                                     <label for="employeeList" class="active">Empleado</label>
                                     <select id="employeeList" name="Empleado" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id" ng-init="ctrl.loadEmployeeOptions()"
-                                            ng-model="ctrl.patient.employee" ng-change="ctrl.toggleOccupation(ctrl.patient.employee)" tabindex="15" data-field="metaEmployee">
+                                            ng-model="ctrl.patient.employee" ng-change="ctrl.toggleOccupation(ctrl.patient.employee)" tabindex="16" data-field="metaEmployee">
                                     </select>
                                     <span id="metaEmployee"></span>
                                 </div>
@@ -157,14 +164,14 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="enabledOccupation" class="active">Ocupación</label>
-                                <input id="enabledOccupation" name="Ocupación" type="text" class="validate" ng-model="ctrl.patient.jobOccupation" tabindex="16" data-field="metaEnabledOccupation">
+                                <input id="enabledOccupation" name="Ocupación" type="text" class="validate" ng-model="ctrl.patient.jobOccupation" tabindex="17" data-field="metaEnabledOccupation">
                                 <span id="metaEnabledOccupation"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="institution" class="active">Institución en la que labora</label>
-                                <input id="institution" name="Intitución" type="text" class="validate" ng-model="ctrl.patient.employmentInstitution" tabindex="17" data-field="metainstitution">
+                                <input id="institution" name="Intitución" type="text" class="validate" ng-model="ctrl.patient.employmentInstitution" tabindex="18" data-field="metainstitution">
                                 <span id="metainstitution"></span>
                             </div>
                         </div>
@@ -177,14 +184,14 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="income" class="active">Ingreso estimado</label>
-                            <input id="income" name="Ingresos" type="text" class="validate" ng-model="ctrl.patient.income" tabindex="18" data-field="metaIncome" >
+                            <input id="income" name="Ingresos" type="text" class="validate" ng-model="ctrl.patient.income" tabindex="19" data-field="metaIncome" >
                             <span id="metaIncome"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <label for="expenses" class="active">Egreso estimado</label>
-                            <input id="expenses" name="Egresos" type="text" class="validate" ng-model="ctrl.patient.expenses" tabindex="19" data-field="metaExpenses" >
+                            <input id="expenses" name="Egresos" type="text" class="validate" ng-model="ctrl.patient.expenses" tabindex="20" data-field="metaExpenses" >
                             <span id="metaExpenses"></span>
                         </div>
                     </div>
@@ -193,7 +200,7 @@
                             <div class="input-field col s12">
                                 <label for="savingCapacityList" class="active">Tiene usted capacidad de ahorro</label>
                                 <select id="savingCapacityList" name="Capacidad de ahorro" class="browser-default" ng-options="state.name for state in ctrl.savingCapacityList track by state.id" ng-init="ctrl.loadsavingCapacityOptions()"
-                                        ng-model="ctrl.patient.savingCapacity" tabindex="20" data-field="metaSavingCapacity">
+                                        ng-model="ctrl.patient.savingCapacity" tabindex="21" data-field="metaSavingCapacity">
                                 </select>
                                 <span id="metaSavingCapacity"></span>
                             </div>
@@ -203,7 +210,7 @@
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
-                            <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="21" data-field="metaFamilyDynamics"></textarea>
+                            <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="22" data-field="metaFamilyDynamics"></textarea>
                             <label for="familyDynamics">Dinámica familiar</label>
                             <span id="metaFamilyDynamics"></span>
                         </div>

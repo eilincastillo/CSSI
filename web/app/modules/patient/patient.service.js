@@ -283,19 +283,27 @@
 
             var updatedPatient =
                 {
-                    name: patient.name,
-                    lastname: patient.lastname,
-                    historyNumber: patient.specialty.id,
-                    registrationDate: '',
-                    accompanied: '',
-                    document: '',
-                    gender: '',
-                    birthdate: '',
-                    familyDynamics: '',
-                    homeVisit: '',
-                    job: '',
-                    job_detail: '',
-                    idPlace: ''
+                    name: storage.getItem('name'),
+                    secondName: storage.getItem('secondName'),
+                    lastname: storage.getItem('lastname'),
+                    secondLastname: storage.getItem('secondLastname'),
+                    historyNumber: storage.getItem('historyNumber'),
+                    nationality: storage.getItem('nationality'),
+                    document: storage.getItem('document'),
+                    gender: storage.getItem('gender'),
+                    birthdate: storage.getItem('birthdate'),
+                    familyDynamics: storage.getItem('familyDynamics'),
+                    scholarship: storage.getItem('scholarship'),
+                    scholarshipDetail: storage.getItem('scholarshipDetail'),
+                    job: storage.getItem('job'),
+                    occupation: storage.getItem('occupation'),
+                    employmentInstitution: storage.getItem('employmentInstitution'),
+                    idPlace: parseInt(storage.getItem('idPlace')),
+                    placeDetail: storage.getItem('placeDetail'),
+                    phoneNumber: storage.getItem('phoneNumber'),
+                    income: storage.getItem('income'),
+                    expenses: storage.getItem('expenses'),
+                    savingCapacity: storage.getItem('savingCapacity')
                 };
 
             PatientFactory.update(updatedPatient)
