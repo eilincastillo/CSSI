@@ -2,11 +2,11 @@
         <h1>Información detallada de la consulta</h1>
         <div class="row">
             <div class="col s12">
-                <div class="col s4">
-                    <p>Cédula: {{ ctrl.appointment.patient.document }}</p>
+                <div class="col s2">
+                    <p>Cédula: {{ ctrl.appointment.document }}</p>
                 </div>
-                <div class="col s4">
-                    <p>Nombre completo: {{ ctrl.appointment.name }}</p>
+                <div class="col s6">
+                    <p>Nombre completo: {{ ctrl.appointment.name}}</p>
                 </div>
                 <div class="col s4">
                     <p>Fecha consulta: {{ ctrl.appointment.date }}</p>
@@ -19,14 +19,14 @@
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
-                            <label for="referredToBy" class="active">Número de historia</label>
-                            <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="true">
+                            <label for="historyNumber" class="active">Número de historia</label>
+                            <input id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.appointment.patient.historyNumber" ng-disabled="true">
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <label for="referredToBy" class="active">Administrador de entrevista</label>
-                            <input id="referredToBy" name="Referido por" type="text" class="validate" ng-model="ctrl.appointment.referredToBy" ng-disabled="true">
+                            <label for="user" class="active">Administrador de entrevista</label>
+                            <input id="user" name="Administrado por" type="text" class="validate" ng-model="ctrl.appointment.user" ng-disabled="true">
                         </div>
                     </div>
                 </div>

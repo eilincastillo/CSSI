@@ -76,7 +76,22 @@
             AppointmentFactory.get(appointmentId)
                 .then(function (data)
                 {
-                    data.doctor = 'Dr(a) '.concat(data.doctor.lastnameDoctor).concat(', ').concat(data.doctor.nameDoctor).concat(' - ').concat(data.doctor.specialtyDoctor);
+                    data.document = data.personal.nationality.concat('-')
+                                                                .concat(data.personal.document);
+                    data.name = data.personal.firstLastname.concat(' ')
+                                                            .concat(data.personal.secondLastname)
+                                                            .concat(', ')
+                                                            .concat(data.personal.firstName)
+                                                            .concat(' ')
+                                                            .concat(data.personal.secondName);
+                    delete data.personal;
+                    data.user = data.user.firstLastname.concat(', ')
+                                                        .concat(data.user.firstName);
+                    data.doctor = 'Dr(a) '.concat(data.doctor.lastnameDoctor)
+                                            .concat(', ')
+                                            .concat(data.doctor.nameDoctor)
+                                            .concat(' - ')
+                                            .concat(data.doctor.specialtyDoctor);
                     data.date = new Date(data.date).toISOString().split('T')[0];
                     defered.resolve(data);
                 })
