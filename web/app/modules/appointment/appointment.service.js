@@ -235,6 +235,18 @@
             AppointmentFactory.add(addedAppointment)
                 .then(function (data)
                 {
+
+                    storage.removeItem('referredToBy');
+                    storage.removeItem('accompanied');
+                    storage.removeItem('reasonAppointment');
+                    storage.removeItem('expectationsPatient');
+                    storage.removeItem('result');
+                    storage.removeItem('homeVisit');
+                    storage.removeItem('doctor');
+                    storage.removeItem('percentageAid');
+                    storage.removeItem('observations');
+                    storage.removeItem('price');
+
                     defered.resolve(data);
                 })
                 .catch(function(e)

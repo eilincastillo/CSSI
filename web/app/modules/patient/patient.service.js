@@ -244,6 +244,28 @@
             PatientFactory.add(addedPatient)
                 .then(function (data)
                 {
+                    storage.removeItem('name');
+                    storage.removeItem('secondName');
+                    storage.removeItem('lastname');
+                    storage.removeItem('secondLastname');
+                    storage.removeItem('historyNumber');
+                    storage.removeItem('nationality');
+                    storage.removeItem('document');
+                    storage.removeItem('gender');
+                    storage.removeItem('birthdate');
+                    storage.removeItem('familyDynamics');
+                    storage.removeItem('scholarship');
+                    storage.removeItem('scholarshipDetail');
+                    storage.removeItem('job');
+                    storage.removeItem('occupation');
+                    storage.removeItem('employmentInstitution');
+                    storage.removeItem('idPlace');
+                    storage.removeItem('placeDetail');
+                    storage.removeItem('phoneNumber');
+                    storage.removeItem('income');
+                    storage.removeItem('expenses');
+                    storage.removeItem('savingCapacity');
+
                     defered.resolve(data);
                 })
                 .catch(function(e)
