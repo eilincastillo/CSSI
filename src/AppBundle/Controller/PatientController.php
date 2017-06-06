@@ -330,6 +330,8 @@ class PatientController extends FOSRestController
                     return $this->handleView($view);
                     //return new Response('The patient was successfully added', Response::HTTP_ACCEPTED);
                 }
+                $view = $this->view(array("message"=>"Bad json"), 409);
+                return $this->handleView($view);
             }
             catch (Exception $ex)
             {
