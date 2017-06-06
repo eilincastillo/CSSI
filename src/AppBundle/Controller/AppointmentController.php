@@ -161,6 +161,7 @@ class AppointmentController extends FOSRestController
             )
             ,
             "personal"=> array(
+                "nationality"=>$appointment->getPatient()->getPersonal()->getNationality(),
                 "document"=>$appointment->getPatient()->getPersonal()->getDocument(),
                 "firstName"=>$appointment->getPatient()->getPersonal()->getName(),
                 "firstLastname"=>$appointment->getPatient()->getPersonal()->getLastname(),
