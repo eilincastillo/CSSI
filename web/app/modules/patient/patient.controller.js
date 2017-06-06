@@ -149,7 +149,8 @@
         {
             var urlParameter = $stateParams.patientId;
 
-            if(urlParameter)
+            if(urlParameter && PatientService.validate(1) && PatientService.validate(2) && PatientService.validate(3)
+                && PatientService.validate(4))
             {
                 PatientService.update(patient)
                     .then(function ()
@@ -160,10 +161,6 @@
                     {
 
                     });
-            }
-            else
-            {
-                $state.go('menu.patient');
             }
         }
 
