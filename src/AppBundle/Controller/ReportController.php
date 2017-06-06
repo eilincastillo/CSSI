@@ -23,7 +23,7 @@ class ReportController extends FOSRestController
 {
     /**
      * ApiDoc
-     * @api {get} cssi/web/app_dev.php/api/report/patientByJob
+     * @api {get} cssi/web/app_dev.php/api/report/patientByJob/
      * @apiName getAllPatientsByJobAction
      * @apiGroup Report
      * @apiDescription Get all patients by Job.
@@ -47,7 +47,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Get("/patientByJob")
+     * @Get("/patientByJob/")
      */
 
     public function getPatientByJobAction()
@@ -73,7 +73,7 @@ class ReportController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {get} cssi/web/app_dev.php/api/report/patientBySpecialty
+     * @api {get} cssi/web/app_dev.php/api/report/patientBySpecialty/
      * @apiName getAllPatientsByParishesAction
      * @apiGroup Report
      * @apiDescription Get all patients by Specialty.
@@ -97,7 +97,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Get("/patientBySpecialty")
+     * @Get("/patientBySpecialty/")
      */
 
     public function getPatientBySpecialtyAction()
@@ -127,7 +127,7 @@ class ReportController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {post} cssi/web/app_dev.php/api/report/patientByDocument
+     * @api {post} cssi/web/app_dev.php/api/report/patientByDocument/
      * @apiName findPatientByDocumentOrHistoryNumberAction
      * @apiGroup Report
      * @apiDescription find Patient by Document or HistoryNumber.
@@ -178,7 +178,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Post("/patientByDocument")
+     * @Post("/patientByDocument/")
      */
 
     public function findPatientByDocumentOrHistoryNumberAction(Request $request)
@@ -212,7 +212,10 @@ class ReportController extends FOSRestController
 
                         }
                         else
-                            return new Response('Error patient don\'t exist',Response::HTTP_NO_CONTENT);
+                        {
+                            $view = $this->view(array("message"=>"Error patient don't exist"), 409);
+                            return $this->handleView($view);
+                        }
                     }
                     else
                         if ($json['historyNumber'] !="")

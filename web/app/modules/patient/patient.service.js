@@ -21,6 +21,7 @@
         this.getGenders = getGenders;
         this.getScholarship = getScholarshipOptions;
         this.getEmployee = getEmployeeOptions;
+        this.validateUpdate = validateUpdate;
 
         function getAll()
         {
@@ -214,6 +215,7 @@
             }
             return result;
         }
+
         function get(patientId)
         {
             var defered = $q.defer();
