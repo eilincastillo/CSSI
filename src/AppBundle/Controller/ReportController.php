@@ -143,14 +143,13 @@ class ReportController extends FOSRestController
      *     HTTP/1.1 200 OK
      *
      * {
-    "id": 14,
-    "history_number": "1234567890",
-    "registration_date": "1970-01-01T00:00:00+0100",
+    "id": 13,
+    "history_number": "121548890",
+    "registration_date": "2016-08-08T00:00:00+0200",
     "gender": "M",
-    "birthdate": "1970-01-01T00:00:00+0100",
+    "birthdate": "1993-10-06T00:00:00+0100",
     "family_dynamics": "Familia nuclear",
     "job": "false",
-    "job_detail": "",
     "place": {
     "id": 2,
     "name": "El Paraiso",
@@ -162,14 +161,23 @@ class ReportController extends FOSRestController
     }
     },
     "personal": {
-    "id": 13,
-    "document": "14111222",
+    "id": 12,
+    "document": "141155212",
     "name": "Alejandra",
     "second_lastname": "Vaamonde",
     "second_name": "Alejandra",
     "lastname": "Vaamonde",
     "nationality": "V"
-    }
+    },
+    "place_detail": "Av. Paez",
+    "scholarship": "Ninguno",
+    "scholarship_detail": "",
+    "occupation": "",
+    "employment_institution": "",
+    "phone_number": "0414123456",
+    "income": "150000",
+    "expenses": "500000",
+    "saving_capacity": "true"
     }
      */
 
@@ -205,6 +213,7 @@ class ReportController extends FOSRestController
                             $patients = $em->getRepository('AppBundle:Patient')->findOneByPersonal($personal->getId());
                             if ($personal->getNationality() == $json["nationality"])
                             {
+//                                $response = array($personal,$patients);
                                 $view = $this->view($patients, 202);
                                 return $this->handleView($view);
                                 //return ($patients);
@@ -213,42 +222,54 @@ class ReportController extends FOSRestController
                         }
                         else
                         {
-                            $view = $this->view(array("message"=>"Error patient don't exist"), 409);
+                            $view = $this->view(array("message"=>"Error patient with this document don't exist"), 409);
                             return $this->handleView($view);
                         }
                     }
                     else
                         if ($json['historyNumber'] !="")
                         {
-                            $patients = $em->getRepository('AppBundle:Patient')->findPatientByHistoryNumber($json['historyNumber']);
+                            $patients = $em->getRepository('AppBundle:Patient')->findOneByHistoryNumber($json['historyNumber']);
 
                             if ($patients != null)
                             {
+                                //$response = array($personal,$patients);
                                 $view = $this->view($patients, 202);
                                 return $this->handleView($view);
                                 //return ($patients);
                             }
                             else
-                                return new Response('Error',Response::HTTP_NO_CONTENT);
+                            {
+                                $view = $this->view(array("message"=>"Error patient with this history name don't exist"), 409);
+                                return $this->handleView($view);
+                            }
                         }
                         else
-                            return new Response('Error',Response::HTTP_CONFLICT);
+                        {
+                            $view = $this->view(array("message"=>"Error historyNumber and document can\t be null in the same time"), 409);
+                            return $this->handleView($view);
+                        }
 
                 }
                 else
-                    return new Response('Error',Response::HTTP_CONFLICT);
+                {
+                    $view = $this->view(array("message"=>"Bad json"), 409);
+                    return $this->handleView($view);
+                }
 
             } catch (Exception $ex)
             {
-                return new Response('Error', Response::HTTP_CONFLICT);
+                    $view = $this->view(array("message"=>"Generic error"), 409);
+                    return $this->handleView($view);
             }
         }
-        return new Response('Error, the place don\'t exists',Response::HTTP_CONFLICT);
+        $view = $this->view(array("message"=>"Generic error"), 409);
+        return $this->handleView($view);
     }
 
     /**
      * ApiDoc
-     * @api {post} cssi/web/app_dev.php/api/report/rangeAge
+     * @api {post} cssi/web/app_dev.php/api/report/rangeAge/
      * @apiName getAppointmentsByPatientAction
      * @apiGroup Report
      * @apiDescription Get female patient between a range of age.
@@ -277,7 +298,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Post("/rangeAge")
+     * @Post("/rangeAge/")
      */
 
     public function getAppointmentsByPatientAction(Request $request)
@@ -338,7 +359,7 @@ class ReportController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {get} cssi/web/app_dev.php/api/report/allPatientParishes
+     * @api {get} cssi/web/app_dev.php/api/report/allPatientParishes/
      * @apiName getAllPatientsByParishesAction
      * @apiGroup Report
      * @apiDescription Get all patients by Parishes.
@@ -362,7 +383,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Get("/allPatientParishes")
+     * @Get("/allPatientParishes/")
      */
 
     public function getAllPatientsByParishesAction()
@@ -457,7 +478,7 @@ class ReportController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {post} cssi/web/app_dev.php/api/report/patientParishes
+     * @api {post} cssi/web/app_dev.php/api/report/patientParishes/
      * @apiName getPatientByParishesAction
      * @apiGroup Report
      * @apiDescription Get a patient by Parishes.
@@ -499,7 +520,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Post("/patientParishes")
+     * @Post("/patientParishes/")
      */
 
     public function getPatientByParishesAction(Request $request)
@@ -517,7 +538,7 @@ class ReportController extends FOSRestController
 
                     if ($parishes !=null)
                     {
-                        $patients = $em->getRepository('AppBundle:Patient')->getPatientByParishes($json['nameParishes']);
+                        $patients = $em->getRepository('AppBundle:Patient')->findByPlace($parishes);
                         return array("totalPatient"=>count($patients) , "patients"=>$patients);
                     }
                     else
@@ -536,7 +557,7 @@ class ReportController extends FOSRestController
 
     /**
      * ApiDoc
-     * @api {post} cssi/web/app_dev.php/api/report/countPersonsAndHelp
+     * @api {post} cssi/web/app_dev.php/api/report/countPersonsAndHelp/
      * @apiName getCountPersonsAndMoneyAction
      * @apiGroup Report
      * @apiDescription Get how persons and money have the system for range of date.
@@ -576,7 +597,7 @@ class ReportController extends FOSRestController
      *
      * @return mixed
      *
-     * @Post("/countPersonsAndHelp")
+     * @Post("/countPersonsAndHelp/")
      */
 
     public function getCountPersonsAndMoneyAction(Request $request)
