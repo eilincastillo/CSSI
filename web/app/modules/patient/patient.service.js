@@ -234,7 +234,7 @@
                     employmentInstitution: storage.getItem('employmentInstitution'),
                     idPlace: parseInt(storage.getItem('idPlace')),
                     placeDetail: storage.getItem('placeDetail'),
-                    phonenumber: storage.getItem('phoneNumber'),
+                    phoneNumber: storage.getItem('phoneNumber'),
                     income: storage.getItem('income'),
                     expenses: storage.getItem('expenses'),
                     savingCapacity: storage.getItem('savingCapacity')
