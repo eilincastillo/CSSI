@@ -19,6 +19,7 @@
         this.validate = validate;
         this.getNationalites = getNationalites;
         this.getGenders = getGenders;
+        this.getScholarship = getScholarshipOptions;
 
         function getAll()
         {
@@ -57,6 +58,19 @@
             nationalityList.push({ id: 'E', name:'Extranjero'});
 
             return nationalityList;
+        }
+
+        function getScholarshipOptions()
+        {
+            var scholarshipList = [];
+
+            scholarshipList.push({ id: 'Ninguna', name: 'Ninguna'});
+            scholarshipList.push({ id: 'Primaria', name:'Primaria'});
+            scholarshipList.push({ id: 'Secundaria', name:'Secundaria'});
+            scholarshipList.push({ id: 'Tecnico', name:'Ténico'});
+            scholarshipList.push({ id: 'Superior', name:'Superior'});
+
+            return scholarshipList;
         }
 
         function validate(step)
@@ -110,15 +124,15 @@
                 result = true;
             }
 
-                if (!ValidateService.validateText(secondNameInput))
-                {
-                    result=false;
-                }
-
-                if (!ValidateService.validateText(secondLastnameInput))
-                {
-                    result=false;
-                }
+                // if (!ValidateService.validateText(secondNameInput))
+                // {
+                //     result=false;
+                // }
+                //
+                // if (!ValidateService.validateText(secondLastnameInput))
+                // {
+                //     result=false;
+                // }
 
             return result;
         }

@@ -33,17 +33,17 @@
             var id =  $stateParams.patientId;
             if(PatientService.validate(1))
             {
-            $state.go('menu.appointment-add', { patientId: id, appointmentStep: 2 })
+            $state.go('menu.patient-add', { patientId: id, patientStep: 2 })
             }
         }
 
         self.saveSecondStep = function()
         {
             var id =  $stateParams.patientId;
-            if(PatientService.validate(2))
-            {
-                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })');
-            }
+            // if(PatientService.validate(2))
+            // {
+                $state.go('menu.patient-add', { patientId: id, patientStep: 3 })
+            //}
         }
 
         self.saveThirdStep = function()
@@ -51,7 +51,7 @@
             var id =  $stateParams.patientId;
             if(PatientService.validate(3))
             {
-                $state.go('menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 4 })');
+                $state.go('menu.patient-add', { patientId: id, patientStep: 4 })
             }
         }
 
@@ -80,7 +80,10 @@
         }
 
         self.nationalityList = PatientService.getNationalites();
+        self.stateList = PatientService.getState();
+        self.districtList = PatientService.getDistricts();
         self.genderList = PatientService.getGenders();
+        self.scholarshipList = PatientService.getScholarship();
 
         self.addPatient = function (patient)
         {
