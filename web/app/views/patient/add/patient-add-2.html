@@ -17,7 +17,7 @@
                 <div class="input-field col s10">
                     <div class="input-field col s12">
                         <label for="districtList" class="active">Parroquia</label>
-                        <select id="districtList" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id"
+                        <select id="districtList" name="Parroquia" class="browser-default" ng-options="district.name for district in ctrl.districtList track by district.id"
                                 ng-model="ctrl.patient.address.district" tabindex="2" data-field="metaDistrict">
                         </select>
                         <span id="metaDistrict"></span>
@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s10">
-                    <input id="phonenumber" class="validate" ng-model="ctrl.patient.phonenumber" tabindex="4" data-field="metaPhonenumber" >
+                    <input id="phonenumber" name="Teléfono" class="validate" ng-model="ctrl.patient.phonenumber" tabindex="4" data-field="metaPhonenumber" >
                     <label for="phonenumber">Teléfono de contacto</label>
                     <span id="metaPhonenumber"></span>
                 </div>
