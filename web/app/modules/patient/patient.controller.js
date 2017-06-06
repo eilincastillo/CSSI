@@ -14,6 +14,11 @@
         self.personalStep = true;
         self.nationalityList = [];
         self.genderList = [];
+        self.nationalityList = PatientService.getNationalites();
+        self.stateList = PatientService.getState();
+        self.districtList = PatientService.getDistricts();
+        self.genderList = PatientService.getGenders();
+        self.scholarshipList = PatientService.getScholarship();
 
 
         self.init = function()
@@ -49,10 +54,10 @@
         self.saveThirdStep = function()
         {
             var id =  $stateParams.patientId;
-            // if(PatientService.validate(3))
-            // {
+            if(PatientService.validate(3))
+            {
                 $state.go('menu.patient-add', { patientId: id, patientStep: 4 })
-            // }
+            }
         }
 
         function isEmpty(step)
@@ -79,12 +84,6 @@
                 });
         }
 
-        self.nationalityList = PatientService.getNationalites();
-        self.stateList = PatientService.getState();
-        self.districtList = PatientService.getDistricts();
-        self.genderList = PatientService.getGenders();
-        self.scholarshipList = PatientService.getScholarship();
-        self.savingCapacityList = PatientService.getEmployee();
 
         self.addPatient = function (patient)
         {
@@ -154,15 +153,7 @@
 
             }
 
-            PatientService.getState()
-                .then(function (data)
-                {
-                    self.stateList = data;
-                })
-                .catch(function (e)
-                {
 
-                });
 
             self.genderList = PatientService.getGender();
             self.employeeList = PatientService.getEmployee();
@@ -213,21 +204,19 @@
                 });
         }
 
-        self.toggleOccupation = function (occupation)
+        self.loadStates = function()
         {
-            if(occupation.id == 1)
-                self.enabledOccupation = false;
-            else
-                self.enabledOccupation = true;
+            PatientService.getState()
+                .then(function (data)
+                {
+                    self.stateList = data;
+                })
+                .catch(function (e)
+                {
+
+                });
         }
 
-        self.toggleScholarship = function(scholarship)
-        {
-            if(scholarship.id == 5)
-                self.enabledScholarship = false;
-            else
-                self.enabledScholarship = true;
-        }
 
 
     }
