@@ -152,7 +152,7 @@
             if(urlParameter && PatientService.validate(1) && PatientService.validate(2) && PatientService.validate(3)
                 && PatientService.validate(4))
             {
-                PatientService.update(patient)
+                PatientService.update(urlParameter)
                     .then(function ()
                     {
                         $state.go('menu.patient');

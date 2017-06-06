@@ -276,7 +276,7 @@
             return promise;
         }
 
-        function update(patient)
+        function update(patientId)
         {
             var defered = $q.defer();
             var promise = defered.promise;
@@ -303,7 +303,8 @@
                     phoneNumber: storage.getItem('phoneNumber'),
                     income: storage.getItem('income'),
                     expenses: storage.getItem('expenses'),
-                    savingCapacity: storage.getItem('savingCapacity')
+                    savingCapacity: storage.getItem('savingCapacity'),
+                    id: parseInt(patientId)
                 };
 
             PatientFactory.update(updatedPatient)
