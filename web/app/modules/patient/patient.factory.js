@@ -86,11 +86,11 @@
         {
             var scholarshipList = [];
 
-            scholarshipList.push({ id: 1, name: 'Ninguno'});
-            scholarshipList.push({ id: 2, name: 'Primaria'});
-            scholarshipList.push({ id: 3, name: 'Bachillerato'});
-            scholarshipList.push({ id: 4, name: 'Técnico'});
-            scholarshipList.push({ id: 5, name: 'Universitario'});
+            scholarshipList.push({ id: 'Ninguno', name: 'Ninguno'});
+            scholarshipList.push({ id: 'Primaria', name: 'Primaria'});
+            scholarshipList.push({ id: 'Bachillerato', name: 'Bachillerato'});
+            scholarshipList.push({ id: 'Técnico', name: 'Técnico'});
+            scholarshipList.push({ id: 'Universitario', name: 'Universitario'});
 
 
             return scholarshipList;
@@ -101,8 +101,8 @@
         {
             var genderList = [];
 
-            genderList.push({ id: 1, name: 'Femenino'});
-            genderList.push({ id: 2, name: 'Masculino'});
+            genderList.push({ id: 'F', name: 'Femenino'});
+            genderList.push({ id: 'M', name: 'Masculino'});
 
             return genderList;
         }
@@ -111,8 +111,8 @@
         {
             var employeeStateList = [];
 
-            employeeStateList.push({ id: 1, name: 'Empleado'});
-            employeeStateList.push({ id: 2, name: 'Desempleado'});
+            employeeStateList.push({ id: true, name: 'Empleado'});
+            employeeStateList.push({ id: false, name: 'Desempleado'});
 
             return employeeStateList;
         }

@@ -35,10 +35,10 @@
         self.saveSecondStep = function()
         {
             var id =  $stateParams.patientId;
-            // if(PatientService.validate(2))
-            // {
+            if(PatientService.validate(2))
+            {
                 $state.go('menu.patient-add', { patientId: id, patientStep: 3 })
-            //}
+            }
         }
 
         self.saveThirdStep = function()

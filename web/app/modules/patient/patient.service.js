@@ -6,6 +6,8 @@
 
     function PatientService($q, PlaceService, PatientFactory, ValidateService)
     {
+        var storage = sessionStorage;
+
         this.getAll = getAll;
         this.get = get;
         this.getGender = getGender;
@@ -64,6 +66,7 @@
         {
             var result = false;
 
+            var historyNumberInput = document.getElementById('historyNumber');
             var firstNameInput = document.getElementById('firstName');
             var secondNameInput = document.getElementById('secondName');
             var firstLastnameInput = document.getElementById('firstLastname');
@@ -74,7 +77,8 @@
             var genderSelectInput = document.getElementById('genderList');
 
 
-            if(ValidateService.validateNotEmpty(firstNameInput)
+            if(ValidateService.validateNotEmpty(historyNumber)
+                && ValidateService.validateNotEmpty(firstNameInput)
                 && ValidateService.validateNotEmpty(firstLastnameInput)
                 && ValidateService.validateNotEmpty(documentInput)
                 && ValidateService.validateNotEmpty(birthdayInput)
@@ -86,18 +90,18 @@
                 && ValidateService.validateText(secondLastnameInput)
                 && ValidateService.validateNumber(documentInput))
             {
+                storage.setItem('historyNumber', historyNumberInput.value);
+                storage.setItem('document', documentInput.value);
+                storage.setItem('firstName', firstNameInput.value);
+                storage.setItem('secondName', secondNameInput.value);
+                storage.setItem('firstLastname', firstLastnameInput.value);
+                storage.setItem('secondLastname', secondLastnameInput.value);
+                storage.setItem('birthdate', new Date (birthdayInput.value).toISOString().split('T')[0] );
+                storage.setItem('nationality', nationalitySelectInput.value);
+                storage.setItem('gender', genderSelectInput.value);
+
                 result = true;
             }
-
-                // if (!ValidateService.validateText(secondNameInput))
-                // {
-                //     result=false;
-                // }
-                //
-                // if (!ValidateService.validateText(secondLastnameInput))
-                // {
-                //     result=false;
-                // }
 
             return result;
         }
@@ -120,8 +124,13 @@
                 && ValidateService.validateSelection(stateSelectInput)
                 && ValidateService.validateSelection(districtSelectInput))
             {
+                storage.setItem('placeDetail', addressDetailInput.value);
+                storage.setItem('phoneNumber', phonenumberInput.value);
+                storage.setItem('idPlace', districtSelectInput.value);
+
                 result = true;
             }
+
             return result;
         }
 
@@ -142,6 +151,13 @@
                 && ValidateService.validateText(institutionInput)
                 && ValidateService.validateText(institutionInput))
             {
+                storage.setItem('scholarship', scholarshipSelectInput.value);
+                storage.setItem('scholarshipDetail', scholarshipSpecialtyInput.value);
+                storage.setItem('job', employeeSelectInput.value);
+                storage.setItem('occupation', enabledOccupationInput.value);
+                storage.setItem('employmentInstitution', institutionInput.value);
+
+
                 result = true;
             }
             return result;
@@ -164,6 +180,11 @@
                 && ValidateService.validateSelection(savingCapacityListSelectInput)
             && ValidateService.validateText(familyDynamicsInput))
             {
+                storage.setItem('income', incomeInput.value);
+                storage.setItem('expenses', expensesInput.value);
+                storage.setItem('savingCapacity', savingCapacityListSelectInput.value);
+                storage.setItem('familyDynamics', familyDynamicsInput.value);
+
                 result = true;
             }
             return result;
@@ -196,24 +217,27 @@
             var addedPatient =
                 {
                     
-                    name: patient.firstName,
-                    secondName: patient.secondName,
-                    lastname: patient.firstLastname,
-                    secondLastname: patient.secondLastname,
-                    historyNumber: Math.floor(Math.random() * 10000000),
-                    registrationDate: new Date().toISOString(),
-                    nationality: patient.nationality.id,
-                    document: patient.document,
-                    gender: patient.gender.id,
-                    birthdate: patient.birthday.toISOString().split('T')[0],
-                    familyDynamics: '',
-                    scholarship: patient.scholarship.name,
-                    scholarshipDetail: patient.scholarshipSpecialty,
-                    job: true,
-                    occupation: patient.occupation,
-                    employmentInstitution: patient.institution,
-                    idPlace: patient.address.district.id,
-                    placeDetail: patient.address.detail
+                    name: storage.getItem('name'),
+                    secondName: storage.getItem('secondName'),
+                    lastname: storage.getItem('lastname'),
+                    secondLastname: storage.getItem('secondLastname'),
+                    historyNumber: storage.getItem('historyNumber'),
+                    nationality: storage.getItem('nationality'),
+                    document: storage.getItem('document'),
+                    gender: storage.getItem('gender'),
+                    birthdate: storage.getItem('birthdate'),
+                    familyDynamics: storage.getItem('familyDynamics'),
+                    scholarship: storage.getItem('scholarship'),
+                    scholarshipDetail: storage.getItem('scholarshipDetail'),
+                    job: storage.getItem('job'),
+                    occupation: storage.getItem('occupation'),
+                    employmentInstitution: storage.getItem('employmentInstitution'),
+                    idPlace: parseInt(storage.getItem('idPlace')),
+                    placeDetail: storage.getItem('placeDetail'),
+                    phonenumber: storage.getItem('phoneNumber'),
+                    income: storage.getItem('income'),
+                    expenses: storage.getItem('expenses'),
+                    savingCapacity: storage.getItem('savingCapacity')
                 };
 
 
