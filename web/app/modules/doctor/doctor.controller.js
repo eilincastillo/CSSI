@@ -3,9 +3,9 @@
 
     'use strict';
 
-    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$state', '$stateParams', 'StatusService', 'SpecialtyService', 'DoctorService', DoctorCtrl]);
+    angular.module('cssi.controllers.doctor').controller('DoctorCtrl', ['$state', '$stateParams', 'DoctorService', DoctorCtrl]);
 
-    function DoctorCtrl($state, $stateParams, StatusService, SpecialtyService, DoctorService)
+    function DoctorCtrl($state, $stateParams, DoctorService)
     {
         var self = this;
         self.doctorList = self.specialtyList = self.statusList = [];
@@ -31,6 +31,7 @@
                 });
         }
 
+
         self.addDoctor = function (doctor)
         {
             if(DoctorService.validate(doctor))
@@ -47,53 +48,30 @@
             }
         }
 
+
         self.getParameter = function (updateView)
         {
+            var urlParameter = $stateParams.doctorId;
 
-            if(updateView)
+            if(urlParameter)
             {
-                var urlParameter = $stateParams.doctorId;
+                DoctorService.get(urlParameter)
+                    .then(function (data)
+                    {
+                        self.doctor = data;
 
-                if(urlParameter)
-                {
-                    DoctorService.get(urlParameter)
-                        .then(function (data)
-                        {
-                            self.doctor = data;
+                    })
+                    .catch(function (e)
+                    {
 
-                        })
-                        .catch(function (e)
-                        {
-
-                        });
-
-                    StatusService.getAll()
-                        .then(function (data)
-                        {
-                            self.statusList = data;
-                        })
-                        .catch(function (e)
-                        {
-
-                        });
-                }
-                else
-                {
-                    $state.go('menu.doctor');
-                }
+                    });
             }
-
-            SpecialtyService.getAll()
-                .then(function (data)
-                {
-                    self.specialtyList = data;
-                })
-                .catch(function (e)
-                {
-
-                });
-
+            else
+            {
+                $state.go('menu.doctor');
+            }
         }
+
 
         self.updateDoctor = function (doctor)
         {
@@ -113,25 +91,34 @@
             }
         }
 
-        self.validateSelection = function(identifier)
-        {
-            var selectInput = document.getElementById(identifier);
 
-            if(selectInput)
-            {
-                DoctorService.validateSelection(selectInput);
-            }
+        self.loadSpecialities = function()
+        {
+            DoctorService.getSpecialities()
+                .then(function(data)
+                {
+                    self.specialtyList = data;
+                })
+                .catch(function()
+                {
+                    console.log('Fallo al cargar especialidades');
+                });
         }
 
-        self.validate = function(identifier)
-        {
-            var input = document.getElementById(identifier);
 
-            if(input)
-            {
-                DoctorService.validateField(input);
-            }
+        self.loadStatus = function()
+        {
+            DoctorService.getStatus()
+                .then(function (data)
+                {
+                    self.statusList = data;
+                })
+                .catch(function (e)
+                {
+                    console.log('Fallo al cargar estados');
+                });
         }
+
 
 
 

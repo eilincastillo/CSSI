@@ -2,9 +2,9 @@
 
     'use strict';
 
-    angular.module('cssi.services.doctor').service('DoctorService', ['$q', 'DoctorFactory', 'ValidateService', DoctorService]);
+    angular.module('cssi.services.doctor').service('DoctorService', ['$q', 'DoctorFactory', 'ValidateService', 'StatusService', 'SpecialtyService', DoctorService]);
 
-    function DoctorService($q, DoctorFactory, ValidateService)
+    function DoctorService($q, DoctorFactory, ValidateService, StatusService, SpecialtyService)
     {
         this.getAll = getAll;
         this.getFullName = getFullName;
@@ -12,6 +12,8 @@
         this.add = add;
         this.update = update;
         this.validate = validate;
+        this.getSpecialities = getSpecialities;
+        this.getStatus = getStatus;
 
 
         
@@ -151,6 +153,42 @@
                     defered.resolve(data);
                 })
                 .catch(function(e)
+                {
+                    defered.reject(e);
+                });
+
+            return promise;
+        }
+
+        function getSpecialities()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            SpecialtyService.getAll()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (e)
+                {
+                    defered.reject(e);
+                });
+
+            return promise;
+        }
+
+        function getStatus()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            StatusService.getAll()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (e)
                 {
                     defered.reject(e);
                 });

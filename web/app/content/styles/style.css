@@ -74,11 +74,20 @@ label
     margin-top: 3em;
 }
 
+.title
+{
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
 .error
 {
     border-color: red;
     color: red;
 }
+
+
+
 
 .success
 {

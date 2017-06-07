@@ -1,36 +1,37 @@
-<h1>Agregar doctor</h1>
-<h4 id="global-message"></h4>
-<div class="row" ng-init="ctrl.getParameter(false)">
+<h1 class="title">Agregar doctor</h1>
+
+<div class="row">
     <form class="col s12">
         <div class="col s6">
             <div class="row">
                 <div class="input-field col s8">
-                    <input id="name" name="Nombre" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus data-field="metaName">
                     <label for="name">Nombre</label>
-                    <span id="metaName"></span>
+                    <input id="name" name="Nombre" type="text" class="validate" ng-model="ctrl.doctor.name" tabindex="1" autofocus data-field="metaName">
+                    <span id="metaName" class="error"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s8">
                     <label for="lastname">Apellido</label>
                     <input id="lastname" name="Apellido" type="text" class="validate" ng-model="ctrl.doctor.lastname" tabindex="2" data-field="metaLastname">
-                    <span id="metaLastname"></span>
+                    <span id="metaLastname" class="error"></span>
                 </div>
             </div>
         </div>
         <div class="col s6">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s10">
+                    <label for="specialtyList" class="active">Especialidad</label>
                     <select id="specialtyList" name="Especialidad" class="browser-default" ng-options="specialty.name for specialty in ctrl.specialtyList track by specialty.id"
-                            ng-model="ctrl.doctor.specialty" tabindex="3" data-field="metaSpecialty">
+                            ng-init="ctrl.loadSpecialities()" ng-model="ctrl.doctor.specialty" tabindex="3" data-field="metaSpecialty">
                     </select>
-                    <label for="specialtyList">Especialidad</label>
-                    <span id="metaSpecialty"></span>
+                    <span id="metaSpecialty" class="error"></span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
+                <a class="waves-effect waves-teal btn-flat" ui-sref="menu.doctor">{{ 'Cancelar' | uppercase }}</a>
                 <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.addDoctor(ctrl.doctor)">
                     {{ 'Agregar' | uppercase }}
                 </button>

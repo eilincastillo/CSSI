@@ -11,7 +11,7 @@
             <li><a ui-sref="menu.patient" ui-sref-active="active">PACIENTES</a></li>
             <li><a ng-show="$root.administrator" ui-sref="menu.user" ui-sref-active="active">USUARIOS</a></li>
             <li><a ui-sref="menu.report" ui-sref-active="active">REPORTES</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="logout">{{ 'Usuario' }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="logout">{{ ctrl.username }}<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </div>
 </nav>
