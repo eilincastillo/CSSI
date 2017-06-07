@@ -6,64 +6,31 @@
                     <div class="row">
                         <div class="input-field col s8">
                             <label for="historyNumber" class="active">Número de historia</label>
-                            <input id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.patient.historyNumber" autofocus tabindex="1" data-field="metaHistoryNumber">
+                            <input ng-disabled="true" id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.patient.historyNumber" autofocus tabindex="1" data-field="metaHistoryNumber">
                             <span id="metaHistoryNumber" class="error"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s8">
-                            <label for="firstName" class="active">Primer nombre</label>
-                            <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.name" tabindex="2" data-field="metaFirstName">
-                            <span id="metaFirstName"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s8">
-                            <label for="secondName" class="active">Segundo nombre</label>
-                            <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="3" data-field="metaSecondName">
-                            <span id="metaSecondName"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s8">
-                            <label for="firstLastname"  class="active">Primer apellido</label>
-                            <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.lastname" tabindex="4" data-field="metaFirstLastname">
-                            <span id="metaFirstLastname"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s8">
-                            <label for="secondLastname" class="active">Segundo apellido</label>
-                            <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="5" data-field="metaSecondLastname">
-                            <span id="metaSecondLastname"></span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col s6">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <div class="input-field col s12">
+                        <div class="input-field col s10">
+                            <div class="input-field col s4">
                                 <label for="nationalityList" class="active">Nacionalidad</label>
-                                <select id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
+                                <select ng-disabled="true" id="nationalityList" name="Nacionalidad" class="browser-default" ng-options="nationality.name for nationality in ctrl.nationalityList track by nationality.id"
                                         ng-model="ctrl.patient.nationality" ng-init="ctrl.loadNationalities()" tabindex="6" data-field="metaNationality">
                                 </select>
                                 <span id="metaNationality"></span>
                             </div>
+                            <div class="input-field col s6">
+                                <label for="document" class="active">Cédula de Identidad</label>
+                                <input ng-disabled="true" id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="7" data-field="metaDocument">
+                                <span id="metaDocument"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <label for="document" class="active">Cédula de Identidad</label>
-                            <input id="document" name="Cédula" type="text" class="validate" ng-model="ctrl.patient.document" tabindex="7" data-field="metaDocument">
-                            <span id="metaDocument"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <div class="input-field col s12">
                                 <label for="genderList" class="active">Sexo</label>
-                                <select id="genderList" name="Sexo" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id" ng-init="ctrl.loadGenderOptions()"
+                                <select ng-disabled="true" id="genderList" name="Sexo" class="browser-default" ng-options="gender.name for gender in ctrl.genderList track by gender.id" ng-init="ctrl.loadGenderOptions()"
                                         ng-model="ctrl.patient.gender" tabindex="8" data-field="metaGender">
                                 </select>
                                 <span id="metaGender"></span>
@@ -71,10 +38,41 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="birthday" class="active">Fecha de nacimiento</label>
-                            <input id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="9" data-field="metaBirthday">
+                            <input ng-disabled="true" id="birthday" name="Fecha de nacimiento" type="date" class="validate" ng-model="ctrl.patient.birthday" tabindex="9" data-field="metaBirthday">
                             <span id="metaBirthday"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col s6">
+                  <div class="row">
+                        <div class="input-field col s8">
+                            <label for="firstName" class="active">Primer nombre</label>
+                            <input ng-disabled="true" id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.name" tabindex="2" data-field="metaFirstName">
+                            <span id="metaFirstName"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s8">
+                            <label for="secondName" class="active">Segundo nombre</label>
+                            <input ng-disabled="true" id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="3" data-field="metaSecondName">
+                            <span id="metaSecondName"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s8">
+                            <label for="firstLastname"  class="active">Primer apellido</label>
+                            <input ng-disabled="true" id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.lastname" tabindex="4" data-field="metaFirstLastname">
+                            <span id="metaFirstLastname"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s8">
+                            <label for="secondLastname" class="active">Segundo apellido</label>
+                            <input ng-disabled="true" id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="5" data-field="metaSecondLastname">
+                            <span id="metaSecondLastname"></span>
                         </div>
                     </div>
                 </div>
@@ -179,7 +177,7 @@
                 </div>
             </div>
             <div class="row" >
-                <h2><span><strong>4</strong></span>dinámica familiar</h2>
+                <h2 class="title"><span><strong>4</strong></span>dinámica familiar</h2>
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">

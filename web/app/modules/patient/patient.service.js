@@ -199,6 +199,15 @@
             PatientFactory.get(patientId)
                 .then(function (data)
                 {
+                    data.nationality = { id: data.nationality, name: data.nationality };
+                    data.gender = { id: data.gender, name: (data.gender === 'M')? 'Masculino' : 'Femenino' };
+                    var birthday = new Date(data.birthdate).toISOString().split('T')[0];
+                    data.birthdate = new Date(birthday);
+                    data.scholarship = { id: data.scholarship, name: data.scholarship };
+                    data.employee = { id: data.job, name: (data.job === 'true')? 'Si' : 'No' };
+                    data.savingCapacity = { id: data.savingCapacity, name: (data.savingCapacity === 'true')? 'Si' : 'No'}
+
+
                     defered.resolve(data);
                 })
                 .catch(function(e)

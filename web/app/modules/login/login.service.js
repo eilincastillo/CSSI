@@ -51,8 +51,8 @@
             LoginFactory.getUser(username)
                 .then(function (data)
                 {
-                    storage.setItem('name', data.name);
-                    storage.setItem('lastname', data.lastname);
+                    // storage.setItem('name', data.name);
+                    // storage.setItem('lastname', data.lastname);
                     storage.setItem('role', data.role);
 
                     defered.resolve();
