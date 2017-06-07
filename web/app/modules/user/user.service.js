@@ -2,17 +2,18 @@
 {
     'use strict';
 
-    angular.module('cssi.services.user').service('UserService', ['$q', 'UserFactory', 'ValidateService', UserService]);
+    angular.module('cssi.services.user').service('UserService', ['$q', 'UserFactory', 'ValidateService', 'StatusService', UserService]);
 
-    function UserService($q, UserFactory, ValidateService)
+    function UserService($q, UserFactory, ValidateService, StatusService)
     {
         this.getAll = getAll;
         this.get = get;
         this.getRoles = getRoles;
-        this.getNationalites = getNationalites;
         this.add = add;
         this.update = update;
         this.validate = validate;
+        this.getNationalites = getNationalites;
+        this.getStatus = getStatus;
 
         function getAll()
         {
@@ -42,6 +43,12 @@
             UserFactory.get(userId)
                 .then(function (data)
                 {
+                    data.personal.nationality = { id: data.personal.nationality, name: data.personal.nationality };
+
+                    data.roles = { id: data.roles, name: (data.roles === 'ROLE_ADMIN')? 'Administrador' : 'Usuario' }
+
+
+
                     defered.resolve(data);
                 })
                 .catch(function(e)
@@ -66,10 +73,28 @@
         {
             var nationalityList = [];
 
-            nationalityList.push({ id: 'V', name: 'Venezolano'});
-            nationalityList.push({ id: 'E', name:'Extranjero'});
+            nationalityList.push({ id: 'V', name: 'V'});
+            nationalityList.push({ id: 'E', name:'E'});
 
             return nationalityList;
+        }
+
+        function getStatus()
+        {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            StatusService.getAll()
+                .then(function (data)
+                {
+                    defered.resolve(data);
+                })
+                .catch(function (e)
+                {
+                    defered.reject(e);
+                });
+
+            return promise;
         }
 
         function validate(user)
@@ -158,7 +183,7 @@
                     secondLastname:"",
                     password: user.password,
                     idStatus: user.status.id,
-                    role: user.role.id,
+                    role: user.roles.id,
                     id: user.id
                 };
 

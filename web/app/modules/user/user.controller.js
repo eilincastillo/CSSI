@@ -2,15 +2,15 @@
 {
     'use strict';
     
-    angular.module('cssi.controllers.user').controller('UserCtrl', ['$state', '$stateParams', 'StatusService', 'UserService', UserCtrl]);
+    angular.module('cssi.controllers.user').controller('UserCtrl', ['$state', '$stateParams', 'UserService', UserCtrl]);
     
-    function UserCtrl($state, $stateParams, StatusService, UserService)
+    function UserCtrl($state, $stateParams, UserService)
     {
         var self = this;
         self.userList = self.statusList = self.roleList = self.nationalityList = [];
         self.user = {};
         self.userId;
-
+        self.retype;
 
         self.getUserList = function ()
         {
@@ -44,43 +44,25 @@
 
         self.getParameter = function (updateView)
         {
+            var urlParameter = $stateParams.userId;
 
-            if(updateView)
+            if(urlParameter)
             {
-                var urlParameter = $stateParams.userId;
+                UserService.get(urlParameter)
+                    .then(function (data)
+                    {
+                        self.user = data;
 
-                if(urlParameter)
-                {
-                    UserService.get(urlParameter)
-                        .then(function (data)
-                        {
-                            self.user = data;
+                    })
+                    .catch(function (e)
+                    {
 
-                        })
-                        .catch(function (e)
-                        {
-
-                        });
-
-                    StatusService.getAll()
-                        .then(function (data)
-                        {
-                            self.statusList = data;
-                        })
-                        .catch(function (e)
-                        {
-
-                        });
-
-                    self.roleList = UserService.getRoles();
-                }
-                else
-                {
-                    $state.go('menu.user');
-                }
+                    });
             }
-
-            self.nationalityList = UserService.getNationalites();
+            else
+            {
+                $state.go('menu.user');
+            }
 
         }
 
@@ -88,7 +70,7 @@
         {
             var urlParameter = $stateParams.userId;
 
-            if(urlParameter && UserService.validate(user))
+            if(urlParameter)
             {
                 UserService.update(user)
                     .then(function ()
@@ -100,6 +82,29 @@
 
                     });
             }
+        }
+
+        self.loadNationalities = function()
+        {
+            self.nationalityList = UserService.getNationalites();
+        }
+
+        self.loadRoles = function()
+        {
+            self.roleList = UserService.getRoles();
+        }
+
+        self.loadStatus = function()
+        {
+            UserService.getStatus()
+                .then(function (data)
+                {
+                    self.statusList = data;
+                })
+                .catch(function (e)
+                {
+                    console.log('Error al obtener los estados');
+                });
         }
     }
 })();
