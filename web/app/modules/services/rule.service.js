@@ -163,7 +163,7 @@
         */
         function isValidText( text )
         {
-            var pattern = /^[a-zA-Z ]{3,15}$/;
+            var pattern = /^[a-zA-ZáéíóúÁÉÍÓÚ ]/;
             var re = new RegExp( pattern );
             var m = re.exec( text );
             var result = false;
