@@ -1,38 +1,38 @@
 <div class="row" ng-init="ctrl.getParameter(true)">
     <form class="col s12">
             <div class="row">
-                <h2><span>1</span> {{ 'identificación del usuario' | uppercase }}</h2>
+                <h2 class="title"><span><strong>1</strong></span>identificación personal</h2>
                 <div class="col s6">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="historyNumber" class="active">Número de historia</label>
-                            <input id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.patient.historyNumber" tabindex="1" data-field="metaHistoryNumber">
+                            <input id="historyNumber" name="Número de historia" type="text" class="validate" ng-model="ctrl.patient.historyNumber" autofocus tabindex="1" data-field="metaHistoryNumber">
                             <span id="metaHistoryNumber" class="error"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="firstName" class="active">Primer nombre</label>
                             <input id="firstName" name="Primer nombre" type="text" class="validate" ng-model="ctrl.patient.name" tabindex="2" data-field="metaFirstName">
                             <span id="metaFirstName"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="secondName" class="active">Segundo nombre</label>
                             <input id="secondName" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondName" tabindex="3" data-field="metaSecondName">
                             <span id="metaSecondName"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="firstLastname"  class="active">Primer apellido</label>
                             <input id="firstLastname" name="Primer apellido" type="text" class="validate" ng-model="ctrl.patient.lastname" tabindex="4" data-field="metaFirstLastname">
                             <span id="metaFirstLastname"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s8">
                             <label for="secondLastname" class="active">Segundo apellido</label>
                             <input id="secondLastname" name="Segundo nombre" type="text" class="validate" ng-model="ctrl.patient.secondLastname" tabindex="5" data-field="metaSecondLastname">
                             <span id="metaSecondLastname"></span>
@@ -82,7 +82,7 @@
 
             <div class="row">
 
-                <h2><span>2</span> {{ 'contacto' | uppercase }}</h2>
+                <h2 class="title"><span><strong>2</strong></span>contacto</h2>
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
@@ -127,7 +127,7 @@
 
             <div class="row">
 
-                    <h2><span>3</span> {{ 'escolaridad y ocupación' | uppercase }}</h2>
+                    <h2 class="title"><span><strong>3</strong></span>escolaridad y ocupación</h2>
                     <div class="col s6">
                         <div class="row">
                             <div class="input-field col s6">
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div class="row" >
-                <h2><span>4</span> {{ 'dinámica familiar' | uppercase }}</h2>
+                <h2><span><strong>4</strong></span>dinámica familiar</h2>
                 <div class="col s6">
                     <div class="row">
                         <div class="input-field col s6">
@@ -211,7 +211,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="22" data-field="metaFamilyDynamics"></textarea>
-                            <label for="familyDynamics">Dinámica familiar</label>
+                            <label for="familyDynamics" class="active">Dinámica familiar</label>
                             <span id="metaFamilyDynamics"></span>
                         </div>
                     </div>
@@ -219,6 +219,8 @@
             </div>
 
             <div class="input-field col s6" >
+                <a class="waves-effect waves-teal btn-flat" ui-sref="menu.patient">{{ 'Cancelar' | uppercase }}</a>
+
                 <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.updatePatient(ctrl.patient)">
                     {{ 'Modificar' | uppercase }}
                 </button>

@@ -1,36 +1,34 @@
 <form>
     <div class="row" >
-        <h2><span>4</span> {{ 'dinámica familiar' | uppercase }}</h2>
+        <h2 class="title"><span><strong>4</strong></span>dinámica familiar</h2>
         <div class="col s6">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s10">
+                    <label for="savingCapacityList" class="active">Tiene usted capacidad de ahorro</label>
+                    <select id="savingCapacityList" name="Capacidad de ahorro" class="browser-default" ng-options="state.name for state in ctrl.savingCapacityList track by state.id" ng-init="ctrl.loadsavingCapacityOptions()"
+                            ng-model="ctrl.patient.savingCapacity" tabindex="3" data-field="metaSavingCapacity">
+                    </select>
+                    <span id="metaSavingCapacity" class="error"></span>
+                </div>
+            </div>        
+            <div class="row">
+                <div class="input-field col s8">
                     <input id="income" name="Ingresos" type="text" class="validate" ng-model="ctrl.patient.income" tabindex="1" data-field="metaIncome" >
                     <label for="income">Ingreso estimado</label>
                     <span id="metaIncome" class="error"></span>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s8">
                     <label for="expenses">Egreso estimado</label>
                     <input id="expenses" name="Egresos" type="text" class="validate" ng-model="ctrl.patient.expenses" tabindex="2" data-field="metaExpenses" >
                     <span id="metaExpenses" class="error"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <div class="input-field col s12">
-                        <label for="savingCapacityList" class="active">Tiene usted capacidad de ahorro</label>
-                        <select id="savingCapacityList" name="Capacidad de ahorro" class="browser-default" ng-options="state.name for state in ctrl.savingCapacityList track by state.id" ng-init="ctrl.loadsavingCapacityOptions()"
-                                ng-model="ctrl.patient.savingCapacity" tabindex="3" data-field="metaSavingCapacity">
-                        </select>
-                        <span id="metaSavingCapacity" class="error"></span>
-                    </div>
-                </div>
-            </div>        
         </div>
         <div class="col s6">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s10">
                     <textarea id="familyDynamics" name="Dinámica familiar" class="materialize-textarea" ng-model="ctrl.patient.familyDynamics" tabindex="4" data-field="metaFamilyDynamics"></textarea>
                     <label for="familyDynamics">Dinámica familiar</label>
                     <span id="metaFamilyDynamics" class="error"></span>
@@ -41,6 +39,7 @@
 
     <div class="row">
         <div class="input-field col s6">
+            <a class="waves-effect waves-teal btn-flat" ui-sref="menu.patient">{{ 'Cancelar' | uppercase }}</a>
             <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.patient-add({ patientStep: 3 })">
                 {{ 'Anterior' | uppercase }}
             </button>

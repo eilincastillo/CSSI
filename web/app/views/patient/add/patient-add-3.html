@@ -1,20 +1,18 @@
  <form>
     <div class="row">
-        <h2><span>3</span> {{ 'escolaridad y ocupación' | uppercase }}</h2>
+        <h2 class="title"><span><strong>3</strong></span>escolaridad y ocupación</h2>
         <div class="col s6">
             <div class="row">
-                <div class="input-field col s6">
-                    <div class="input-field col s12">
+                <div class="input-field col s10">
                         <label for="scholarshipList" class="active">Escolaridad</label>
                         <select id="scholarshipList" name="Escolaridad" class="browser-default" ng-options="scholarship.name for scholarship in ctrl.scholarshipList track by scholarship.id" ng-init="ctrl.loadScholarshipOptions()"
                                 ng-model="ctrl.patient.scholarship" ng-change="ctrl.toggleScholarship(ctrl.patient.scholarship)" tabindex="1" data-field="metaScholarship">
                         </select>
                         <span id="metaScholarship" class="error"></span>
-                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s8">
                     <label for="scholarshipSpecialty">Título</label>
                     <input id="scholarshipSpecialty" name="Título" type="text" class="validate" ng-model="ctrl.patient.scholarshipSpecialty" tabindex="2" data-field="metaScholarshipSpecialty">
                     <span id="metaScholarshipSpecialty" class="error"></span>
@@ -24,25 +22,23 @@
         </div>
         <div class="col s6">
             <div class="row">
-                <div class="input-field col s6">
-                    <div class="input-field col s12">
-                        <label for="employeeList" class="active">Empleado</label>
-                        <select id="employeeList" name="Empleado" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id" ng-init="ctrl.loadEmployeeOptions()"
-                                ng-model="ctrl.patient.employee" ng-change="ctrl.toggleOccupation(ctrl.patient.employee)" tabindex="3" data-field="metaEmployee">
-                        </select>
-                        <span id="metaEmployee" class="error"></span>
-                    </div>
+                <div class="input-field col s10">
+                    <label for="employeeList" class="active">Empleado</label>
+                    <select id="employeeList" name="Empleado" class="browser-default" ng-options="employee.name for employee in ctrl.employeeList track by employee.id" ng-init="ctrl.loadEmployeeOptions()"
+                            ng-model="ctrl.patient.employee" ng-change="ctrl.toggleOccupation(ctrl.patient.employee)" tabindex="3" data-field="metaEmployee">
+                    </select>
+                    <span id="metaEmployee" class="error"></span>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s8">
                     <input id="enabledOccupation" name="Ocupación" type="text" class="validate" ng-model="ctrl.patient.occupation" tabindex="4" data-field="metaEnabledOccupation">
                     <label for="enabledOccupation">Ocupación</label>
                     <span id="metaEnabledOccupation" class="error"></span>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s8">
                     <label for="institution">Institución en la que labora</label>
                     <input id="institution" name="Intitución" type="text" class="validate" ng-model="ctrl.patient.institution" tabindex="5" data-field="metainstitution">
                     <span id="metainstitution" class="error"></span>
@@ -53,11 +49,12 @@
 
     <div class="row">
         <div class="input-field col s6">
+            <a class="waves-effect waves-teal btn-flat" ui-sref="menu.patient">{{ 'Cancelar' | uppercase }}</a>
             <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.patient-add({ patientStep: 2 })">
                 {{ 'Anterior' | uppercase }}
             </button>
         </div>
-        <div class="input-field col s6" ng-hide="ctrl.occupationStep">
+        <div class="input-field col s6">
             <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveThirdStep(patient)">
                 {{ 'Siguiente' | uppercase }}
             </button>
