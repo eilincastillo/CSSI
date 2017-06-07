@@ -1,6 +1,6 @@
  <form>
     <div class="row">
-        <h2><span>4</span> {{ 'apoyo económico' | uppercase }}</h2>
+        <h2 class="title"><span><strong>4</strong></span>apoyo económico</h2>
         <div class="col s12">
 
             <div class="row">
@@ -23,6 +23,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
+                    <a class="waves-effect waves-teal btn-flat" ui-sref="menu.appointment({ patientId: 1 })">{{ 'Cancelar' | uppercase }}</a>
                     <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 3 })">
                         {{ 'Anterior' | uppercase }}
                     </button>

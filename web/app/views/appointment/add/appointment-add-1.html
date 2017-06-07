@@ -1,6 +1,6 @@
  <form>
     <div class="row">
-        <h2><span>1</span> {{ 'entrevista social' | uppercase }}</h2>
+        <h2 class="title"><span><strong>1<strong></span>entrevista social</h2>
         <div class="col s12">
 
             <div class="row">
@@ -24,8 +24,8 @@
     </div>
 
     <div class="row">
-
-        <div class="input-field col s6" ng-hide="ctrl.occupationStep">
+        <div class="input-field col s12" ng-hide="ctrl.occupationStep">
+            <a class="waves-effect waves-teal btn-flat" ui-sref="menu.appointment({ patientId: 1 })">{{ 'Cancelar' | uppercase }}</a>
             <button class="btn waves-effect waves-light right neutral-green" ng-click="ctrl.saveFirstStep(patient)">
                 {{ 'Siguiente' | uppercase }}
             </button>

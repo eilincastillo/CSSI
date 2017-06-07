@@ -1,6 +1,6 @@
  <form>
     <div class="row">
-        <h2><span>2</span> {{ 'motivo de la consulta' | uppercase }}</h2>
+        <h2 class="title"><span><strong>2</strong></span> motivo de la consulta</h2>
         <div class="col s12">
              <div class="row">
                 <div class="input-field col s6">
@@ -25,6 +25,7 @@
 
     <div class="row">
         <div class="input-field col s6">
+            <a class="waves-effect waves-teal btn-flat" ui-sref="menu.appointment({ patientId: 1 })">{{ 'Cancelar' | uppercase }}</a>
             <button class="waves-effect waves-teal btn-flat left neutral-green" ui-sref="menu.appointment-add({ patientId : ctrl.patient.id, appointmentStep: 1 })">
                 {{ 'Anterior' | uppercase }}
             </button>
