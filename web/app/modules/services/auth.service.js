@@ -15,6 +15,7 @@
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
         {
+            $('select').material_select();
 
             if(isAuthenticated())
             {
@@ -87,8 +88,7 @@
             var result = false;
 
             if(exists('token') 
-                && exists('name')
-                && exists('lastname')
+                && exists('username')
                 && exists('role'))
                 {
                     result = true;
